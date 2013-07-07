@@ -16,8 +16,7 @@ html, body {
 }
 
 body {
-  font: 13.34px helvetica, arial, clean, sans-serif;
-  *font-size: small;
+  font: 14px helvetica, arial, clean, sans-serif;
   text-align: center;
   
   background: #dddddd; /* Old browsers */
@@ -28,6 +27,7 @@ body {
   background: -ms-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* IE10+ */
   background: linear-gradient(to bottom,  #dddddd 0%,#f0f0f0 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,6 +40,7 @@ h1 {
 
 p {
   margin: 1em 0;
+  color: #333;
 }
 
 a {
@@ -97,8 +98,6 @@ ul.posts span {
 }
 
 .title {
-  color: #a00;
-  font-weight: bold;
   margin-bottom: 2em;
 }
 
@@ -134,14 +133,26 @@ ul.posts span {
   float: right;
 }
 
-.site .footer {
+.site .footer, .title .extra {
   font-size: 80%;
-  color: #666;
-  border-top: 1px solid #ddd;
   text-shadow: 0em 1px 1px #fff;
+  color: #c11;
+}
+
+.site .footer .contact a,
+.site .title a.extra {
+  color: #c11;
+}
+
+.site .footer .contact a:hover,
+.site .title a.extra:hover {
+  color: black;
+}
+
+.site .footer {
+  border-top: 1px solid #ddd;
   margin-top: 2em;
   overflow: hidden;
-  color: #b44;
 }
 
 .site .footer .contact {
@@ -149,12 +160,6 @@ ul.posts span {
   margin-right: 3em;
 }
 
-.site .footer .contact a {
-  color: #c11;
-}
-.site .footer .contact a:hover {
-  color: black;
-}
 
 .site .footer .rss {
   margin-top: 1.1em;
