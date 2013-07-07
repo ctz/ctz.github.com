@@ -16,10 +16,18 @@ html, body {
 }
 
 body {
-  background-color: white;
   font: 13.34px helvetica, arial, clean, sans-serif;
   *font-size: small;
   text-align: center;
+  
+  background: #dddddd; /* Old browsers */
+  background: -moz-linear-gradient(top,  #dddddd 0%, #f0f0f0 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #dddddd 0%,#f0f0f0 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,15 +70,15 @@ ul.posts {
   margin-bottom: 2em;
 }
 
-  ul.posts li {
-    line-height: 1.75em;
-  }
+ul.posts li {
+  line-height: 1.75em;
+}
 
-  ul.posts span {
-    color: #aaa;
-    font-family: Monaco, "Courier New", monospace;
-    font-size: 80%;
-  }
+ul.posts span {
+  color: #aaa;
+  font-family: Monaco, "Courier New", monospace;
+  font-size: 80%;
+}
 
 /*****************************************************************************/
 /*
@@ -82,8 +90,9 @@ ul.posts {
   font-size: 110%;
   text-align: justify;
   max-width: 40em;
-  margin: 3em auto 2em auto;
-  padding: 0em 0.5em 0em 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em 0.5em 2em 0.5em;
   line-height: 1.5em;
 }
 
@@ -93,55 +102,69 @@ ul.posts {
   margin-bottom: 2em;
 }
 
-  .site .title a {
-    color: #a00;
-    text-decoration: none;
-  }
+.site .title a {
+  color: #a00;
+}
 
-  .site .title a:hover {
-    color: black;
-  }
+.site .title a.main {
+  font-family: 'Lily Script One', cursive;
+  font-weight: normal;
+  font-size: 200%;
+  text-shadow: 0em 0.1em 0.02em #fff;
+  color: #c11;
+  text-decoration: none;
+}
 
-  .site .title a.extra {
-    color: #aaa;
-    text-decoration: none;
-    margin-left: 1em;
-  }
+.site .title a:hover {
+  color: black;
+}
 
-  .site .title a.extra:hover {
-    color: black;
-  }
+.site .title a.extra {
+  color: #aaa;
+  margin-left: 1em;
+  float: right;
+}
 
-  .site .meta {
-    color: #aaa;
-  }
+.site .title a.extra:hover {
+  color: black;
+}
 
-  .site .footer {
-    font-size: 80%;
-    color: #666;
-    border-top: 4px solid #eee;
-    margin-top: 2em;
-    overflow: hidden;
-  }
+.site .meta {
+  color: #aaa;
+  float: right;
+}
 
-    .site .footer .contact {
-      float: left;
-      margin-right: 3em;
-    }
+.site .footer {
+  font-size: 80%;
+  color: #666;
+  border-top: 1px solid #ddd;
+  text-shadow: 0em 1px 1px #fff;
+  margin-top: 2em;
+  overflow: hidden;
+  color: #b44;
+}
 
-      .site .footer .contact a {
-        color: #8085C1;
-      }
+.site .footer .contact {
+  float: left;
+  margin-right: 3em;
+}
 
-    .site .footer .rss {
-      margin-top: 1.1em;
-      margin-right: -.2em;
-      float: right;
-    }
+.site .footer .contact a {
+  color: #c11;
+}
+.site .footer .contact a:hover {
+  color: black;
+}
 
-      .site .footer .rss img {
-        border: 0;
-      }
+.site .footer .rss {
+  margin-top: 1.1em;
+  margin-right: -.2em;
+  float: right;
+}
+
+.site .footer .rss img {
+  border: 0;
+}
 
 /*****************************************************************************/
 /*
@@ -153,46 +176,46 @@ ul.posts {
 
 }
 
-  /* standard */
+/* standard */
 
-  #post pre {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    padding: 0 .4em;
-  }
+#post pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
 
-  #post ul,
-  #post ol {
-    margin-left: 1.35em;
-  }
+#post ul,
+#post ol {
+  margin-left: 1.35em;
+}
 
-  #post code {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    font-size: 85%;
-    padding: 0 .2em;
-  }
+#post code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  font-size: 85%;
+  padding: 0 .2em;
+}
 
-    #post pre code {
-      border: none;
-    }
+#post pre code {
+  border: none;
+}
 
-  /* terminal */
+/* terminal */
 
-  #post pre.terminal {
-    border: 1px solid black;
-    background-color: #333;
-    color: white;
-  }
+#post pre.terminal {
+  border: 1px solid black;
+  background-color: #333;
+  color: white;
+}
 
-  #post pre.terminal code {
-    background-color: #333;
-  }
+#post pre.terminal code {
+  background-color: #333;
+}
 
 #related {
   margin-top: 2em;
 }
 
-  #related h2 {
-    margin-bottom: 1em;
-  }
+#related h2 {
+  margin-bottom: 1em;
+}
