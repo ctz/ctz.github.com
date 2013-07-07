@@ -18,6 +18,7 @@ html, body {
 body {
   font: 14px helvetica, arial, clean, sans-serif;
   text-align: center;
+  color: #333;
   
   background: #dddddd; /* Old browsers */
   background: -moz-linear-gradient(top,  #dddddd 0%, #f0f0f0 100%); /* FF3.6+ */
@@ -38,9 +39,13 @@ h1 {
   margin-bottom: 1em;
 }
 
+h1 span.subtitle {
+  color: #aaa;
+  font-weight: normal;
+}
+
 p {
   margin: 1em 0;
-  color: #333;
 }
 
 a {
@@ -58,6 +63,11 @@ a:visited {
 table {
   font-size: inherit;
   font: 100%;
+}
+
+ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /*****************************************************************************/
@@ -130,6 +140,7 @@ ul.posts span {
 
 .site .meta {
   color: #aaa;
+  margin-left: 2em;
   float: right;
 }
 
@@ -149,7 +160,7 @@ ul.posts span {
   color: black;
 }
 
-.site .footer {
+.site .footer, .related {
   border-top: 1px solid #ddd;
   margin-top: 2em;
   overflow: hidden;
@@ -178,7 +189,7 @@ ul.posts span {
 /*****************************************************************************/
 
 #post {
-
+  color: #333;
 }
 
 /* standard */
@@ -196,7 +207,7 @@ ul.posts span {
 
 #post code {
   border: 1px solid #ddd;
-  background-color: #eef;
+  background-color: #eee;
   font-size: 85%;
   padding: 0 .2em;
 }
@@ -223,4 +234,11 @@ ul.posts span {
 
 #related h2 {
   margin-bottom: 1em;
+}
+
+.callout {
+  float: right;
+  padding: 0.2em;
+  background-color: #eee;
+  border: 1px solid #ddd;
 }
