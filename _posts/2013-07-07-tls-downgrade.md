@@ -46,9 +46,10 @@ Pretending to be Chrome's TLS stack, I simulated the attack against the [top 300
 
 So, if you're counting, 53 (25%) *lost forward secrecy under attacker control*.  Notably, this includes all Google properties.
 
-Also, consider an attacker who has a preference for attacking RC4 statistical biases.  The 6 sites which switched to RC4 under downgrade (including all Microsoft properties) just became more appealing,
+Also, consider an attacker who has a preference for [attacking RC4 statistical biases][rc4].  The 6 sites which switched to RC4 under downgrade (including all Microsoft properties) just became more appealing,
 
 [top 300]: http://www.alexa.com/topsites
+[rc4]: http://www.isg.rhul.ac.uk/tls/
 
 # History
 This is not a new discovery.  Browser vendors implemented this downgrade *deliberately* to continue working in the presence of 'middle-boxes' (such as those made by [Bluecoat][], amongst others) which barf on use of modern TLS protocol versions.
