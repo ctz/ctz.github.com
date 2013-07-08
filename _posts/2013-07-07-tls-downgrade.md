@@ -83,6 +83,6 @@ Worse still, work on TLS1.2 support in NSS (Network Security Services -- used by
 [rollback]: http://tools.ietf.org/html/draft-pettersen-tls-version-rollback-removal-01
 
 # The code
-During this investigation I wrote a [pure python toy TLS stack][tls-hacking].  Please observe the emphasis on **toy**.
+During this investigation I wrote a [pure python toy TLS stack][tls-hacking].  Please observe the emphasis on **toy**.  Of particular note is `src/socks_proxy.py` -- a dodgy SOCKS proxy which implements this attack.
 
 [tls-hacking]: https://github.com/ctz/tls-hacking
