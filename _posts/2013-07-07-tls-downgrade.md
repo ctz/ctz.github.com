@@ -68,7 +68,7 @@ Aside: read the 'Resolution' part of [that article][Bluecoat] and try and work o
 * Mozilla Firefox 16.0.1 (Linux Mint x86_64).
 * Internet Explorer 9.0.8112.16421 (Windows 7 x86_64) both in default configuration and with TLS1.2 enabled.
 
-# Unaffacted browsers
+# Unaffected browsers
 The following products correctly treat fatal alerts as errors, and are not affected.
 
 * Opera 12.14 (Linux Mint x86_64).
