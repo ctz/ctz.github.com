@@ -17,7 +17,7 @@ Unfortunately most browsers have implemented unsafe downgrade behaviour when a T
 
 This is bad, and surprising.
 
-# Browers behaviour
+# Browser behaviour
 A browser starts a new TLS connection with the highest (most recent) TLS protocol version it can speak.  If the connection fails early on, it moves down to an older version and retries from the beginning.
 
 Importantly, this downgrade is *outside the protocol version negotiation facilities* that TLS provides: there is no possible binding between the first and subsequent connections, and so the way TLS detects version downgrade is made ineffective.
