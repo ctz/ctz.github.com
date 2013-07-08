@@ -20,7 +20,7 @@ This is bad, and surprising.
 # Browser behaviour
 A browser starts a new TLS connection with the highest (most recent) TLS protocol version it can speak.  If the connection fails early on, it moves down to an older version and retries from the beginning.
 
-Importantly, this downgrade is *outside the protocol version negotiation facilities* that TLS provides: there is no possible binding between the first and subsequent connections, and so the way TLS detects version downgrade is made ineffective.
+Importantly, this downgrade is *outside the protocol version negotiation facilities* that TLS provides: there is no binding between the first and subsequent connections, and so the way TLS detects version downgrade is not in play.
 
 In concrete terms:
 
@@ -70,7 +70,7 @@ Aside: read the 'Resolution' part of [that article][Bluecoat] and try and work o
 * Internet Explorer 9.0.8112.16421 (Windows 7 x86_64) both in default configuration and with TLS1.2 enabled.
 
 # Unaffected browsers
-The following products correctly treat fatal alerts as errors, and are not affected.
+The following products correctly treat fatal alerts and unexpected connection closures as errors, and are not affected.
 
 * Opera 12.14 (Linux Mint x86_64).
 * CURL 7.27.0 (Linux Mint x86_64).
