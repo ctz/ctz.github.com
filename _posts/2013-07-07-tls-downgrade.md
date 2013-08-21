@@ -88,8 +88,8 @@ During this investigation I wrote a [pure python toy TLS stack][tls-hacking].  P
 [tls-hacking]: https://github.com/ctz/tls-hacking
 
 # Update: 2013-08-21
-Today TLS1.2 support reached Chrome mainline.  Unfortunately there doesn't seem to be any
-mitigation implemented for [downgrade][chrome29lg]:
+Today TLS1.2 support reached Chrome mainline.  Unfortunately [there doesn't seem to be any
+mitigation implemented][chrome29lg] for downgrade:
 
 ![screenshot showing Chrome 29 with TLS1.2 being downgraded to SSL3.0][chrome29]
 
