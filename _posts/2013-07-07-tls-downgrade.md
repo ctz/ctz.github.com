@@ -86,3 +86,14 @@ Worse still, work on TLS1.2 support in NSS (Network Security Services -- used by
 During this investigation I wrote a [pure python toy TLS stack][tls-hacking].  Please observe the emphasis on **toy**.  Of particular note is `src/socks_proxy.py` -- a dodgy SOCKS proxy which implements this attack.
 
 [tls-hacking]: https://github.com/ctz/tls-hacking
+
+# Update: 2013-08-21
+Today TLS1.2 support reached Chrome mainline.  Unfortunately there doesn't seem to be any
+mitigation implemented for [downgrade][chrome29lg]:
+
+![screenshot showing Chrome 29 with TLS1.2 being downgraded to SSL3.0][chrome29]
+
+[chrome29]: /assets/demo-chrome29-sm.png
+[chrome29lg]: /assets/demo-chrome29-lg.png
+
+So unfortunately this implementation of TLS1.2 doesn't offer any advantage over SSL3.0 in the face of even a trivial active attacker :(
