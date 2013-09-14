@@ -37,7 +37,7 @@ In concrete terms, this means that in the TLS protocol endpoints send self-signe
 ## Round one: taking out the trash
 TLS currently has around 360 different ciphersuites defined or proposed.  We'll select suitable ciphersuites by exclusion of those unsuitable:
 
-<div>
+<p>
 <style>
 img.cs {
   background-color: #6d6;
@@ -420,11 +420,11 @@ img.nopfs {
 <img src="/assets/t.png" class="cs" title="0xC0AB - TLS_PSK_DHE_WITH_AES_256_CCM_8"/>
 <img src="/assets/t.png" class="cs" title="0xFEFE - SSL_RSA_FIPS_WITH_DES_CBC_SHA"/>
 <img src="/assets/t.png" class="cs" title="0xFEFF - SSL_RSA_FIPS_WITH_3DES_EDE_CBC_SHA"/>
-</div>
+</p>
 
 First let's disregard all the ciphersuites which are obviously rubbish (like export-strength, DES, RC2, etc. -- coloured in red), or are merely unsuitable: they don't fit our trust model (black) or don't provide forward secrecy (blue).
 
-<div>
+<p>
 <img src="/assets/t.png" class="cs rubbish" title="0x0000 - TLS_NULL_WITH_NULL_NULL"/>
 <img src="/assets/t.png" class="cs rubbish" title="0x0001 - TLS_RSA_WITH_NULL_MD5"/>
 <img src="/assets/t.png" class="cs rubbish" title="0x0002 - TLS_RSA_WITH_NULL_SHA"/>
@@ -784,12 +784,12 @@ First let's disregard all the ciphersuites which are obviously rubbish (like exp
 <img src="/assets/t.png" class="cs unsuitable" title="0xC0AB - TLS_PSK_DHE_WITH_AES_256_CCM_8"/>
 <img src="/assets/t.png" class="cs rubbish" title="0xFEFE - SSL_RSA_FIPS_WITH_DES_CBC_SHA"/>
 <img src="/assets/t.png" class="cs rubbish" title="0xFEFF - SSL_RSA_FIPS_WITH_3DES_EDE_CBC_SHA"/>
-</div>
+</p>
 
 ## Round two: known attacks
 This leaves us with the following candidates: 
 
-<div>
+<p>
 <img src="/assets/t.png" class="cs" title="0x0032 - TLS_DHE_DSS_WITH_AES_128_CBC_SHA"/>
 <img src="/assets/t.png" class="cs" title="0x0033 - TLS_DHE_RSA_WITH_AES_128_CBC_SHA"/>
 <img src="/assets/t.png" class="cs" title="0x0038 - TLS_DHE_DSS_WITH_AES_256_CBC_SHA"/>
@@ -859,11 +859,11 @@ This leaves us with the following candidates:
 <img src="/assets/t.png" class="cs" title="0xC09F - TLS_DHE_RSA_WITH_AES_256_CCM"/>
 <img src="/assets/t.png" class="cs" title="0xC0A2 - TLS_DHE_RSA_WITH_AES_128_CCM_8"/>
 <img src="/assets/t.png" class="cs" title="0xC0A3 - TLS_DHE_RSA_WITH_AES_256_CCM_8"/>
-</div>
+</p>
 
 Next, let's remove the ciphersuites which are known to be impossibly hard to implement without timing side channels (all CBC mac-then-encrypt suites -- in red), those which use RC4 (which has significant statistical biases -- in blue).
 
-<div>
+<p>
 <style>
 img.timing {
   background-color: #d66;
@@ -943,12 +943,12 @@ img.rc4 {
 <img src="/assets/t.png" class="cs" title="0xC09F - TLS_DHE_RSA_WITH_AES_256_CCM"/>
 <img src="/assets/t.png" class="cs" title="0xC0A2 - TLS_DHE_RSA_WITH_AES_128_CCM_8"/>
 <img src="/assets/t.png" class="cs" title="0xC0A3 - TLS_DHE_RSA_WITH_AES_256_CCM_8"/>
-</div>
+</p>
 
 ## Round three: security levels
 We are left with:
 
-<div>
+<p>
 <img src="/assets/t.png" class="cs" title="0x009E - TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"/>
 <img src="/assets/t.png" class="cs" title="0x009F - TLS_DHE_RSA_WITH_AES_256_GCM_SHA384"/>
 <img src="/assets/t.png" class="cs" title="0x00A2 - TLS_DHE_DSS_WITH_AES_128_GCM_SHA256"/>
@@ -977,15 +977,17 @@ We are left with:
 <img src="/assets/t.png" class="cs" title="0xC09F - TLS_DHE_RSA_WITH_AES_256_CCM"/>
 <img src="/assets/t.png" class="cs" title="0xC0A2 - TLS_DHE_RSA_WITH_AES_128_CCM_8"/>
 <img src="/assets/t.png" class="cs" title="0xC0A3 - TLS_DHE_RSA_WITH_AES_256_CCM_8"/>
-</div>
+</p>
 
 Depending on whose analysis you read, achieving a 128-bit security level would require using an RSA modulus of somewhere between 3072 and 6144 bits in length, a DSA group of a similar size modulus and 256-bit subgroup, and a similar DH group.  In contrast, using ECC would only need a curve with a 256-bit group order.
 
 So, for reasons of efficiency, we discard all the ciphersuites using ephemeral DH for PFS, RSA for authenticity or DSA for authenticity.
 
-Discarding RSA at this point also means we don't have to deal with a later horror: that TLS continues to require use of RSA PKCS#1 signatures which are discredited in favour of PSS.
+Discarding RSA at this point also means we don't have to deal with a later horror: that TLS continues to require use of RSA PKCS#1 signatures which are very much discredited in favour of PSS.
 
-This unfortunately has the side effect of also discarding all the ciphersuites which uses CCM.  These would otherwise be a good candidate.
+This unfortunately has the side effect of also discarding all the ciphersuites which use CCM.  These would otherwise be a good candidate.
+
+The way ciphersuites are communicated in TLS is of particularly poor design: the set of ciphersuites must be the power set of all available bulk transport mechanisms, authenticity mechanisms, key exchange mechanisms, and hash functions.  Unfortunately it isn't, so we don't get to select `TLS_ECDHE_ECDSA_WITH_AES_256_CCM` or even `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA512`.
 
 <div>
 <style>
@@ -1043,10 +1045,14 @@ Finally, we discard `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` because use of AES
 This leaves use with a single ciphersuite which meets our needs: `TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`.
 
 # A note about ECDSA
-ECDSA signatures require a high quality entropy source.  The failure mode if this source is predictable is dire: all or part of the private key is leaked (depending on predictability of the failure).  This is a particularly sharp edge of ECDSA (and DSA, for that matter).
+ECDSA signatures require a high quality entropy source.  The failure mode is dire: the private key is leaked if two signatures reuse the same entropy, or one signature has an attacker-predictable <i>k</i> value, or many signatures with partially attacker-predictable <i>k</i> values.  This is a particularly sharp edge of ECDSA (and DSA, for that matter).
 
 Fortunately, [RFC6979][] provides an alternate entropy source by reuseing the entropy already (necessarily) present in the private key material.  Therefore: all sTLS implementations must use an RFC6979-compliant ECDSA implementation.
 
 [RFC6979]: http://tools.ietf.org/html/rfc6979
 
-# EC curves
+# EC curve selection
+
+# Forward secrecy in practice
+
+# 
