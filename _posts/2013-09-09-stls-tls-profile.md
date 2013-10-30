@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "sTLS: A secure profile for TLS"
+title: "TLS128: A secure profile for TLS"
 subtitle: ""
 category: 
 published: false
@@ -11,15 +11,15 @@ Current deployments of TLS have a number of ongoing security problems, mostly ar
 # Rationale
 We'd like to be able to describe, implement and use a secure channel.  What TLS instead provides is a vast and complex toolkit with which you *could* build a secure channel, but only if you make the correct choice for every option it gives.
 
-sTLS, then, cuts down this to a single *profile*.  Adherance with this profile can be (to a large extent) tested for automatically.  <div class="rrationale"> Rationale is presented like so. </div>  Rationale is provided for every important choice. 
+TLS128, then, cuts down this to a single *profile*.  Adherance with this profile can be (to a large extent) tested for automatically.  <div class="rrationale"> Rationale is presented like so. </div>  Rationale is provided for every important choice. 
 
-sTLS has the following security aims:
+TLS128 has the following security aims:
 
 * A 128-bit [security level][dspa20] (see section 4.2 for an introduction to this concept) for confidentiality, authenticity and integrity against passive and active adversaries.  <div class="rrationale"> We'd like to have good assurance of security against well equipped adversaries (say, Governments and botnet owners), and be confident that this situation will continue at least for the next decade.   </div> For comparison, the current (2013) deployments of HTTPS provide 73-bit security at most.
 * The minimum possible number of trusted third parties. <div class="lrationale in-li"> <div class="rarr"> &rarr; </div> HTTPS as currently deployed requires simultaneously trusting all ~613 top level and subordinate CAs. This is an extensive attack surface, and CAs do not publish their actions for public scrutiny. </div>
-* Perfect forward secrecy.
+* Forward secrecy.
 
-sTLS deliberately does not aim for compatibility with existing TLS deployments: we prefer no connection to one which does not meet the required security level.  It is therefore best suited for deployments where you can influence both endpoints. 
+TLS128 deliberately does not aim for compatibility with existing TLS deployments: *we prefer no connection to one which does not meet the required security level*.  It is therefore best suited for deployments where you can influence both endpoints. 
 
 [dspa20]: http://www.ecrypt.eu.org/documents/D.SPA.20.pdf
 
@@ -861,7 +861,10 @@ This leaves us with the following candidates:
 <img src="/assets/t.png" class="cs" title="0xC0A3 - TLS_DHE_RSA_WITH_AES_256_CCM_8"/>
 </p>
 
-Next, let's remove the ciphersuites which are known to be impossibly hard to implement without timing side channels (all CBC mac-then-encrypt suites -- in red), those which use RC4 (which has significant statistical biases -- in blue).
+Next, let's remove the ciphersuites which are known to be [fantastically hard to convincingly implement without timing side channels][lucky13] (all CBC mac-then-encrypt suites -- in red), those which use RC4 (which has [significant statistical biases][rc4sucks] -- in blue).
+
+[lucky13]: https://www.imperialviolet.org/2013/02/04/luckythirteen.html
+[rc4sucks]: http://www.isg.rhul.ac.uk/tls/biases.pdf
 
 <p>
 <style>
@@ -1036,23 +1039,58 @@ Disappointingly, we are left with 6 ciphersuites from which to choose:
 - 0xC086 - `TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_GCM_SHA256`
 - 0xC087 - `TLS_ECDHE_ECDSA_WITH_CAMELLIA_256_GCM_SHA384`
 
-ARIA is a block cipher of very similar internal structure to AES, standardised by the Korean Internet Security Agency (KISA).  Camellia is also a block cipher very similar to AES, designed by NTT and Mitsubishi in Japan.
+ARIA is a block cipher of very similar internal structure to AES, standardised by the Korean Internet Security Agency.  Camellia is also a block cipher very similar to AES, designed by NTT and Mitsubishi in Japan.
 
-Both of these ciphers are perfectly good choices, but we choose AES for the additional academic attention it has received in the past, and should receive in the future.
+Both of these ciphers are probably OK choices, but we choose AES for the additional academic attention it has received in the past, and should receive in the future.  Hardware acceleration for AES and GHASH is also present in modern Intel processors; ARIA and Camellia are unlikely to gain similar traction.
 
-Finally, we discard `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` because use of AES-256 and SHA-384 would be overkill to achieve our security target.
+Finally, we discard `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` because use of AES-256 and SHA-384 would exceed our security target.
 
 This leaves use with a single ciphersuite which meets our needs: `TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`.
 
 # A note about ECDSA
 ECDSA signatures require a high quality entropy source.  The failure mode is dire: the private key is leaked if two signatures reuse the same entropy, or one signature has an attacker-predictable <i>k</i> value, or many signatures with partially attacker-predictable <i>k</i> values.  This is a particularly sharp edge of ECDSA (and DSA, for that matter).
 
-Fortunately, [RFC6979][] provides an alternate entropy source by reuseing the entropy already (necessarily) present in the private key material.  Therefore: all sTLS implementations must use an RFC6979-compliant ECDSA implementation.
+Fortunately, [RFC6979][] provides an alternate entropy source by reuseing the entropy already (necessarily) present in the private key material.  Therefore: all TLS128 implementations must use an RFC6979-compliant ECDSA implementation.
+
+This covers both signing of ephemeral ECDH keys during key exchange, and self-signing of certificates.
 
 [RFC6979]: http://tools.ietf.org/html/rfc6979
 
 # EC curve selection
+The curves we could choose that are approximately strong enough are:
+
+* NIST P-256.
+* Curve25519.
+* Brainpool P256t1.
+
+We do no select P-256 because
+
+# Authentication keys
+Authentication keys must be ECDSA keys on the right curve.
 
 # Forward secrecy in practice
+Achieving forward secrecy is not just a case of choosing a ciphersuite which supports it.  A few TLS features can effectively and quietly break forward secrecy:
 
-# 
+* Session resumption.
+* Session tickets.
+
+## Session resumption
+TLS <tt>ClientHello</tt> and <tt>ServerHello</tt> handshake messages include a <tt>SessionID</tt> value.
+
+On a new connection, a client can supply a session ID to attempt to resume that session, where the session ID was obtained from the server on a previous occasion.  Resumption in this case is valuable, because it allows the new connection to commence without a fresh key exchange (which can be slow both in terms of computation and network latency.)
+
+Supporting session resumption means the server inevitably stores the secrets related to old connections for some time (perhaps indefinitely).  This is bad for forward secrecy, if your attack model includes the server being compromised or seized by LEA.
+
+TLS128 handshakes must always have empty session IDs: session resumption must not be supported.
+
+## Session tickets
+[Session tickets][RFC5077] are a different way of achieving the same end as session resumption, with the advantage that the server encrypts the session state and sends it to the client for storage (and later presentation).  This means the server only needs to manage the keys for that encryption.
+
+Unfortunately RFC5077 is extremely vague and noncommittal when it comes to avoiding damage to forward secrecy, ensuring the ticket is protected to the same level as the session itself, and a concrete rules for managing the keys which protect tickets.
+
+Coming up with a concrete and verifiable ticket format and key management scheme is a good area for future work.
+
+For now, though, TLS128 clients should not send <tt>SessionTicket</tt> extensions, and TLS128 servers should not send <tt>NewSessionTicket</tt> handshake messages.
+
+[RFC5077]: http://tools.ietf.org/html/rfc5077
+
