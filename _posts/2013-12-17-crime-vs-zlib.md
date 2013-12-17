@@ -10,27 +10,27 @@ tags: [network, security, tls, zlib, compression]
 
 Here I suggest a countermeasure.  I don't suggest anybody implement this without further analysis, but I think it's a fun thought exercise.
 
-# DEFLATE and zlib compression
-First, a quick sketch of how DEFLATE/zlib works.  See [RFC1950][rfc1950] and [RFC1951][rfc1951] for the full details.
+# Deflate and zlib compression
+First, a quick sketch of how deflate/zlib works.  See [RFC1950][rfc1950] and [RFC1951][rfc1951] for the full details.
 
-A zlib encoding is a short header, a DEFLATE encoding, and then a 32-bit CRC over the input data.  zlib's purpose here is to specify the parameters the decompression algorithm needs to get the right answer, rather than to perform any compression itself.
+A zlib encoding is a short header, a deflate encoding, and then a 32-bit CRC over the input data.  zlib's purpose here is to specify the parameters the decompression algorithm needs to get the right answer, rather than to perform any compression itself.
 
-       DEFLATE window size is 2^(8 + wwww)
-       |   compression method is DEFLATE
+       deflate window size is 2^(8 + wwww)
+       |   compression method is deflate
        |   |      compression level (not used by decompressor)  
        |   |      | preset dictionary (rarely used)
        |   |      | | checksum such that header is 0 mod 0x1f
        |   |      | | |
       /--\/--\   /-\|/--\
     +----------+----------+----------+----------+
-    | wwww1000 | LLL0cccc |  DEFLATE stream...  |
+    | wwww1000 | LLL0cccc |  deflate stream...  |
     +----------+----------+----------+----------+
     | ...                                       |
     +----------+----------+----------+----------+
     |    Adler-32 CRC over uncompressed data    |
     +----------+----------+----------+----------+
 
-A DEFLATE stream is formatted as a sequence of *blocks*, of varying *types*.  There are three defined types:
+A deflate stream is formatted as a sequence of *blocks*, of varying *types*.  There are three defined types:
 
 * Uncompressed data (type 0).
 * Data compressed with well-known Huffman codes (type 1).
@@ -44,7 +44,7 @@ So the plaintext `street by street` might get compressed like this:
     ^             |
     '-------------'
 
-These back references in a DEFLATE stream are important in the context of CRIME/BREACH, because they mean a plaintext containing two instances of the same string (within the window size) will compress better.  As a trivial example:
+These back references in a deflate stream are important in the context of CRIME/BREACH, because they mean a plaintext containing two instances of the same string (within the window size) will compress better.  As a trivial example:
 
     GET /?twid=sec HTTP/1.1
     Host: twitter.com
@@ -102,12 +102,12 @@ Now the window when compressing 'twid=secret' in the Cookie like only extends ba
 The same idea can be extended to deal with regions of previous plaintext which should not be considered in the window.  This could produce better compressions where a back-ref skips entirely over a region.
 
 ## But it's not that simple
-Unfortunately this fails to take into account type 2 DEFLATE blocks (those where the huffman codes for literal bytes and back-refs are encoded in the compression).  It is not enough to restrict the back-ref encoding to not cross our regions, because .  We have to either:
+Unfortunately this fails to take into account type 2 deflate blocks (those where the huffman codes for literal bytes and back-refs are encoded in the compression).  It is not enough to restrict the back-ref encoding to not cross our regions, because .  We have to either:
 
-* Compress each region separately, then concatenate the DEFLATE blocks into a single stream.  This is inefficient, and will produce non-optimal compressions.
+* Compress each region separately, then concatenate the deflate blocks into a single stream.  This is inefficient, and will produce non-optimal compressions.
 * As well as only considering the window constrained in the current region for back-refs, also only do statistical analysis of the current region when working out the huffman codes for a type 2 block.
 
-Fortunately, these problems are all still in the power of the compressor and don't involve alterations to the DEFLATE format.
+Fortunately, these problems are all still in the power of the compressor and don't involve alterations to the deflate format.
 
 [crime]: https://docs.google.com/presentation/d/11eBmGiHbYcHR9gL5nDyZChu_-lCa2GizeuOfaLU2HOU
 [breach]: http://breachattack.com/
