@@ -59,7 +59,7 @@ will compress to a noticably smaller encoding, than:
 That's because the occurance of 'twid=sec' in the Cookie value will refer back to the HTTP preamble line
 in the first example, but will probably get encoded literally in the second.
 
-# Aside 1: a crappy zlib compressor
+# Aside: a crappy zlib compressor
 I hereby present the world's stupidest zlib 'compressor':
 
     from zlib import adler32
