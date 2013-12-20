@@ -102,7 +102,7 @@ Now the window when compressing 'twid=secret' in the Cookie like only extends ba
 The same idea can be extended to deal with regions of previous plaintext which should not be considered in the window.  This could produce better compressions where a back-ref skips entirely over a region.
 
 ## But it's not that simple
-Unfortunately this fails to take into account type 2 deflate blocks (those where the huffman codes for literal bytes and back-refs are encoded in the compression).  It is not enough to restrict the back-ref encoding to not cross our regions, because .  We have to either:
+Unfortunately this fails to take into account type 2 deflate blocks (those where the huffman codes for literal bytes and back-refs are encoded in the compression).  It is not enough to restrict the back-ref encoding to not cross our regions, because the choice of huffman codes will leak the contents of the region.  We have to either:
 
 * Compress each region separately, then concatenate the deflate blocks into a single stream.  This is inefficient, and will produce non-optimal compressions.
 * As well as only considering the window constrained in the current region for back-refs, also only do statistical analysis of the current region when working out the huffman codes for a type 2 block.
