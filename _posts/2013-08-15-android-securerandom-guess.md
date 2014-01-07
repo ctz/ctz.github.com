@@ -44,6 +44,7 @@ the Bitcoin wallet was started twice from the same zygote (which roughly equates
 running a wallet, closing it for a while, and running it again within a single phone boot).
 
 # Further assorted observations
+
 ## Error handling
 Like most callers, Android is not handling errors from `RAND_bytes` properly or `RAND_load_file`
 *at all*.
