@@ -240,40 +240,10 @@ ul.posts span {
   margin-bottom: 1em;
 }
 
-.callout {
-  float: right;
-  padding: 0.2em;
-  background-color: #eee;
-  border: 1px solid #ddd;
-}
-
-.rrationale, .lrationale {
-  float: right;
-  padding: 0.4em;
-  margin-left: -22em;
-  margin-right: -22em;
-  width: 20em;
-  clear: right;
-  background-color: #eee;
-  border: 1px solid #ddd;
-  font-size: 0.7em;
-}
-
-.rrationale:before {
-  content: "\2190";
-}
-
-.lrationale {
-  float: left;
-  clear: left;
-}
-
-.in-li {
-  margin-left: -24em;
-  margin-right: -24em;
-}
-
-.rarr {
-  float: right;
-  margin-left: 0.3em;
+blockquote {
+  border-left: 3px solid #ddd;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
