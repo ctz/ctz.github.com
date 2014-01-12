@@ -1,11 +1,22 @@
 ---
 layout: post
 title: "Analysis of the OpenSSL random API"
-subtitle: "or: how not to design an API"
+subtitle: ""
 category: 
 published: false
 tags: [network, security, openssl, ssl]
 ---
+This analysis is in four parts.  First, there's an <a href="#intro">introduction</a>
+for readers not familiar with the subject.  Next, there's a review of
+<a href="#impl">the implementation</a> of the functions in OpenSSL.  Third, the
+<a href="#callers">callers</a> of these functions are analysed.  Lastly,
+there's a set of <a href="#recomm">recommendations and patches</a>.
+
+*****
+
+<a name="intro" />
+
+# 1. Introduction 
 OpenSSL provides two functions for obtaining a sequence of random octets:
 `RAND_bytes` and `RAND_pseudo_bytes`.  `RAND_bytes` guarantees to provide high
 quality random material; `RAND_pseudo_bytes` does not, but instead tells
@@ -19,10 +30,10 @@ Their function prototypes are:
 These are backed by a configurable set of providers -- 'RAND methods'.  There are methods
 for CPU hardware RNGs, hardware security modules, and so on.
 
-# First stop: documentation
-Excerpts from `RAND_bytes`(3SSL):
+## First stop: documentation
+Excerpts from `RAND_bytes(3SSL)`:
 
-> ## Description
+> ### Description
 > `RAND_bytes()` puts num cryptographically strong pseudo-random bytes into buf.
 > An error occurs if the PRNG has not been seeded with enough randomness to
 > ensure an unpredictable byte sequence.
@@ -33,7 +44,7 @@ Excerpts from `RAND_bytes`(3SSL):
 > unpredictable. They can be used for non-cryptographic purposes and for certain purposes in cryptographic
 > protocols, but usually not for key generation etc.
 >
-> ## Return values
+> ### Return values
 > `RAND_bytes()` returns `1` on success, `0` otherwise. The error code can be obtained by `ERR_get_error(3)`.
 > `RAND_pseudo_bytes()` returns `1` if the bytes generated are cryptographically strong, `0` otherwise. Both
 > functions return `-1` if they are not supported by the current RAND method.
@@ -52,33 +63,29 @@ The return values and state of the buffer on return are important and bear repea
 - `0`: success - low quality (buffer written)
 - `-1`: not supported (buffer indeterminate)
 
-# Incorrect error handling in the wild
-The scheme for `RAND_bytes`'s return value is a bad idea, because it makes
-the natural way to write a call incorrect:
+## WTF
 
->     if (!RAND_bytes(...))
->         /* handle error ... */
+> "byte sequences [...] will be unique if they are of sufficient length"
 
-That this is incorrect didn't stop people calling it that way. [Debian code search][debiancs]
-gives us some culprits, including OpenSSL (yes, really: OpenSSL calls its own API incorrectly),
-Ruby, net-snmp, ZNC, DACS, and dnsval/dnssec-tools[^bugs].  [Github code search][githubcs]
-gives 1456 results for the same query, but let's assume there's nothing of importance on github :)
-Android also [called this incorrectly][android] in versions before 4.4.
+My interpretation of this is that *i* requests for sequences of *n* bytes each
+where *n &ge; threshold* yield unique sequences (where *threshold* is presumably
+less than <em>256 <sup> i </sup>- 1</em>).
 
-These are of particular concern where other modules existing in the same process space, and
-could plausibly install a RAND method which doesn't support `RAND_bytes` -- like language
-runtimes and libraries.
+This would be fine, except *nothing could reasonably provide this uniqueness guarantee*: instead,
+any two *n* byte sequences will be non-unique with probability <em>256 <sup>-n</sup></em>,
+just as you'd expect from a source uniformly distributed bytes.
 
-[debiancs]: http://codesearch.debian.net/search?prev=&q=%21%5Cs%2A`RAND_bytes`
-[githubcs]: https://github.com/search?p=7&q=%21`RAND_bytes`&ref=searchresults&type=Code
-[android]: https://android.googlesource.com/platform/libcore/+/0f116e1
-[^bugs]: Note: I haven't verified that each one of these is actually a bug, or in an important (or even used!) bit of code.
+***
 
-# Evaluation of all RAND methods
+<a name="impl" />
+
+# 2. Implementation
+
+## Evaluation of all RAND methods
 The meat of this work: I tracked down all the `RAND_METHOD` definitions I could find, in OpenSSL
 and elsewhere.
 
-## OpenSSL
+### OpenSSL
 
 - `engines/e_aep.c`: 
   * `RAND_bytes` same function as `RAND_pseudo_bytes`.
@@ -147,12 +154,12 @@ and elsewhere.
   * Returns 0 on error, and adds an error.
   * Can fail without altering buffer.
 
-## In bind 9 (`bin/pkcs11/openssl-1.01c-patch`)
-* `RAND_bytes` same function as `RAND_pseudo_bytes`
+### In Bind 9 (`bin/pkcs11/openssl-1.01c-patch`)
+* `RAND_bytes` same function as `RAND_pseudo_bytes`.
 * Returns 0 on error, and adds an error.
 * Can fail without altering buffer.
 
-## Heimdal
+### Heimdal
 - `lib/hcrypto/rand-fortuna.c`:
   * `RAND_bytes` same function as `RAND_pseudo_bytes`
   * Returns 0 on error, does not add an error.
@@ -177,12 +184,12 @@ and elsewhere.
   * Returns 0 on error, does not add an error.
   * Can fail without altering buffer.
   
-# Round up
+## Round up
 That's a big list.  The main point to note is:
 
 **All `RAND_pseudo_bytes` implementations are broken in their error cases**,
-except one (`fips/rand/fips_drbg_rand.c`) which misses out by returning
-an undocumented error code.  This is frighteningly dangerous error behaviour.
+(except one (`fips/rand/fips_drbg_rand.c`) which misses out by returning
+the 'not implemented' error code).  This is frighteningly dangerous error behaviour.
 
 Here's a test program:
 
@@ -230,8 +237,83 @@ $
 
 That's really not healthy.
 
-# Implications
-A laundry list:
+***
 
-* `BN_pseudo_rand` can return bits of heap converted to a bignum if `RAND_pseudo_bytes` fails for any reason.
-* The same bug spreads to `BN_pseudo_rand_range`, `BN_generate_prime_ex` (when choosing the Rabin-Miller witness), etc.
+<a name="callers" />
+
+# 3. Callers
+
+## Review of `RAND_bytes` callers
+
+The scheme for `RAND_bytes`'s return value is a bad idea, because it makes
+the natural way to write a call incorrect:
+
+>     if (!RAND_bytes(...))
+>         /* handle error ... */
+
+That this is incorrect didn't stop people calling it that way. [Debian code search][debiancs]
+gives us some culprits, including OpenSSL (yes, really: OpenSSL calls its own API incorrectly),
+Ruby, net-snmp, ZNC, DACS, and dnsval/dnssec-tools[^bugs].  [Github code search][githubcs]
+gives 1456 results for the same query.
+Android also [called this incorrectly][android] in versions before 4.4.
+
+These are of particular concern where other modules existing in the same process space, and
+could plausibly install a RAND method which doesn't support `RAND_bytes` -- like language
+runtimes and libraries.
+
+[debiancs]: http://codesearch.debian.net/search?prev=&q=%21%5Cs%2A`RAND_bytes`
+[githubcs]: https://github.com/search?p=7&q=%21`RAND_bytes`&ref=searchresults&type=Code
+[android]: https://android.googlesource.com/platform/libcore/+/0f116e1
+[^bugs]: Note: I haven't verified that each one of these is actually a bug, or in an important (or even used!) bit of code.
+
+# Review of `RAND_pseudo_bytes` callers
+We can divide callers of `RAND_pseudo_bytes` into a few classes:
+
+* *Hopeful*: don't check return codes at all.  These are obviously funted.
+* *Dangerous*: bail out only on -1 returns.  These are dangerous as shown above.
+* *Equivalent to `RAND_bytes`*: These bail out on 0 or -1 returns.
+
+In other words, calling `RAND_pseudo_bytes` is always either broken, or merely pointless.
+
+## Broken: `BN_pseudo_rand`
+`BN_pseudo_rand` can return bits of heap converted to a bignum if `RAND_pseudo_bytes` fails.
+The same bug spreads to `BN_pseudo_rand_range`, `BN_generate_prime_ex` (when choosing the Rabin-Miller witness), etc.
+
+## Pointless: SSL and TLS server code (`ssl/s3_srvr.c`)
+Behold!
+
+{% highlight c++ linenos %}
+/* should be RAND_bytes, but we cannot work around a failure. */
+if (RAND_pseudo_bytes(rand_premaster_secret,
+              sizeof(rand_premaster_secret)) <= 0)
+    goto err;
+{% endhighlight %}
+
+This call should be `RAND_bytes`, but it isn't because we can't deal with errors.
+Except then we handle failures from `RAND_pseudo_bytes` in a way which makes it
+equivalent to `RAND_bytes`.  This code sucks, and it powers the web.
+
+## Hopeful: TLS server code (`ssl/s3_srvr.c`)
+In `ssl3_send_newsession_ticket` in the codepath without `tctx->tlsext_ticket_key_cb` set,
+a buffer on the stack is filled with 16 bytes from `RAND_pseudo_bytes`, but the return code
+isn't checked.  That buffer is the IV for TLS ticket encryption, so if this call fails
+some stack is sent over the wire in plaintext (maybe containing old key material) and
+confidentiality of the resulting encryption is broken in a limited way if the stack contents
+are the same for different clients.
+
+# 4. Recommendations and patches
+
+The only correct way to call `RAND_bytes` is equivalent to:
+
+{% highlight c++ linenos %}
+if (RAND_bytes(buf, size) != 1)
+{ /* handle error ... */ }
+{% endhighlight %}
+
+OpenSSL could improve matters by guaranteeing that `RAND_bytes`
+never returns -1 from now on: this would make existing code (of which there is a sizable chunk)
+which does `if (!RAND_bytes(...))` safe.
+
+`RAND_pseudo_bytes` should be deprecated.  It's not possible to improve without breaking things,
+and in the estabilished set of `RAND_METHOD`s the distinction wasn't used, and in calling code
+the distinction is used in dubious circumstances (like IVs or salts, where repeated values are bad news).

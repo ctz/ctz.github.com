@@ -247,3 +247,10 @@ blockquote {
   margin-left: 1em;
   margin-right: 1em;
 }
+
+hr { 
+  width: 50%;
+  margin: 1em;
+  margin-left: 25%;
+  margin-right: 25%;
+}
