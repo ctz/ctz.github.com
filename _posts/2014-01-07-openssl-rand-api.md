@@ -7,10 +7,16 @@ published: false
 tags: [network, security, openssl, ssl]
 ---
 This analysis is in four parts.  First, there's an <a href="#intro">introduction</a>
-for readers not familiar with the subject.  Next, there's a review of
+for readers not familiar with the API.  Next, there's a review of
 <a href="#impl">the implementation</a> of the functions in OpenSSL.  Third, the
 <a href="#callers">callers</a> of these functions are analysed.  Lastly,
 there's a set of <a href="#recomm">recommendations and patches</a>.
+
+This analysis concentrates on the API to the random generator, not the PRNG
+algorithm itself.  For a description and analysis of that, see [section 3.8][gutmann] of
+'Cryptographic Security Architecture: Design and Verification' by Peter Gutmann.
+
+[gutmann]: http://www.cypherpunks.to/~peter/06_random.pdf
 
 *****
 
@@ -49,7 +55,7 @@ Excerpts from `RAND_bytes(3SSL)`:
 > `RAND_pseudo_bytes()` returns `1` if the bytes generated are cryptographically strong, `0` otherwise. Both
 > functions return `-1` if they are not supported by the current RAND method.
 
-The return values and state of the buffer on return are important and bear repeating:
+The return values and implied state of the buffer on return are important and bear repeating:
 
 `RAND_bytes`:
 
@@ -73,7 +79,7 @@ less than <em>256 <sup> i </sup>- 1</em>).
 
 This would be fine, except *nothing could reasonably provide this uniqueness guarantee*: instead,
 any two *n* byte sequences will be non-unique with probability <em>256 <sup>-n</sup></em>,
-just as you'd expect from a source uniformly distributed bytes.
+just as you'd expect from a source of uniformly distributed bytes.
 
 ***
 
@@ -84,6 +90,9 @@ just as you'd expect from a source uniformly distributed bytes.
 ## Evaluation of all RAND methods
 The meat of this work: I tracked down all the `RAND_METHOD` definitions I could find, in OpenSSL
 and elsewhere.
+
+For each one, I noted down whether `RAND_pseudo_bytes` was usefully different from `RAND_bytes`,
+what the error behaviour was, and any other bugs that came to light.
 
 ### OpenSSL
 
@@ -139,7 +148,7 @@ and elsewhere.
   * Can fail without altering buffer.
 - `crypto/rand/md_rand.c`:
   * `RAND_bytes` differs from `RAND_pseudo_bytes`.
-  * Returns 0 on error, and adds an error.
+  * Both return 0 on error, and add an error.
   * Can fail without altering buffer.
   * `RAND_pseudo_bytes` can return 0 both with
     and without writing to buffer.
@@ -154,33 +163,34 @@ and elsewhere.
   * Returns 0 on error, and adds an error.
   * Can fail without altering buffer.
 
-### In Bind 9 (`bin/pkcs11/openssl-1.01c-patch`)
-* `RAND_bytes` same function as `RAND_pseudo_bytes`.
-* Returns 0 on error, and adds an error.
-* Can fail without altering buffer.
+### In Bind 9
+- `bin/pkcs11/openssl-1.01c-patch`:
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
+  * Returns 0 on error, and adds an error.
+  * Can fail without altering buffer.
 
 ### Heimdal
 - `lib/hcrypto/rand-fortuna.c`:
-  * `RAND_bytes` same function as `RAND_pseudo_bytes`
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
   * Returns 0 on error, does not add an error.
   * Can fail without altering buffer.
 - `lib/hcrypto/rand-egd.c`:
-  * `RAND_bytes` same function as `RAND_pseudo_bytes`
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
   * Returns 0 on error, does not add an error.
   * Can fail without altering buffer.
 - `lib/hcrypto/rand-timer.c`:
-  * `RAND_bytes` same function as `RAND_pseudo_bytes`
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
   * Returns 0 on error, does not add an error.
   * UB here which means it returns an undefined
     value on platforms without `setitimer(2)` if `fork(2)`
     fails.
   * Can fail without altering buffer.
 - lib/hcrypto/rand-unix.c:
-  * `RAND_bytes` same function as `RAND_pseudo_bytes`
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
   * Returns 0 on error, does not add an error.
   * Can fail without altering buffer.
 - lib/hcrypto/rand-w32.c:
-  * `RAND_bytes` same function as `RAND_pseudo_bytes`
+  * `RAND_bytes` same function as `RAND_pseudo_bytes`.
   * Returns 0 on error, does not add an error.
   * Can fail without altering buffer.
   
@@ -246,7 +256,7 @@ That's really not healthy.
 ## Review of `RAND_bytes` callers
 
 The scheme for `RAND_bytes`'s return value is a bad idea, because it makes
-the natural way to write a call incorrect:
+the natural way to write a call incorrect[^why]:
 
 >     if (!RAND_bytes(...))
 >         /* handle error ... */
@@ -261,23 +271,24 @@ These are of particular concern where other modules existing in the same process
 could plausibly install a RAND method which doesn't support `RAND_bytes` -- like language
 runtimes and libraries.
 
-[debiancs]: http://codesearch.debian.net/search?prev=&q=%21%5Cs%2A`RAND_bytes`
-[githubcs]: https://github.com/search?p=7&q=%21`RAND_bytes`&ref=searchresults&type=Code
+[debiancs]: http://codesearch.debian.net/search?prev=&q=%21%5Cs%2ARAND_bytes
+[githubcs]: https://github.com/search?p=7&q=%21RAND_bytes&ref=searchresults&type=Code
 [android]: https://android.googlesource.com/platform/libcore/+/0f116e1
 [^bugs]: Note: I haven't verified that each one of these is actually a bug, or in an important (or even used!) bit of code.
+[^why]: Recall that in C, non-zero values are 'true' expressions, so this includes both success and failure cases.
 
 # Review of `RAND_pseudo_bytes` callers
 We can divide callers of `RAND_pseudo_bytes` into a few classes:
 
 * *Hopeful*: don't check return codes at all.  These are obviously funted.
-* *Dangerous*: bail out only on -1 returns.  These are dangerous as shown above.
+* *Dangerous*: bail out only on -1 returns.  These are dangerous as shown above, because `RAND_pseudo_bytes` can return 0 and leave the buffer untouched.
 * *Equivalent to `RAND_bytes`*: These bail out on 0 or -1 returns.
 
-In other words, calling `RAND_pseudo_bytes` is always either broken, or merely pointless.
+In other words, calling `RAND_pseudo_bytes` is always either unreliable, or merely pointless.
 
-## Broken: `BN_pseudo_rand`
+## Dangerous: `BN_pseudo_rand`
 `BN_pseudo_rand` can return bits of heap converted to a bignum if `RAND_pseudo_bytes` fails.
-The same bug spreads to `BN_pseudo_rand_range`, `BN_generate_prime_ex` (when choosing the Rabin-Miller witness), etc.
+The same bug spreads to `BN_pseudo_rand_range`, `BN_generate_prime_ex` (when choosing Rabin-Miller witnesses), etc.
 
 ## Pointless: SSL and TLS server code (`ssl/s3_srvr.c`)
 Behold!
@@ -291,7 +302,7 @@ if (RAND_pseudo_bytes(rand_premaster_secret,
 
 This call should be `RAND_bytes`, but it isn't because we can't deal with errors.
 Except then we handle failures from `RAND_pseudo_bytes` in a way which makes it
-equivalent to `RAND_bytes`.  This code sucks, and it powers the web.
+equivalent to `RAND_bytes`.  This code sucks, and it secures the web.
 
 ## Hopeful: TLS server code (`ssl/s3_srvr.c`)
 In `ssl3_send_newsession_ticket` in the codepath without `tctx->tlsext_ticket_key_cb` set,
@@ -303,6 +314,7 @@ are the same for different clients.
 
 # 4. Recommendations and patches
 
+## Calling `RAND_bytes`
 The only correct way to call `RAND_bytes` is equivalent to:
 
 {% highlight c++ linenos %}
@@ -310,10 +322,24 @@ if (RAND_bytes(buf, size) != 1)
 { /* handle error ... */ }
 {% endhighlight %}
 
+***
+
+## Improving `RAND_bytes` semantics to fix downstream code
 OpenSSL could improve matters by guaranteeing that `RAND_bytes`
-never returns -1 from now on: this would make existing code (of which there is a sizable chunk)
+never returns -1 from now on: this would make existing code (of which there is a sizable chunk, see above)
 which does `if (!RAND_bytes(...))` safe.
 
+The following patch simplifies the error behaviour to:
+
+- `1`: success (buffer written)
+- `0`: error (buffer indeterminate)
+
+The old 'not implemented' error is reported with a return code of 0,
+and a distinctive code on the error stack (`RAND_R_FUNC_NOT_IMPLEMENTED`).
+
+## Deprecate `RAND_pseudo_bytes`
 `RAND_pseudo_bytes` should be deprecated.  It's not possible to improve without breaking things,
 and in the estabilished set of `RAND_METHOD`s the distinction wasn't used, and in calling code
-the distinction is used in dubious circumstances (like IVs or salts, where repeated values are bad news).
+the distinction is often used in dubious circumstances (like IVs or salts, where repeated
+values are bad news).
+
