@@ -312,10 +312,13 @@ some stack is sent over the wire in plaintext (maybe containing old key material
 confidentiality of the resulting encryption is broken in a limited way if the stack contents
 are the same for different clients.
 
+***
+<a name="recomm" />
+
 # 4. Recommendations and patches
 
 ## Calling `RAND_bytes`
-The only correct way to call `RAND_bytes` is equivalent to:
+Public service announcement: the only correct way to call `RAND_bytes` is equivalent to:
 
 {% highlight c++ linenos %}
 if (RAND_bytes(buf, size) != 1)
@@ -325,21 +328,30 @@ if (RAND_bytes(buf, size) != 1)
 ***
 
 ## Improving `RAND_bytes` semantics to fix downstream code
-OpenSSL could improve matters by guaranteeing that `RAND_bytes`
-never returns -1 from now on: this would make existing code (of which there is a sizable chunk, see above)
+OpenSSL could improve matters by guaranteeing that `RAND_bytes` never returns -1 from
+now on: this would make existing code (of which there is a sizeable chunk, see above)
 which does `if (!RAND_bytes(...))` safe.
 
-The following patch simplifies the error behaviour to:
+[This patch][patch] simplifies the error behaviour to:
 
 - `1`: success (buffer written)
 - `0`: error (buffer indeterminate)
 
 The old 'not implemented' error is reported with a return code of 0,
-and a distinctive code on the error stack (`RAND_R_FUNC_NOT_IMPLEMENTED`).
+and a distinctive reason code on the error stack (`RAND_R_FUNC_NOT_IMPLEMENTED`).
+
+`RAND_pseudo_bytes` is not altered by this change.
+
+[patch]: https://github.com/ctz/openssl/compare/randretfix
+
+***
 
 ## Deprecate `RAND_pseudo_bytes`
-`RAND_pseudo_bytes` should be deprecated.  It's not possible to improve without breaking things,
-and in the estabilished set of `RAND_METHOD`s the distinction wasn't used, and in calling code
-the distinction is often used in dubious circumstances (like IVs or salts, where repeated
-values are bad news).
+`RAND_pseudo_bytes` should be deprecated, for the following reasons:
 
+* It's not possible to fix without breaking callers, because the API has no place to reliably report errors.
+* In the established set of `RAND_METHOD`s the distinction mostly isn't used.
+* In calling code the distinction is often used in dubious circumstances
+  (like IVs where repeated or predictable values are bad news).
+
+***
