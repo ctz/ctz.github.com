@@ -14,9 +14,11 @@ there's a set of <a href="#recomm">recommendations and patches</a>.
 
 This analysis concentrates on the API to the random generator, not the PRNG
 algorithm itself.  For a description and analysis of that, see [section 3.8][gutmann] of
-'Cryptographic Security Architecture: Design and Verification' by Peter Gutmann.
+'Cryptographic Security Architecture: Design and Verification' by Peter Gutmann or
+[the description in the documentation][openssl-rand].
 
 [gutmann]: http://www.cypherpunks.to/~peter/06_random.pdf
+[openssl-rand]: http://openssl.org/docs/crypto/rand.html
 
 *****
 
@@ -37,7 +39,9 @@ These are backed by a configurable set of providers -- 'RAND methods'.  There ar
 for CPU hardware RNGs, hardware security modules, and so on.
 
 ## First stop: documentation
-Excerpts from `RAND_bytes(3SSL)`:
+Excerpts from [the documentation][rand_bytes]:
+
+[rand_bytes]: http://openssl.org/docs/crypto/RAND_bytes.html
 
 > ### Description
 > `RAND_bytes()` puts num cryptographically strong pseudo-random bytes into buf.
