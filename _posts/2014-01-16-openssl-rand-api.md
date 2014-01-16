@@ -306,7 +306,7 @@ if (RAND_pseudo_bytes(rand_premaster_secret,
 
 This call should be `RAND_bytes`, but it isn't because we can't deal with errors.
 Except then we handle failures from `RAND_pseudo_bytes` in a way which makes it
-equivalent to `RAND_bytes`.  This code sucks, and it secures the web.
+equivalent to `RAND_bytes`.
 
 ## Hopeful: TLS server code (`ssl/s3_srvr.c`)
 In `ssl3_send_newsession_ticket` in the codepath without `tctx->tlsext_ticket_key_cb` set,
