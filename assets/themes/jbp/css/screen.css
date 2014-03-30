@@ -254,3 +254,28 @@ hr {
   margin-left: 25%;
   margin-right: 25%;
 }
+
+a.footnote {
+  font-size: 80%;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  text-decoration: none;
+}
+
+a.footnote:before {
+  content: "[";
+}
+
+a.footnote:after {
+  content: "]";
+}
+
+sup {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.6em;
+}
+
+p, li {
+  line-height: 1.8em;
+}
