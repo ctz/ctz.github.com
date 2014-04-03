@@ -1,10 +1,14 @@
----
+﻿---
 layout: post
 title: "TLS downgrade behaviour"
 subtitle: "or: why you shouldn't put all your eggs into the TLS forward secrecy basket"
 category: 
 tags: [tls, security, privacy]
 ---
+
+* TOC
+{:toc #toc-side}
+
 Recently there has been a [sequence][1] of [recommendations][2] promoting the use of TLS ciphersuites which provide [forward secrecy][], particular in the context of [PRISM][] and [Tempora][].
 
 [1]: https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy

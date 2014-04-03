@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "A novel countermeasure against CRIME and BREACH"
 subtitle: ""
@@ -6,6 +6,10 @@ category:
 published: true
 tags: [network, security, tls, zlib, compression]
 ---
+
+* TOC
+{:toc}
+
 [CRIME][crime] and [BREACH][breach] are cool practical attacks, described in essence by Kelsey back in 2002.  CRIME targets TLS-level `zlib` compression, while BREACH attacks HTTP `Content-Encoding` `gzip` or `deflate` (which are  equivalent in terms of compression algorithm).
 
 Here I suggest a countermeasure.  I don't suggest anybody implement this without further analysis, but I think it's a fun thought exercise.

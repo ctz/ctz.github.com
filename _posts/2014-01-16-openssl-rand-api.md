@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "Analysis of the OpenSSL random API"
 subtitle: ""
@@ -6,6 +6,10 @@ category:
 published: true
 tags: [network, security, openssl, ssl]
 ---
+
+* TOC
+{:toc #toc-main}
+
 This analysis is in four parts.  First, there's an <a href="#intro">introduction</a>
 for readers not familiar with the API.  Next, there's a review of
 <a href="#impl">the implementation</a> of the functions in OpenSSL.  Third, the
@@ -281,7 +285,7 @@ runtimes and libraries.
 [^bugs]: Note: I haven't verified that each one of these is actually a bug, or in an important (or even used!) bit of code.
 [^why]: Recall that in C, non-zero values are 'true' expressions, so this includes both success and failure cases.
 
-# Review of `RAND_pseudo_bytes` callers
+## Review of `RAND_pseudo_bytes` callers
 We can divide callers of `RAND_pseudo_bytes` into a few classes:
 
 * *Hopeful*: don't check return codes at all.  These are obviously funted.
@@ -290,11 +294,11 @@ We can divide callers of `RAND_pseudo_bytes` into a few classes:
 
 In other words, calling `RAND_pseudo_bytes` is always either unreliable, or merely pointless.
 
-## Dangerous: `BN_pseudo_rand`
+### Dangerous: `BN_pseudo_rand`
 `BN_pseudo_rand` can return bits of heap converted to a bignum if `RAND_pseudo_bytes` fails.
 The same bug spreads to `BN_pseudo_rand_range`, `BN_generate_prime_ex` (when choosing Rabin-Miller witnesses), etc.
 
-## Pointless: SSL and TLS server code (`ssl/s3_srvr.c`)
+### Pointless: SSL and TLS server code (`ssl/s3_srvr.c`)
 Behold!
 
 {% highlight c++ linenos %}
@@ -308,7 +312,7 @@ This call should be `RAND_bytes`, but it isn't because we can't deal with errors
 Except then we handle failures from `RAND_pseudo_bytes` in a way which makes it
 equivalent to `RAND_bytes`.
 
-## Hopeful: TLS server code (`ssl/s3_srvr.c`)
+### Hopeful: TLS server code (`ssl/s3_srvr.c`)
 In `ssl3_send_newsession_ticket` in the codepath without `tctx->tlsext_ticket_key_cb` set,
 a buffer on the stack is filled with 16 bytes from `RAND_pseudo_bytes`, but the return code
 isn't checked.  That buffer is the IV for TLS ticket encryption, so if this call fails
