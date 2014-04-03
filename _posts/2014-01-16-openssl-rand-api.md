@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "Analysis of the OpenSSL random API"
 subtitle: ""

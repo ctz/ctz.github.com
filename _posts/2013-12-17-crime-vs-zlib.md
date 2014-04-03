@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "A novel countermeasure against CRIME and BREACH"
 subtitle: ""

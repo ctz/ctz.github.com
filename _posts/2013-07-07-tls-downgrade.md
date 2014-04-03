@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "TLS downgrade behaviour"
 subtitle: "or: why you shouldn't put all your eggs into the TLS forward secrecy basket"
