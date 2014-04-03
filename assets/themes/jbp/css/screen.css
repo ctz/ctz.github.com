@@ -196,6 +196,18 @@ ul.posts span {
 
 /* standard */
 
+#post a {
+  color: #c11;
+}
+
+#post a:visited {
+  color: #600;
+}
+
+#post a:hover {
+  color: black;
+}
+
 #post pre {
   border: 1px solid #ddd;
   background-color: #eef;
@@ -278,4 +290,25 @@ sup {
 
 p, li {
   line-height: 1.8em;
+}
+
+ul#toc-side, ul#toc-main {
+  text-align: left;
+  margin-top: 0em;
+}
+
+ul#toc-side {
+  width: 16em;
+  padding-left: 2em;
+  float: right;
+  display: block;
+}
+
+ul ul {
+  margin-bottom: 0em;
+  margin-top: 0em;
+}
+
+ul#toc-side li, ul#toc-main li {
+  list-style-type: square;
 }
