@@ -24,7 +24,7 @@ is the recommended work-around.
  *   **2014-02-24 PM** - Vendor notification.
  *   **2014-02-24 PM** - Vendor acknowledgement and confirmation.
  *   **2014-02-26** - Attempt to setup coordinated disclosure (no response).
- *   **2014-04-03** - Public disclosure.
+ *   **2014-04-07** - Public disclosure.
 
 # Background
 
@@ -44,7 +44,7 @@ inside a TEE or SE.
 The keystore has the concept of being *uninitialised*, *locked*, or
 *unlocked*.  If the device has no device-level lock (like a pattern, pin,
 or passphrase lockscreen) the keystore is uninitialised.  Otherwise, the
-keystore is locked on phone boot, and unlocked when the lockscreen is
+keystore is locked on device boot, and unlocked when the lockscreen is
 passed.
 
 Keys stored on the behalf of apps can be encrypted at rest, but this
@@ -69,7 +69,7 @@ with another installed later is coincidentally assigned the same uid.
 
 # Bug
 
-Unfortunately a logic or design error in the keystore means for a keystore in the
+A logic or design error in the keystore means for a keystore in the
 uninitialised state, `clear_uid` does nothing[^walkthrough].  Keys belonging to an
 uninstalled app are left on storage.
 
@@ -90,16 +90,16 @@ The implications of this are three-fold (in order of ascending severity):
  * *Storage leak*: the keys are left on disk forever.
  * *Privacy*: 'Clear data' for apps which use the keystore does not delete
    keys.  Malicious apps can therefore persist data here outside
-   the control of the user (like advertising identifiers, etc.)
+   the control or view of the user (like advertising identifiers, etc.)
  * *Security*: an app which uses the keystore uncontrollably leaks keys to
    apps which later reuse its uid.
 
 -----
 
-# POC
+# Proof of concept
 
 Here are two trivial apps with source. [keystore_generate][ksgen] generates an
-RSA key using `AndroidKeyStore` (the JCE KeyStore provide backed by the Android
+RSA key using `AndroidKeyStore` (the JCE `KeyStore` provide backed by the Android
 keystore service). [keystore_list][kslist] lists whatever keys it
 finds in its keystore: by definition, this app should never list any keys.
 
@@ -113,7 +113,7 @@ Steps to reproduce:
  2. Uninstall `keystore_generate`, reinstall and and run it again.  Repeat
     this step a few times, noting down the uids.
  3. Uninstall `keystore_generate`.
- 4. Reboot phone.  This resets the starting point for `pm`'s free uid search.
+ 4. Reboot device.  This resets the starting point for `pm`'s free uid search.
  5. Install and run `keystore_list`.  Note that:
     1. the uid it reports are those you noted occupied[^uidclash] by `keystore_generate` earlier,
     2. and keys it reports are ones actually belonging to `keystore_generate`.
