@@ -166,4 +166,17 @@ belonging to apps when the user changes any lockscreen setting (even from
 
 -----
 
+# Workarounds
+
+For users: setting a device lockscreen PIN, pattern or passphrase means everything
+works as desired.
+
+For developers: when generating a keystore-stored key always require it to be
+encrypted at rest ([KeyPairGeneratorSpec.Builder.setEncryptRequired][encryptrequired]).
+If the key material cannot be encrypted because there is no device PIN/pattern/passphrase,
+this key generation will fail and you should prompt the user to set one.
+
+[encryptrequired]: http://developer.android.com/reference/android/security/KeyPairGeneratorSpec.Builder.html#setEncryptionRequired()
+
+-----
 
