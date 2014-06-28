@@ -3,10 +3,10 @@ layout: post
 title: "How to monetise the IoT through energy markets"
 subtitle: "where HFT and IoT meet on the other side"
 category: 
-published: false
+published: true
 tags: [iot, abuse, business]
 ---
-Let's assume for a moment you are an IoT company like Nest, with control[^1] of a chunk of devices which use up energy.  The more energy at your behest, the better: HVAC, refridgerators and electric heating are excellent choices.
+Let's assume for a moment you are an IoT company like Nest, with control[^1] of a chunk of devices which use up energy.  The more energy at your behest, the better: HVAC, refrigerators and electric heating are excellent choices.
 
 Your business model is probably a mix of hardware sales and cloud services.  But you're missing a trick: you should also capitalise on your extant control of energy demand.  Here's how:
 
