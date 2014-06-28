@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to monetise the IoT through energy markets"
-subtitle: "where HFT and IoT meet on the other side"
+subtitle: ""
 category: 
 published: true
 tags: [iot, abuse, business]
@@ -15,6 +15,8 @@ Your business model is probably a mix of hardware sales and cloud services.  But
 3. *Sell sell sell!*
 
 This is obviously risky, unethical, and perhaps illegal.  But the IoT is largely *about* disregarding risks. The financial services industry are typically comfortable with the other downsides, so you may wish to partner with a trading firm.
+
+There are already emergent phenomena in the power grid: a certain soap opera in the UK is associated with a 1.3GW demand spike (normal demand is around 30GW).  But predictable events like this don't give you any valuable advantage against the rest of the market.
 
 There are a variety of refinements to this basic idea:
 
