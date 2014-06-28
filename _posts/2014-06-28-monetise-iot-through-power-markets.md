@@ -14,8 +14,12 @@ Your business model is probably a mix of hardware sales and cloud services.  But
 2. Spike demand by increasing power demand for a few minutes.
 3. *Sell sell sell!*
 
-This is obviously risky, unethical, and perhaps illegal.  But the IoT is *all about* disregarding risks. The financial services industry are typically comfortable with the other downsides, so you may wish to partner with a trading company.
+This is obviously risky, unethical, and perhaps illegal.  But the IoT is *all about* disregarding risks. The financial services industry are typically comfortable with the other downsides, so you may wish to partner with a trading firm.
 
-You might also have a good idea of where your users are in relation to the power consuming equipment you control: this allows you to minimise the chances of your users will notice.
+There are a variety of refinements to this basic idea:
+
+* You might also have a good idea of where your users are in relation to the power consuming equipment you control: this allows you to minimise the chances of your users will notice.
+* You can do a 'lite' version of this idea and merely quantise turn-on/-off times of everything to coarse boundaries.  Instead of turning heating on for a population arriving home between 17:45 and 19:00, turn it on for everybody at 17:40.  This has the downside of probably being lost in the noise of normal daily fluctuations.
+* If you develop a relationship with your trading firm, your ability to *predict* (rather than influence) energy fluctuations is also likely to be valuable.  Especially if you can do this far ahead of time.
 
 [^1]: Direct or indirect. It doesn't much matter if they can control things remotely, or can sign a firmware update to add that capability.
