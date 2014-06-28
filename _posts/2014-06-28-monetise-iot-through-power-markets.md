@@ -18,7 +18,7 @@ This is obviously risky, unethical, and perhaps illegal.  But the IoT is largely
 
 There are a variety of refinements to this basic idea:
 
-* You might also have a good idea of where your users are in relation to the power consuming equipment you control: this allows you to minimise the chances of your users will notice.
+* If you have a good idea of where your users are in relation to the power consuming equipment, you can minimise the chances of your users will notice their equipment turning on and off strangely.
 * You can do a 'lite' version of this idea and merely quantise turn-on/-off times of everything to coarse boundaries.  Instead of turning heating on for a population arriving home between 17:45 and 19:00, turn it on for everybody at 17:40.  This has the downside of probably being lost in the noise of normal daily fluctuations.
 * If you develop a relationship with your trading firm, your ability to *predict* (rather than influence) energy fluctuations is also likely to be valuable.  Especially if you can do this far ahead of time.
 
