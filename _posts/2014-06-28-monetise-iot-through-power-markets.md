@@ -6,7 +6,7 @@ category:
 published: true
 tags: [iot, abuse, business]
 ---
-Let's assume for a moment you are an IoT company like Nest, with control[^1] of a chunk of devices which use up energy.  The more energy at your behest, the better: HVAC, refrigerators and electric heating are excellent choices.
+Let's assume for a moment you are an IoT company like Nest, controlling[^1] a chunk of devices which use energy.  The more energy demand at your behest, the better: HVAC, refrigerators and electric heating are excellent choices.
 
 Your business model is probably a mix of hardware sales and cloud services.  But you're missing a trick: you should also capitalise on your extant control of energy demand.  Here's how:
 
@@ -14,7 +14,7 @@ Your business model is probably a mix of hardware sales and cloud services.  But
 2. Spike demand by increasing power demand for a few minutes.
 3. *Sell sell sell!*
 
-This is obviously risky, unethical, and perhaps illegal.  But the IoT is *all about* disregarding risks. The financial services industry are typically comfortable with the other downsides, so you may wish to partner with a trading firm.
+This is obviously risky, unethical, and perhaps illegal.  But the IoT is largely *about* disregarding risks. The financial services industry are typically comfortable with the other downsides, so you may wish to partner with a trading firm.
 
 There are a variety of refinements to this basic idea:
 
