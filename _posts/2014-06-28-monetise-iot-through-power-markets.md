@@ -3,7 +3,7 @@ layout: post
 title: "How to monetise the IoT through energy markets"
 subtitle: ""
 category: 
-published: true
+published: false
 tags: [iot, abuse, economics]
 ---
 Let's assume for a moment you are an IoT company like [Nest][nest], controlling[^1] a chunk of devices which use energy.  The more energy demand at your behest, the better: HVAC, refrigerators and heating are excellent choices.
