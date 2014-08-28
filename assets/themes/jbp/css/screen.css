@@ -20,15 +20,7 @@ body {
   text-align: center;
   color: #333;
   
-  background: #dddddd; /* Old browsers */
-  background: -moz-linear-gradient(top,  #dddddd 0%, #f0f0f0 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #dddddd 0%,#f0f0f0 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #dddddd 0%,#f0f0f0 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */
-  background-attachment: fixed;
+  background: #dddddd;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,6 +29,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin-bottom: 1em;
+}
+
+h2, h3, h4 {
+  margin-bottom: 0.5em;
 }
 
 h1 span.subtitle {
@@ -209,9 +205,11 @@ ul.posts span {
 }
 
 #post pre {
-  border: 1px solid #ddd;
-  background-color: #eef;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 0 .4em;
+  background-color: #eee;
+  background-clip: padding-box;
 }
 
 #post ul,
@@ -220,15 +218,17 @@ ul.posts span {
 }
 
 #post code {
-  border: 1px solid #ddd;
-  background-color: #eef;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 85%;
   padding: 0 .2em;
+  background-color: #eee;
+  background-clip: padding-box;
 }
 
 #post pre code {
   border: none;
-  background-color: #eef;
+  background-color: none;
   padding: 0 0;
 }
 
@@ -311,4 +311,10 @@ ul ul {
 
 ul#toc-side li, ul#toc-main li {
   list-style-type: square;
+}
+
+div.highlight {
+  font-size: 10pt;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }

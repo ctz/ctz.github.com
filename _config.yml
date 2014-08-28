@@ -28,6 +28,9 @@ author :
 #
 production_url : http://jbp.io
 
+kramdown:
+  toc_levels : 1..2
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
