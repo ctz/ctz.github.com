@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Public comments on FIDO U2F standard"
+title: "Public comment on FIDO U2F standard"
 subtitle: ""
 category: 
 tags: [security, mobile, google, authentication]
