@@ -25,3 +25,4 @@ My suggestions in full are:
 4. Strongly consider requiring authenticators use RFC6979 ECDSA.
 
 [RFC6979]: http://tools.ietf.org/html/rfc6979
+[fido]: https://fidoalliance.org/
