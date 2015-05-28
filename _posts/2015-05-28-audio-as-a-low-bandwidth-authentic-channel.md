@@ -20,12 +20,10 @@ I think **audio** is an excellent, underused choice for solving problems like th
 an authentic, low-bandwidth channel.  And users can *intuitively understand that it does not provide
 confidentiality*!
 
-Here's why:
-
 ## Human intuition
 
 Humans, in general, have an excellent intuition when it comes to evaluating the secrecy and authenticity
-of audio: everyday conversation involves making judgements along these lines!  We also have a good ability
+of audio: everyday conversation involves making judgements along these lines.  We also have a good ability
 to determine the source of most sounds in the audible range.
 
 You only need to watch someone trying to get a better Wifi signal to know that this kind of
