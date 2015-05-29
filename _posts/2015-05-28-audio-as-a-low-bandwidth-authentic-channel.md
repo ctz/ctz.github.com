@@ -42,7 +42,7 @@ Every phone, tablet and laptop has a good quality microphone and speaker.  Softw
 
 For embedded devices, audio peripherals are cheaper than RF.  Using a digital MEMS microphone means
 minimal additional circuitry.  Failing that, your microcontroller likely has a ADC that can be pressed
-into service.  Choosing your audio codec carefully and you might be able to bit-bang a transducer to
+into service.  Choose your audio codec carefully and you might be able to bit-bang a transducer and
 avoid needing a DAC.
 
 In comparison, Bluetooth LE is fiercely complicated, closed and relatively expensive.  Wifi and full-fat Bluetooth
@@ -59,7 +59,7 @@ Unfortunately, there are some problems:
 
 Successful audio communications protocols need to be robust against echoes, non-linear transducer frequency response,
 environmental noise, etc.  Careful choice of encoding and modulation will fix some of these, use
-of error-correcting codes will fix others.
+of error-correcting codes will fix others.  All this has an impact on the bitrate you can reliably achieve.
 
 ## Hearing loss
 
@@ -69,7 +69,7 @@ will be in the same position as if we used RF.
 
 ## Disruption
 
-Over-use of the audio channel will quickly become annoying.  Use in some settings will be entirely inappropriate.
+Over-use of the audio channel will quickly become annoying.  Use in some settings will be inappropriate (silent carriage on a train, or the bedroom) or impossible (high industrial noise).
 
 For longer exchanges, we perhaps could determine the highest usable frequency and hop to it.  If we're lucky,
 this could be above the audible range.   However: your dog will be annoyed and you lose user understanding.
