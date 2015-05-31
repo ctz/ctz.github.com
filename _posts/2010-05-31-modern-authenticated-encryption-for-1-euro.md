@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "Benchmarking Modern Authenticated Encryption on €1 devices"
 subtitle: ""
