@@ -28,7 +28,7 @@ How does modern authenticated encryption run on such devices?
 
 The notation `NORX32-4-1` means an instance of NORX using 32-bit words, 4 rounds and no parallelisation.
 One NORX round is worth two Salsa/ChaCha rounds, so this is about the same as ChaCha8.
-So you can probably expect this to have a lower security bound than ChaCha20, but also be about 2.5 times quicker.
+You can expect this to have a lower security bound than ChaCha20, but also be about 2.5 times quicker.
 
 # ChaCha20-Poly1305
 
