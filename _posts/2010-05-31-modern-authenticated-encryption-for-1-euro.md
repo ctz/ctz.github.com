@@ -3,7 +3,6 @@ layout: post
 title: "Benchmarking Modern Authenticated Encryption on €1 devices"
 subtitle: ""
 category: 
-published: false
 tags: [security, crypto, embedded, authentication, iot]
 ---
 
