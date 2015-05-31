@@ -7,10 +7,23 @@ tags: [security, crypto, embedded, authentication, iot]
 ---
 
 You can get a lot of embedded processing power for a euro these days.
-A STM32F030 costs €1.11[^1] and has about the computational power of a 1994-era 486 costing about €20[^2].
+A STM32F030 costs €1.11[^1] and has about the computational power of a 1994-era 486 costing about €416[^2].
 
 [Cifra][cifra] is my collection of cryptography primitives in standard C, targetted towards small embedded devices.
 How does modern authenticated encryption run on such devices?
+
+# AES128-GCM
+
+# AES128-EAX
+
+# AES128-CCM
+
+# ChaCha20-Poly1305
+
+# NORX32-4-1
+
+# ChaCha20-Poly1305
+
 
 [^1]: From [Farnell, in single quantities][farnell].  Costs vastly decrease with quantity, or if you [buy from chinese suppliers][aliexpress].
 [^2]: Source: [486DX2 50Mhz cost][486-cost].
