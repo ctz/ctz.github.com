@@ -8,7 +8,7 @@ tags: [security, crypto, embedded, authentication, iot]
 ---
 
 You can get a lot of embedded processing power for a euro these days.
-A STM32F030 costs €1.11[^1] and has about the computational power of a 1994-era 486 costing about €20[^1].
+A STM32F030 costs €1.11[^1] and has about the computational power of a 1994-era 486 costing about €20[^2].
 
 
 [^1]: From Farnell, in single quantities.  Costs vastly decrease with quantity, or if you buy from chinese suppliers.
