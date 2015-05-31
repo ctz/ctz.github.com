@@ -16,13 +16,38 @@ An ARM Cortex-M0-based STM32F030 costs €1.11[^1] and has approximately the com
 [Cifra][cifra] is my collection of cryptography primitives in standard C, targetted towards small embedded devices.
 How does modern authenticated encryption run on such devices?
 
-# AES128-GCM
+# Methodology
 
-# AES128-EAX
+We'll measure encryption of different length plaintexts.  Each encryption will include a 16-byte
+additionally authenticated data (AAD).  Nonce lengths are chosen to match each algorithm's requirements.
+All algorithms use a 256-bit key.
 
-# AES128-CCM
+For each encryption, we'll count the number of cycles.  We'll also measure the stack usage and program size.
 
-# NORX32-4-1
+# The contenders
+
+## AES256-GCM
+
+This is a block cipher mode by McGrew and Viega standardised in [SP800-38D][sp800-38d].
+
+It encrypts the plaintext in counter mode, and authenticates it using a polynomial MAC called GHASH.
+
+Cifra's implementation of GHASH has side-channel countermeasures, which makes it slower than other implementations.
+
+## AES256-EAX
+
+This is a construction by Bellare, Rogaway and Wagner.  It encrypts the plaintext in counter mode, and authenticates it using CMAC.
+
+## AES256-CCM
+
+CCM is a construction by Housley, Whiting and Ferguson.  It encrypts the plaintext in counter mode, and authenticates it using CBC-MAC.
+
+Because CBC-MAC doesn't actually work very well, CCM has a convoluted internal structure and cannot encrypt
+messages without knowing the length beforehand.
+
+CCM is widely used in other communications protocols like Bluetooth, IPSec, and WPA2.
+
+## NORX32-4-1
 
 [Norx][norx] is a very new AEAD algorithm with flavours of Salsa/ChaCha (the core permutation) and Keccak (the sponge structure).  It's a candidate for the [CAESAR][caesar] competition.
 
@@ -30,7 +55,7 @@ The notation `NORX32-4-1` means an instance of NORX using 32-bit words, 4 rounds
 One NORX round is worth two Salsa/ChaCha rounds, so this is about the same as ChaCha8.
 You can expect this to have a lower security bound than ChaCha20, but also be about 2.5 times quicker.
 
-# ChaCha20-Poly1305
+## ChaCha20-Poly1305
 
 This is a construction recently standardised in [RFC7539][rfc7539], glueing together the ChaCha20 stream cipher and Poly1305 one-time MAC to give a general purpose AEAD scheme.
 
@@ -43,3 +68,4 @@ This is a construction recently standardised in [RFC7539][rfc7539], glueing toge
 [rfc7539]: https://tools.ietf.org/html/rfc7539
 [norx]: https://norx.io
 [caesar]: http://competitions.cr.yp.to/caesar.html
+[sp800-38d]: http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
