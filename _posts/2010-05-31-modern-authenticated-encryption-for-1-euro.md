@@ -28,7 +28,7 @@ For each encryption, we'll count the number of cycles.  We'll also measure the s
 
 ## AES256-GCM
 
-This is a block cipher mode by McGrew and Viega standardised in [SP800-38D][sp800-38d].
+Galois Counter Mode is a block cipher mode by McGrew and Viega standardised in [SP800-38D][sp800-38d].
 
 It encrypts the plaintext in counter mode, and authenticates it using a polynomial MAC called GHASH.
 
@@ -36,7 +36,7 @@ Cifra's implementation of GHASH has side-channel countermeasures, which makes it
 
 ## AES256-EAX
 
-This is a construction by Bellare, Rogaway and Wagner.  It encrypts the plaintext in counter mode, and authenticates it using CMAC.
+EAX is a construction by Bellare, Rogaway and Wagner.  It encrypts the plaintext in counter mode, and authenticates it using CMAC.
 
 ## AES256-CCM
 
@@ -49,7 +49,7 @@ CCM is widely used in other communications protocols like Bluetooth, IPSec, and 
 
 ## NORX32-4-1
 
-[Norx][norx] is a very new AEAD algorithm with flavours of Salsa/ChaCha (the core permutation) and Keccak (the sponge structure).  It's a candidate for the [CAESAR][caesar] competition.
+[Norx][norx] is a very new AEAD algorithm with flavours of Salsa/ChaCha (the core permutation) and Keccak (the sponge structure).  It's a candidate in the [CAESAR competition][caesar].
 
 The notation `NORX32-4-1` means an instance of NORX using 32-bit words, 4 rounds and no parallelisation.
 One NORX round is worth two Salsa/ChaCha rounds, so this is about the same as ChaCha8.
