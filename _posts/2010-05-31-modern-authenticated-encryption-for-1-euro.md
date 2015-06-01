@@ -24,6 +24,28 @@ All algorithms use a 256-bit key.
 
 For each encryption, we'll count the number of cycles.  We'll also measure the stack usage and program size.
 
+We count cycles by setting up the standard ARM systick peripheral to tick down once per cycle.  When
+it reaches zero, we increment a counter and the systick is reloaded with its maximum value (`0xffffff`).
+
+We measure stack usage by filling the stack with a pattern before a test starts (from the bottom
+upwards to its current extent), and then checking how the pattern was overwritten after the test.
+
+We measure program size statically by reading the size of the text section of each test program.
+We subtract from this the size of a test program which does nothing.  All code is built with `-Os`
+(optimise for size first, speed second) and linked with `-gc-sections` to remove unused functions.
+
+## Hardware
+
+Our hardware is a STM32F030F4P6 soldered to a breakout board, which is connected directly to a STLinkV2
+debugger.  The total cost is:
+
+Item                        |  Supplier    |  Cost
+----                        |  --------    |  ----
+[STM32F030F4P6][farnell]    |  Farnell     |  £0.80 / €1.11
+[STLinkV2 clone][stlinkv2]  |  Aliexpress  |  £2.06 / €2.87
+[TSSOP20 breakout][tssop20] |  Aliexpress  |  £2.68 for 20 / €3.73
+*Total*                     |              |  £5.54 / €7.71
+
 # The contenders
 
 ## AES256-GCM
@@ -49,7 +71,8 @@ CCM is widely used in other communications protocols like Bluetooth, IPSec, and 
 
 ## NORX32-4-1
 
-[Norx][norx] is a very new AEAD algorithm with flavours of Salsa/ChaCha (the core permutation) and Keccak (the sponge structure).  It's a candidate in the [CAESAR competition][caesar].
+[Norx][norx] a candidate in the [CAESAR competition][caesar] and is by Aumasson, Jovanovic and Neves.
+It's a very new AEAD algorithm with flavours of Salsa/ChaCha (the core permutation) and Keccak (the sponge structure).
 
 The notation `NORX32-4-1` means an instance of NORX using 32-bit words, 4 rounds and no parallelisation.
 One NORX round is worth two Salsa/ChaCha rounds, so this is about the same as ChaCha8.
@@ -63,6 +86,8 @@ This is a construction recently standardised in [RFC7539][rfc7539], glueing toge
 [^2]: Source: [486DX2 50Mhz cost][486-cost] adjusted for today's money.
 [farnell]: http://uk.farnell.com/stmicroelectronics/stm32f030f4p6tr/mcu-32bit-cortex-m0-48mhz-tssop/dp/2432084
 [aliexpress]: http://www.aliexpress.com/item/Free-shipping-10pcs-Lot-STM32F030F4P6-STM32F030F/32346098332.html
+[stlinkv2]: http://www.aliexpress.com/item/FREE-SHIPPING-ST-Link-V2-stlink-mini-STM8STM32-STLINK-simulator-download-programming-With-Cover/1766455290.html
+[tssop20]: http://www.aliexpress.com/item/20pcs-LOT-TSSOP20-SSOP20-MSOP20-SOP20-TURN-DIP20-20pin-IC-adapter-Socket-Adapter-plate-PCB-PCB/1719764709.html
 [486-cost]: https://books.google.co.uk/books?id=FzsEAAAAMBAJ&pg=PA5&lpg=PA5&dq=486+50mhz+1994+price&source=bl&ots=hIyb58Hjw9&sig=0AS3jTLuZNsLMrNa-lvKc8TchKk&hl=en&sa=X&ei=pEdrVbWcAYO1sASEh4CYAg&ved=0CC0Q6AEwAg#v=onepage&q=486%2050mhz%201994%20price&f=false
 [cifra]: https://github.com/ctz/cifra
 [rfc7539]: https://tools.ietf.org/html/rfc7539
