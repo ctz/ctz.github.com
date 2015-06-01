@@ -318,3 +318,10 @@ div.highlight {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
+
+/* Tables, nicked from github */
+table td, table th { padding: 6px 13px; border-bottom: 1px solid #bbb; }
+table th { background-color: #ccc; border-bottom: 1px solid white; border-top: 1px solid white; }
+table tr { box-sizing: border-box; background-color: #eee; }
+table tr:nth-child(2n) { background-color: #e8e8e8; }
+table { margin-top: 0; margin-bottom: 16px; border-collapse: collapse; border-spacing: 0 }
