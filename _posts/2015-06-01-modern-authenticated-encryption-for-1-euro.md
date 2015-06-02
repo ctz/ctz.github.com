@@ -38,6 +38,8 @@ We subtract from this the size of a test program which does nothing.  All code i
 [Cifra][cifra] is a collection of cryptography primitives in standard C, targetted towards small embedded devices.
 The code is intended to be clear, simple, and small.  The aim is understanding and quality code, not speed records.
 
+The functions beginning [`aeadperf_`][testcode] is the code we're benchmarking.
+
 ## Hardware
 
 Our hardware is a STM32F030F4P6 soldered to a breakout board, which is connected directly to a STLinkV2
@@ -128,7 +130,7 @@ sizes.  This is an area for improvement.
 [sp800-38d]: http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
 [chacha]: http://cr.yp.to/chacha.html
 [poly1305]: http://cr.yp.to/mac.html
-
+[testcode]: https://github.com/ctz/cifra/blob/832ade9903604c17a6a40becc48b79ed0feab133/src/arm/main.c#L261
 
 <script>
 google.load('visualization', '1', {packages: ['corechart', 'scatter']});
