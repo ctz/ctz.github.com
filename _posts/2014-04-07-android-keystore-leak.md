@@ -25,6 +25,8 @@ is the recommended work-around.
  *   **2014-02-24 PM** - Vendor acknowledgement and confirmation.
  *   **2014-02-26** - Attempt to setup coordinated disclosure (no response).
  *   **2014-04-07** - Public disclosure.
+ *   **2014-10-17** - Response from Android security team offering line in Android security acknowledgements.
+ *   **2014-11-03** - Verified fixed in Android Lollipop.
 
 # Background
 
