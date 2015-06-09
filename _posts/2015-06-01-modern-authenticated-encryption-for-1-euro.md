@@ -134,7 +134,7 @@ sizes.  This is an area for improvement.
 [sp800-38d]: http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
 [chacha]: http://cr.yp.to/chacha.html
 [poly1305]: http://cr.yp.to/mac.html
-[testcode]: https://github.com/ctz/cifra/blob/832ade9903604c17a6a40becc48b79ed0feab133/src/arm/main.c#L261
+[testcode]: https://github.com/ctz/cifra/blob/2315db11fd5cb7e80e81590933e4502675b84fe5/src/arm/main.c#L261
 
 <script>
 google.load('visualization', '1', {packages: ['corechart', 'scatter']});
