@@ -19,7 +19,8 @@ How does modern authenticated encryption run on such devices?
 
 We'll measure encryption of different length plaintexts.  Each encryption will include a 16-byte
 additionally authenticated data (AAD).  Nonce lengths and key sizes are chosen to match each
-algorithm's requirements.  NORX32 uses a 128-bit key, other algorithms use a 256-bit key. 
+algorithm's requirements.  AES-based algorithms will be tested with both 128-bit and 256-bit keys,
+NORX32 only uses 128-bit keys, and ChaCha20-Poly1305 only uses 256-bit keys.
 
 For each encryption, we'll count the number of cycles.  We'll also measure the stack usage and program size.
 
@@ -54,7 +55,7 @@ Item                        |  Supplier    |  Cost
 
 # The contenders
 
-## AES256-GCM
+## AES-GCM
 
 Galois Counter Mode is a block cipher mode by McGrew and Viega standardised in [SP800-38D][sp800-38d].
 
@@ -62,11 +63,11 @@ It encrypts the plaintext in counter mode, and authenticates it using a polynomi
 
 Cifra's implementation of GHASH has side-channel countermeasures, which makes it slower than other implementations.
 
-## AES256-EAX
+## AES-EAX
 
 EAX is a construction by Bellare, Rogaway and Wagner.  It encrypts the plaintext in counter mode, and authenticates it using CMAC.
 
-## AES256-CCM
+## AES-CCM
 
 CCM is a construction by Housley, Whiting and Ferguson.  It encrypts the plaintext in counter mode, and authenticates it using CBC-MAC.
 
@@ -94,11 +95,14 @@ For encrypting a 256-byte message:
 
 Algorithm   | Cycles | Stack | Code size | Likely throughput[^3]
 ---------   | ------ | ----- | --------- | -----------------
-AES-256-CCM | 271787 | 744B  | 2400B     | 51.44KB/s
-AES-256-EAX | 285730 | 864B  | 2684B     | 51.34KB/s
+AES-128-CCM | 200048 | 680B  | 2316B     | 70.27KB/s
+AES-128-EAX | 210087 | 800B  | 2604B     | 70.07KB/s
+AES-128-GCM | 327313 | 700B  | 2644B     | 41.30KB/s
+AES-256-CCM | 271787 | 744B  | 2400B     | 51.45KB/s
+AES-256-EAX | 285730 | 864B  | 2684B     | 51.35KB/s
 AES-256-GCM | 362200 | 764B  | 2728B     | 37.49KB/s
-ChaCha20-Poly1305 | 163980 | 756B  | 2728B | 94.22KB/s
-NORX32-4-1  | 25115  | 336B  | 1808B     | 717.0KB/s
+ChaCha20-Poly1305 | 163980 | 756B  | 2728B | 94.23KB/s
+NORX32-4-1  | 25115  | 336B  | 1808B     | 717.02KB/s
 
 Even adjusting for the different security bound, NORX leads in every metric.
 
