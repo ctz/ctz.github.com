@@ -18,8 +18,8 @@ How does modern authenticated encryption run on such devices?
 # Methodology
 
 We'll measure encryption of different length plaintexts.  Each encryption will include a 16-byte
-additionally authenticated data (AAD).  Nonce lengths are chosen to match each algorithm's requirements.
-NORX32 uses a 128-bit key, other algorithms use a 256-bit key. 
+additionally authenticated data (AAD).  Nonce lengths and key sizes are chosen to match each
+algorithm's requirements.  NORX32 uses a 128-bit key, other algorithms use a 256-bit key. 
 
 For each encryption, we'll count the number of cycles.  We'll also measure the stack usage and program size.
 
