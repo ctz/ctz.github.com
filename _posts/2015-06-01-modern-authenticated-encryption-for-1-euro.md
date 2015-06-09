@@ -140,12 +140,12 @@ function drawBasic() {
 
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
-      data.addColumn('number', 'AES-128-GCM');
-      data.addColumn('number', 'AES-128-EAX');
       data.addColumn('number', 'AES-128-CCM');
-      data.addColumn('number', 'AES-256-GCM');
-      data.addColumn('number', 'AES-256-EAX');
+      data.addColumn('number', 'AES-128-EAX');
+      data.addColumn('number', 'AES-128-GCM');
       data.addColumn('number', 'AES-256-CCM');
+      data.addColumn('number', 'AES-256-EAX');
+      data.addColumn('number', 'AES-256-GCM');
       data.addColumn('number', 'ChaCha20-Poly1305');
       data.addColumn('number', 'NORX32-4-1');
 
