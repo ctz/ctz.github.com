@@ -325,3 +325,11 @@ table th { background-color: #ccc; border-bottom: 1px solid white; border-top: 1
 table tr { box-sizing: border-box; background-color: #eee; }
 table tr:nth-child(2n) { background-color: #e8e8e8; }
 table { margin-top: 0; margin-bottom: 16px; border-collapse: collapse; border-spacing: 0 }
+
+/* twitter includes */
+.twitter-tweet {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
