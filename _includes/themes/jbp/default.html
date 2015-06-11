@@ -5,7 +5,8 @@
    <meta name="google-site-verification" content="8_3Lj_0Yt688wzUrjZYeLzrNX5RuAaFgyJuma8yTv5k" />
    <title>{{ site.title }} :: {{ page.title }}</title>
    <meta name="author" content="{{ site.author.name }}" />
-   <link href="http://feeds.feedburner.com/{{ site.author.feedburner }}" rel="alternate" title="your title" type="application/atom+xml" />
+   <link rel="alternate" type="application/atom+xml" title="Atom feed" href="/atom.xml" />
+   <link rel="alternate" type="application/rss+xml" title="RSS feed" href="/rss.xml" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
    <!-- Fancy font -->
@@ -29,9 +30,6 @@
       <a class="main" href="{{ HOME_PATH }}">{{ site.title }}</a>
 
       <a class="extra" href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a>
-      <!--
-      <a class="extra" href="{{ BASE_PATH }}{{ site.JB.categories_path }}">Categories</a>
-      -->
     </div>
   
     {{ content }}
