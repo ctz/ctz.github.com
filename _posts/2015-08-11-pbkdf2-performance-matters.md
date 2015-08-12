@@ -93,7 +93,7 @@ This review was performed in December 2014.  Things might have moved on since th
 [fastpbkdf2]: https://github.com/ctz/fastpbkdf2
 [multigraph]: /assets/fastpbkdf2-graph.png
 
-[freebsd]: http://sources.freebsd.org/RELENG_10/sys/geom/eli/pkcs5v2.c
+[freebsd]: http://sources.freebsd.org/RELENG_10/src/sys/geom/eli/pkcs5v2.c
 [grub]: https://github.com/mokafive/grub/blob/upstream/grub-core/lib/pbkdf2.c#L89
 [truecrypt]: https://github.com/FauxFaux/truecrypt/blob/targz/Common/Pkcs5.c#L131
 [androidbc]: https://android.googlesource.com/platform/external/bouncycastle/+/2768c2948c0b1931bff087e43a8db8059c183b56/bcprov/src/main/java/org/bouncycastle/crypto/generators/PKCS5S2ParametersGenerator.java
