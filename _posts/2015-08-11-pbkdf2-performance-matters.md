@@ -64,27 +64,27 @@ It does this through a few tricks:
 This review was performed in December 2014.  Things might have moved on since then.
 
 1. [FreeBSD (10)][freebsd]:  Slow.  Measures speed.
-2. [GRUB (2.0)][grub]: Slow
-3. [Truecrypt (7.1a)][truecrypt]: Slow
+2. [GRUB (2.0)][grub]: Slow.
+3. [Truecrypt (7.1a)][truecrypt]: Slow.
 4. Android (disk encryption): OK. Calls scrypt + openssl pbkdf2.
-5. [Android (BouncyCastle)][androidbc]:  Slow
+5. [Android (BouncyCastle)][androidbc]: Slow.
 6. Django: OK. Fixed by sc00bz CVE-2013-1443.
 7. OpenSSL: OK. Fixed by Christian Heimes 2013-11-03.
 8. Python (core >=3.4): OK. Christian Heimes 2013-10-12.
-9. [Python (pypi pbkdf2)][pypipbkdf2]:  Slow
-10. [Ruby (pbkdf2 gem)][rubygem]: Slow
-11. [Go (go.crypto)][gocrypto]: Slow (structurally fast, but hmac module lets it down)
-12. [OpenBSD][openbsd]: Slow
-13. [PolarSSL/mbedTLS][polarssl]: Slow
-14. [CyaSSL/wolfSSL][cyassl]: Slow (structurally fast, but hmac module lets it down)
-15. [SJCL][sjcl]: OK
+9. [Python (pypi pbkdf2)][pypipbkdf2]:  Slow.
+10. [Ruby (pbkdf2 gem)][rubygem]: Slow.
+11. [Go (go.crypto)][gocrypto]: Slow (structurally fast, but hmac module lets it down).
+12. [OpenBSD][openbsd]: Slow.
+13. [PolarSSL/mbedTLS][polarssl]: Slow.
+14. [CyaSSL/wolfSSL][cyassl]: Slow (structurally fast, but hmac module lets it down).
+15. [SJCL][sjcl]: OK.
 16. [Java][openjdk]: Slow (structurally fast, but hmac module lets it down).
-17. [Common Lisp (ironclad)][lispironclad]: Slow
+17. [Common Lisp (ironclad)][lispironclad]: Slow.
 18. [Perl (Crypt::PBKDF2)][perlcpan]: Slow.
 19. [PHP (core)][phpcore]: Slow. [Pull request][phppatch] submitted upstream.
-20. [C# (core)][mscorelib]: Slow
+20. [C# (core)][mscorlib]: Slow.
 21. [scrypt (scrypt and libscrypt)][scrypt] Slow but iterations==1, always. yescrypt also.
-22. [BouncyCastle][bouncycastle] OK (>= 1.49)
+22. [BouncyCastle][bouncycastle] OK (>= 1.49).
 
 [slides]: https://github.com/ctz/talks/blob/master/pbkdf2/pbkdf2.pdf
 [fastpbkdf2]: https://github.com/ctz/fastpbkdf2
