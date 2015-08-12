@@ -85,6 +85,7 @@ This review was performed in December 2014.  Things might have moved on since th
 20. [C# (core)][mscorlib]: Slow.
 21. [scrypt (scrypt and libscrypt)][scrypt] Slow but iterations==1, always. yescrypt also.
 22. [BouncyCastle][bouncycastle] OK (>= 1.49).
+23. Apple CoreCrypto. OK. Disassembly only (source is not available).
 
 [slides]: https://github.com/ctz/talks/blob/master/pbkdf2/pbkdf2.pdf
 [fastpbkdf2]: https://github.com/ctz/fastpbkdf2
