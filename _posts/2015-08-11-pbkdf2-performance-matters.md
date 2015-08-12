@@ -63,96 +63,49 @@ It does this through a few tricks:
 # Full list of reviewed implementations
 This review was performed in December 2014.  Things might have moved on since then.
 
-1. FreeBSD (10):
-  Slow, measures.
-  http://sources.freebsd.org/RELENG_10/sys/geom/eli/pkcs5v2.c
-
-2. GRUB (2.0):
-  Slow
-  https://github.com/mokafive/grub/blob/upstream/grub-core/lib/pbkdf2.c#L89
-
-3. Truecrypt (7.1a):
-  Slow
-  https://github.com/FauxFaux/truecrypt/blob/targz/Common/Pkcs5.c#L131
-
-4. Android (disk encryption):
-  OK
-  scrypt + openssl pbkdf2
-
-5. Android (BouncyCastle):
-  Slow
-  https://android.googlesource.com/platform/external/bouncycastle/+/2768c2948c0b1931bff087e43a8db8059c183b56/bcprov/src/main/java/org/bouncycastle/crypto/generators/PKCS5S2ParametersGenerator.java
-
-6. Django:
-  OK
-  Fixed by sc00bz CVE-2013-1443
-
-7. OpenSSL:
-  OK 
-  fixed by Christian Heimes 2013-11-03
-
-8. Python (core >=3.4):
-  OK 
-  Christian Heimes 2013-10-12
-
-9. Python (pypi pbkdf2):
-  Slow
-  https://pypi.python.org/pypi/pbkdf2
-  https://github.com/dlitz/python-pbkdf2/blob/master/pbkdf2.py#L173
-
-10. Ruby:
-  Slow
-  https://rubygems.org/gems/pbkdf2
-
-11. Go (go.crypto):
-  Slow (structurally fast, but hmac module lets it down)
-  https://code.google.com/p/go/source/browse/pbkdf2/pbkdf2.go?repo=crypto
-
-12. OpenBSD:
-  Slow
-  http://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/lib/libutil/pkcs5_pbkdf2.c?rev=1.6&content-type=text/plain
-
-13. PolarSSL:
-  Slow
-  https://github.com/polarssl/polarssl/blob/1b4eda3af96a7fb53a327fb3325670a14ff02213/library/pkcs5.c
-
-14. CyaSSL:
-  Slow (structurally fast, but hmac module lets it down)
-  https://github.com/cyassl/cyassl/blob/fc24dca12dd724aea8448fc65ade35527ea3c26c/ctaocrypt/src/pwdbased.c
-
-15. SJCL:
-  OK
-  https://github.com/bitwiseshiftleft/sjcl/blob/136512284d923390c115a735746b965c12f39fd0/core/pbkdf2.js
-
-16. Java:
-  Slow (structurally fast, but hmac module lets it down)
-  http://hg.openjdk.java.net/jdk7/jdk7/jdk/file/9b8c96f96a0f/src/share/classes/com/sun/crypto/provider/HmacCore.java
-
-17. Common Lisp (ironclad):
-  Slow
-  https://github.com/froydnj/ironclad/blob/e0c1067fd5d00552fb4050f8654a610f619b4075/src/pkcs5.lisp#L51
-
-18. Perl (Crypt::PBKDF2):
-  Slow
-  https://metacpan.org/source/ARODLAND/Crypt-PBKDF2-0.142390/lib/Crypt/PBKDF2.pm
-
-19. PHP (core):
-  Slow
-  https://github.com/php/php-src/blob/d0cb715373c3fbe9dc095378ec5ed8c71f799f67/ext/hash/hash.c#L214
-
-20. C# (core):
-  Slow (? code is slightly difficult to follow, but HMAC classes store i_pad+o_pad)
-  http://referencesource.microsoft.com/#mscorlib/system/security/cryptography/rfc2898derivebytes.cs,170
-
-21. scrypt (scrypt and libscrypt)
-  Slow but iterations==1, always.
-  yescrypt also
-  https://github.com/technion/libscrypt/blob/master/sha256.c#L393
- 
-22. bouncycastle
-  OK (>= 1.49)
-  https://github.com/bcgit/bc-java/blob/master/core/src/main/java/org/bouncycastle/crypto/generators/PKCS5S2ParametersGenerator.java
+1. [FreeBSD (10)][freebsd]:  Slow.  Measures speed.
+2. [GRUB (2.0)][grub]: Slow
+3. [Truecrypt (7.1a)][truecrypt]: Slow
+4. Android (disk encryption): OK. Calls scrypt + openssl pbkdf2.
+5. [Android (BouncyCastle)][androidbc]:  Slow
+6. Django: OK. Fixed by sc00bz CVE-2013-1443.
+7. OpenSSL: OK. Fixed by Christian Heimes 2013-11-03.
+8. Python (core >=3.4): OK. Christian Heimes 2013-10-12.
+9. [Python (pypi pbkdf2)][pypipbkdf2]:  Slow
+10. [Ruby (pbkdf2 gem)][rubygem]: Slow
+11. [Go (go.crypto)][gocrypto]: Slow (structurally fast, but hmac module lets it down)
+12. [OpenBSD][openbsd]: Slow
+13. [PolarSSL/mbedTLS][polarssl]: Slow
+14. [CyaSSL/wolfSSL][cyassl]: Slow (structurally fast, but hmac module lets it down)
+15. [SJCL][sjcl]: OK
+16. [Java][openjdk]: Slow (structurally fast, but hmac module lets it down).
+17. [Common Lisp (ironclad)][lispironclad]: Slow
+18. [Perl (Crypt::PBKDF2)][perlcpan]: Slow.
+19. [PHP (core)][phpcore]: Slow. [Pull request][phppatch] submitted upstream.
+20. [C# (core)][mscorelib]: Slow
+21. [scrypt (scrypt and libscrypt)][scrypt] Slow but iterations==1, always. yescrypt also.
+22. [BouncyCastle][bouncycastle] OK (>= 1.49)
 
 [slides]: https://github.com/ctz/talks/blob/master/pbkdf2/pbkdf2.pdf
 [fastpbkdf2]: https://github.com/ctz/fastpbkdf2
 [multigraph]: /assets/fastpbkdf2-graph.png
+
+[freebsd]: http://sources.freebsd.org/RELENG_10/sys/geom/eli/pkcs5v2.c
+[grub]: https://github.com/mokafive/grub/blob/upstream/grub-core/lib/pbkdf2.c#L89
+[truecrypt]: https://github.com/FauxFaux/truecrypt/blob/targz/Common/Pkcs5.c#L131
+[androidbc]: https://android.googlesource.com/platform/external/bouncycastle/+/2768c2948c0b1931bff087e43a8db8059c183b56/bcprov/src/main/java/org/bouncycastle/crypto/generators/PKCS5S2ParametersGenerator.java
+[pypipbkdf2]: https://github.com/dlitz/python-pbkdf2/blob/master/pbkdf2.py#L173
+[rubygem]: https://rubygems.org/gems/pbkdf2
+[gocrypto]: https://code.google.com/p/go/source/browse/pbkdf2/pbkdf2.go?repo=crypto
+[openbsd]: http://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/lib/libutil/pkcs5_pbkdf2.c?rev=1.6&content-type=text/plain
+[polarssl]: https://github.com/polarssl/polarssl/blob/1b4eda3af96a7fb53a327fb3325670a14ff02213/library/pkcs5.c
+[cyassl]: https://github.com/cyassl/cyassl/blob/fc24dca12dd724aea8448fc65ade35527ea3c26c/ctaocrypt/src/pwdbased.c
+[sjcl]: https://github.com/bitwiseshiftleft/sjcl/blob/136512284d923390c115a735746b965c12f39fd0/core/pbkdf2.js
+[openjdk]: http://hg.openjdk.java.net/jdk7/jdk7/jdk/file/9b8c96f96a0f/src/share/classes/com/sun/crypto/provider/HmacCore.java
+[lispironclad]: https://github.com/froydnj/ironclad/blob/e0c1067fd5d00552fb4050f8654a610f619b4075/src/pkcs5.lisp#L51
+[perlcpan]: https://metacpan.org/source/ARODLAND/Crypt-PBKDF2-0.142390/lib/Crypt/PBKDF2.pm
+[phpcore]: https://github.com/php/php-src/blob/d0cb715373c3fbe9dc095378ec5ed8c71f799f67/ext/hash/hash.c#L214
+[phppatch]: https://github.com/php/php-src/pull/1387
+[mscorlib]: http://referencesource.microsoft.com/#mscorlib/system/security/cryptography/rfc2898derivebytes.cs,170
+[scrypt]: https://github.com/technion/libscrypt/blob/master/sha256.c#L393
+[bouncycastle]: https://github.com/bcgit/bc-java/blob/master/core/src/main/java/org/bouncycastle/crypto/generators/PKCS5S2ParametersGenerator.java
