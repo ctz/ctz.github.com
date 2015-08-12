@@ -20,9 +20,9 @@ There are [slides][slides] and a video:
 
 The PBKDF2 standards describe the algorithm in such an unhelpful way that almost every defender implementation is at least two times slower than it otherwise could be.
 
-For slow password hashes, performance is important because any inefficiency is either passed on to some combination of your  user and attacker.
+For slow password hashes, performance is important because any inefficiency is passed on to some combination of your user and attacker.
 
-From the implementations I reviewed, only the following are algorithmically optimal:
+Of the implementations I reviewed, only the following are algorithmically optimal:
 
 * SJCL (forever)
 * OpenSSL (post 2013)
