@@ -28,7 +28,7 @@ Of the implementations I reviewed, only the following are algorithmically optima
 * OpenSSL (post 2013)
 * Python core (3.4 and later)
 * Django (post 2013)
-* BouncyCastle (after 1.49)
+* BouncyCastle (1.49 and later)
 * Apple CoreCrypto (unknown history)
 
 But, in practical terms, all are slower than a public domain implementation I released: 
