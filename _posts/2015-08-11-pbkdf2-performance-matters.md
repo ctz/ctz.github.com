@@ -16,6 +16,8 @@ There are [slides][slides] and a video:
 
 ---
 
+# Overview
+
 The PBKDF2 standards describe the algorithm in such an unhelpful way that almost every defender implementation is at least two times slower than it otherwise could be.
 
 For slow password hashes, performance is important because any inefficiency is either passed on to some combination of your  user and attacker.
@@ -60,7 +62,7 @@ It does this through a few tricks:
   
   I didn't do this yet, because it requires maintaining fast hash function implementations for interesting platforms.  At the moment `fastpbkdf2` is generally portable.
 
-# Full list of reviewed implementations
+# Reviewed implementations
 This review was performed in December 2014.  Things might have moved on since then.
 
 1. [FreeBSD (10)][freebsd]:  Slow.  Measures speed.
