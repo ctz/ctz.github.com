@@ -44,7 +44,7 @@ It does this through a few tricks:
 
 * **Aggressive inlining of everything in the inner loop**.  This makes everything statically available to the compiler so optimisation passes can have full effect.  This means the inner loop will get compiled to packed vector SSE2 operations, plus a call to the hash compression function.
   
-* **Compute output in host endianess**.  This is a minor tweak, but should pay off much more when no endianness conversion is removed (see below).
+* **Compute output in host endianess**.  This is a minor tweak, but should pay off much more when no endianness conversion is performed (see below).
   
 * **No buffering or padding inside loop**.  The input to the hash function in the inner loop is always the same length, so MD length padding is done once, outside the loop.
   
