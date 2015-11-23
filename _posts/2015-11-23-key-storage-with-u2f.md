@@ -90,7 +90,7 @@ slow hash is suitable as long as it processes arbitrary-length inputs.
 2. Perform U2F enrollment, obtaining public key and key handle.  Store key handle in plaintext.
 3. Hash the public key and store the hash in plaintext.
 3. Generate a random salt.  Store it in plaintext.
-4. Compute `PBKDF2(salt = salt, password = encode(public key) + password)`, use the result as a key.
+4. Compute `PBKDF2(salt, encode(public key) + password)`, use the result as a key.
 
 Note: `encode()` is a fixed length encoding of an elliptic curve point, like P1363's `EC2OSP-XY`.
 
@@ -101,7 +101,7 @@ Note: `encode()` is a fixed length encoding of an elliptic curve point, like P13
 3. Extract two candidate ECDSA public keys from the signature.
 4. Hash both candidate public keys, and check against the stored hash.  If neither match,
    the U2F device is an imposter.
-5. Produce the key again with `PBKDF2(salt = salt, password = encode(public key) + password)`.
+5. Produce the key again with `PBKDF2(salt, encode(public key) + password)`.
 
 This has the following nice properties:
 
