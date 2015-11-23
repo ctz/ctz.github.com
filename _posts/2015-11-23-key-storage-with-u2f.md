@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "Disk encryption through U2F abuse"
+title: "Abusing U2F to 'store' keys"
 subtitle: ""
 category: 
 tags: [security, authentication, passwords]
-published: false
+published: true
 ---
 
 * TOC
 {:toc #toc-side}
 
 [U2F][u2f] is another authentication technology which requires a trusted verifier,
-like a remote server: fundementally the output of an authentication is 'Yes' or 'No'
+like a remote server: fundamentally the output of an authentication is 'Yes' or 'No'
 rather than some key material or new capability.
 
 OTPs fall into this category too. Biometrics usually also do; biometric key generation
@@ -19,10 +19,8 @@ is a thing, but the entropy of the resulting key is tricky to quantify without l
 population studies.
 
 This makes most authentication devices: **unusable offline**, and that means
-they **don't work for mobile** either[^1], and certainly **won't work in early boot**
+they **don't work for mobile**, and certainly **won't work in early boot**
 when you want to decrypt your disk.
-
-[^1]: Sorry, I don't have any signal.
 
 # U2F
 U2F comes from the [FIDO alliance][fido], an industry consortium of a bunch of authentication
@@ -49,7 +47,9 @@ So: we want some bytes with high entropy that are hard to guess without talking 
 specific U2F device.  We'll hash them before use, so it doesn't matter too much if the
 bytes are not uniformly distributed or have some bias.
 
-We'll rely on the following facts to do this:
+## Warning!
+The following abuses the design of U2F.  It deliberately misuses cryptography.
+It is presented for your amusement rather than serious use.
 
 ## Per-site keys
 U2F's separation of keys between sites was done for privacy reasons, so database leaks
@@ -59,11 +59,18 @@ Storing all the per-site keys on a device is not a workable idea.  The device wi
 be told if a key is abandoned by its verifier, so eventually it will run out of
 persistent storage.
 
-The only sensible way of achieving this: to have some per-device secret, and generate private
-keys deterministically by hashing this secret with a nonce.  The key handle is then merely
-this nonce.  This is, in fact, almost exactly what [yubico does][yubicou2f].
+There are two ways of achieving this:
 
-## ECDSA
+1. have some per-device secret, and generate private keys deterministically by
+   hashing this secret together with a nonce.  The key handle is then merely
+   this nonce.  This is, in fact, almost exactly what [yubico does][yubicou2f].
+2. have some per-device key, use this to encrypt the private key material.  Key handles
+   are then just ciphertexts.
+
+**Note that if a U2F device produces key handles which contain the public key in plaintext, this whole scheme
+fails catastrophically.** This isn't under our control, but it seems extremely unlikely.
+
+## ECDSA public key recovery
 A not well-known property of ECDSA: given a message and a valid signature over it,
 you can derive the corresponding public keys.  There are two such public keys for each
 signature, and one is the 'correct' one (ie. pairs up with the original signing key).
@@ -75,7 +82,7 @@ If the signature is invalid, you'll get junk or the maths won't work at all.
 # Protocol outline
 
 Let's sketch a password + U2F key derivation method.  We'll use PBKDF2, any
-slow hash is suitable.
+slow hash is suitable as long as it processes arbitrary-length inputs.
 
 ## Enrollment
 
@@ -85,6 +92,8 @@ slow hash is suitable.
 3. Generate a random salt.  Store it in plaintext.
 4. Compute `PBKDF2(salt = salt, password = encode(public key) + password)`, use the result as a key.
 
+Note: `encode()` is a fixed length encoding of an elliptic curve point, like P1363's `EC2OSP-XY`.
+
 ## Authentication
 
 1. Obtain user password.
@@ -92,11 +101,33 @@ slow hash is suitable.
 3. Extract two candidate ECDSA public keys from the signature.
 4. Hash both candidate public keys, and check against the stored hash.  If neither match,
    the U2F device is an imposter.
-4. Produce the key again with `PBKDF2(salt = salt, password = encode(public key) + password)`.
-   
-## Notes
+5. Produce the key again with `PBKDF2(salt = salt, password = encode(public key) + password)`.
 
-* `encode()` is a fixed length encoding of an elliptic curve point, like SEC1's `EC2OSP`.
+This has the following nice properties:
+
+* **Freshness: it resists replay of token traffic**.  If the token doesn't sign our nonce, we don't recover the public key.
+  Straightforward fingerprinting of the token does not achieve this.
+* **Good entropy**. There are almost 2<sup>256</sup> possible public keys on NIST-P256, assuming the private key is chosen well.
+* **Efficient**. Over and above the normal U2F user interaction time, the additional computations are minor.
+
+-----
+
+# Proof of concept
+
+There's a proof of concept of this in my [u2f-key-storage][u2f-secret-storage] repo.
+You'll need [Yubico's python-u2flib-host][python-u2flib-host] and its prerequisites.
+
+{% highlight sh %}
+$ sudo pip install python-u2flib-host
+(...)
+$ python u2fkey.py enroll
+Touch the U2F device you wish to register...
+written data to data.json
+secret is b859c0416c979f6904e85ab60f93026a1af95f1afc29e07df0beca205ca8f68b
+$ python u2fkey.py auth
+Touch the flashing U2F device to authenticate...
+secret is b859c0416c979f6904e85ab60f93026a1af95f1afc29e07df0beca205ca8f68b
+{% endhighlight %}
   
 -----
 
@@ -105,3 +136,5 @@ slow hash is suitable.
 [yubico]: https://www.yubico.com/applications/fido/
 [yubicou2f]: https://developers.yubico.com/U2F/Protocol_details/Key_generation.html
 [lastpass]: https://lastpass.com/yubico/
+[u2f-secret-storage]: https://github.com/ctz/u2f-secret-storage
+[python-u2flib-host]: https://github.com/Yubico/python-u2flib-host
