@@ -15,7 +15,7 @@ finding of their paper: that the timing chaff was too coarse to have meaningful 
 
 [luckymicro]: http://eprint.iacr.org/2015/1129
 
-{% highlight sh %}
+<pre>
 MIME-Version: 1.0
 Received: by 10.107.38.146 with HTTP; Tue, 30 Jun 2015 19:32:37 -0700 (PDT)
 Date: Wed, 1 Jul 2015 03:32:37 +0100
@@ -60,4 +60,4 @@ I doubt this is practically exploitable, but might be interesting nonetheless.
 
 Thanks,
 Joe
-{% endhighlight %}
+</pre>
