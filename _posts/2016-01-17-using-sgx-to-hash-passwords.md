@@ -32,15 +32,19 @@ verification later.  Unfortunately, that means only that physical CPU will ever
 be able to check a user password.  That's not a sensible approach; backups would be
 worthless.
 
-Instead, we use a logical grouping of enclaves all of whom can check passwords --
-a 'region'.  A region is nothing more than an AES key available to all such enclaves.
-'Enrolling' an enclave into a region involves telling it the region key and having it
-seal the region key to itself.
+So we'll have a logical grouping of enclaves, all of which can check passwords --
+a 'region'.  A region is implemented as an AES key available to all such enclaves.
+'Enrolling' an enclave into a region involves the enclave learning the region key,
+and sealing the key material to itself for later use.
 
 <div align="center"><img src="/assets/sgx-region.png" alt="diagram showing simple region concept"></div>
 
-At the enclave level, we need only two operations: setting a password and checking
-a guess.  These look like:
+When we're not enrolling an enclave into our region, the region key can be kept offline,
+in a hardware security module, or written down in a safe.
+
+# Operations
+
+We need only two operations: setting a password and checking a guess.  These look like:
 
 <div align="center"><img src="/assets/sgx-pwsetup.png" alt="diagram showing password setup flow"></div>
 
