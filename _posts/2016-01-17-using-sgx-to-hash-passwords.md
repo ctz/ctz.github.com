@@ -29,7 +29,7 @@ this without understanding everything yourself first.
 
 It would be easy to hash a password in an enclave and then seal it to itself for
 verification later.  Unfortunately, that means only that physical CPU will ever
-be able to check a user password.  That's not a sensible approach; backups will be
+be able to check a user password.  That's not a sensible approach; backups would be
 worthless.
 
 Instead, we use a logical grouping of enclaves all of whom can check passwords --
