@@ -10,10 +10,10 @@ published: true
 * TOC
 {:toc #toc-side}
 
-[SGX][sgx] is a way of running security-sensitive user-mode code in an 'enclave'.
+[SGX][sgx] is a way of running security-sensitive user-mode code in an '**enclave**'.
 Code running in an enclave has its memory encrypted and authenticated, and cannot be
 observed by code running anywhere else.  It's able to use device-specific
-keys to encrypt ('seal') data to future executions of itself or enclaves signed by the
+keys to encrypt ('**seal**') data to future executions of itself or enclaves signed by the
 same key.
 
 We can use SGX to harden password hashing, by imposing the restriction that it is only
@@ -33,7 +33,7 @@ be able to check a user password.  That's not a sensible approach; backups would
 worthless.
 
 So we'll have a logical grouping of enclaves, all of which can check passwords --
-a 'region'.  A region is implemented as an AES key available to all such enclaves.
+a '**region**'.  A region is implemented as an AES key available to all such enclaves.
 'Enrolling' an enclave into a region involves the enclave learning the region key,
 and sealing the key material to itself for later use.
 
