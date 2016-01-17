@@ -37,26 +37,22 @@ a 'region'.  A region is nothing more than an AES key available to all such encl
 'Enrolling' an enclave into a region involves telling it the region key and having it
 seal the region key to itself.
 
-![diagram showing simple region concept][regionpng]
+<div align="center"><img src="/assets/sgx-region.png" alt="diagram showing simple region concept"></div>
 
 At the enclave level, we need only two operations: setting a password and checking
 a guess.  These look like:
 
-![diagram showing password setup flow][setuppng]
+<div align="center"><img src="/assets/sgx-pwsetup.png" alt="diagram showing password setup flow"></div>
 
 Here, we generate a random salt (using laundered hardware entropy from the `RDRAND`
 instruction) and pass the password into PBKDF2.  The result and salt are encrypted using
 the region key, producing a ciphertext which can be stored alongside the user record
 in a database or password file.
 
-![diagram showing password guess flow][authpng]
+<div align="center"><img src="/assets/sgx-pwauth.png" alt="diagram showing password guess flow"></div>
 
 Here we decrypt the ciphertext to obtain the salt and correct hash.  We hash the
 purported password and compare with the correct hash.
-
-[regionpng]: /assets/sgx-region.png
-[setuppng]: /assets/sgx-pwsetup.png
-[authpng]: /assets/sgx-pwauth.png
 
 # The code
 
@@ -69,7 +65,7 @@ and out of (an 'ocall') the enclave.
 There's a test program in [smoketest/smoketest.c][smoketestc] which should product
 output like this:
 
-```
+<pre>
 pw_region_enroll took 0ms
 pw_setup took 78ms
 setup worked, blob is 84 bytes
@@ -82,7 +78,7 @@ pw_check+ took 78ms
 pw_check worked (positive case)
 pw_check- took 78ms
 pw_check worked (negative case)
-```
+</pre>
 
 -----
 
@@ -90,3 +86,4 @@ pw_check worked (negative case)
 [code]: https://github.com/ctz/sgx-pwenclave
 [pwenclavec]: https://github.com/ctz/sgx-pwenclave/blob/master/pwenclave/pwenclave.c
 [pwenclaveedl]: https://github.com/ctz/sgx-pwenclave/blob/master/pwenclave/pwenclave.edl
+[smoketestc]: https://github.com/ctz/sgx-pwenclave/blob/master/smoketest/smoketest.c
