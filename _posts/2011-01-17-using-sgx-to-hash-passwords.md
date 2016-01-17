@@ -37,19 +37,19 @@ a 'region'.  A region is nothing more than an AES key available to all such encl
 'Enrolling' an enclave into a region involves telling it the region key and having it
 seal the region key to itself.
 
-->![diagram showing simple region concept][regionpng]<-
+![diagram showing simple region concept][regionpng]
 
 At the enclave level, we need only two operations: setting a password and checking
 a guess.  These look like:
 
-->![diagram showing password setup flow][setuppng]<-
+![diagram showing password setup flow][setuppng]
 
 Here, we generate a random salt (using laundered hardware entropy from the `RDRAND`
 instruction) and pass the password into PBKDF2.  The result and salt are encrypted using
 the region key, producing a ciphertext which can be stored alongside the user record
 in a database or password file.
 
-->![diagram showing password guess flow][authpng]<-
+![diagram showing password guess flow][authpng]
 
 Here we decrypt the ciphertext to obtain the salt and correct hash.  We hash the
 purported password and compare with the correct hash.
@@ -58,6 +58,35 @@ purported password and compare with the correct hash.
 [setuppng]: /assets/sgx-pwsetup.png
 [authpng]: /assets/sgx-pwauth.png
 
+# The code
+
+The code is [here][code].  The main enclave code is 
+in [pwenclave/pwenclave.c][pwenclavec].  The interface to it is
+in [pwenclave/pwenclave.edl][pwenclaveedl], in Intel's "Enclave Description Language",
+which tells the tooling which function calls you want remoted into (an 'ecall')
+and out of (an 'ocall') the enclave.
+
+There's a test program in [smoketest/smoketest.c][smoketestc] which should product
+output like this:
+
+```
+pw_region_enroll took 0ms
+pw_setup took 78ms
+setup worked, blob is 84 bytes
+43fb1bbfda8e71b2fed8c714f7d5b16730c184
+25595b34c4fc93280471967a7377ce251ff41f
+a43068246eff231a3a86af6c50ef64e4b26d18
+31d9e885c1ad577672c8c1f7beae8ee854e829
+3f18d5b74e29f350
+pw_check+ took 78ms
+pw_check worked (positive case)
+pw_check- took 78ms
+pw_check worked (negative case)
+```
+
 -----
 
 [sgx]: https://software.intel.com/en-us/sgx-sdk
+[code]: https://github.com/ctz/sgx-pwenclave
+[pwenclavec]: https://github.com/ctz/sgx-pwenclave/blob/master/pwenclave/pwenclave.c
+[pwenclaveedl]: https://github.com/ctz/sgx-pwenclave/blob/master/pwenclave/pwenclave.edl
