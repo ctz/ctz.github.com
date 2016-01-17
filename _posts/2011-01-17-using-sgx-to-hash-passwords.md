@@ -37,19 +37,19 @@ a 'region'.  A region is nothing more than an AES key available to all such encl
 'Enrolling' an enclave into a region involves telling it the region key and having it
 seal the region key to itself.
 
-![diagram showing simple region concept][regionpng]
+->![diagram showing simple region concept][regionpng]<-
 
 At the enclave level, we need only two operations: setting a password and checking
 a guess.  These look like:
 
-![diagram showing password setup flow][setuppng]
+->![diagram showing password setup flow][setuppng]<-
 
 Here, we generate a random salt (using laundered hardware entropy from the `RDRAND`
 instruction) and pass the password into PBKDF2.  The result and salt are encrypted using
 the region key, producing a ciphertext which can be stored alongside the user record
 in a database or password file.
 
-![diagram showing password guess flow][authpng]
+->![diagram showing password guess flow][authpng]<-
 
 Here we decrypt the ciphertext to obtain the salt and correct hash.  We hash the
 purported password and compare with the correct hash.
