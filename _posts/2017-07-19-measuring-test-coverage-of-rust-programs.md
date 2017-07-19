@@ -69,6 +69,8 @@ esac
 exec "$@" $EXTRA
 ```
 
+-----
+
 # Running unit tests
 
 This looks like:
@@ -83,6 +85,8 @@ $ export RUSTC_WRAPPER="./admin/coverage-rustc"
 $ cargo rustc --all-features --profile test --lib
 $ ./target/debug/rustls-cae6999c58b6598a
 ```
+
+-----
 
 # Combining unit test and integration test coverage
 
@@ -109,6 +113,8 @@ Here, `admin/llvm-gcov` is a shell script to glue `llvm-cov` to `lcov`:
 #!/bin/sh -e
 llvm-cov gcov $*
 ```
+
+-----
 
 # Running integration tests
 
@@ -166,6 +172,8 @@ with `lcov`'s `genhtml` tool:
 ```bash
 $ genhtml --branch-coverage --demangle-cpp --legend final.info -o target/coverage/ --ignore-errors source
 ```
+
+-----
 
 # Reporting to coveralls.io
 
