@@ -4,7 +4,7 @@ title: "Measuring test coverage of Rust libraries"
 subtitle: ""
 category: 
 tags: [rust, rustls, programming]
-published: false
+published: true
 ---
 
 * TOC
