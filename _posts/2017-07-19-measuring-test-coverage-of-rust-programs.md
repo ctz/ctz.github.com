@@ -33,7 +33,7 @@ See [this thread][kennytm] for my starting point.  This worked to get coverage d
 
 If you pass in coverage options to a whole compilation, they will apply to everything that cargo builds and
 runs during a build.  This quickly fails -- every crate with a `build.rs` will compile it into an executable
-called `build_script_build` whose coverage output data will be mutually imcompatible and written to the same place.
+called `build_script_build` whose coverage output data will be mutually incompatible and written to the same place.
 
 This is achieved by passing into `cargo` a [`RUSTC_WRAPPER`][cargoenv] program.  This parses the arguments
 to `rustc` and decides whether to include the contents of an environment variable `COVERAGE_OPTIONS` depending
@@ -68,6 +68,9 @@ esac
 
 exec "$@" $EXTRA
 ```
+
+You'll want to edit this script to list all the `--crate-name`s you want to collect coverage for.
+This is the name of your crate, plus the names of all integration tests and example programs.
 
 -----
 
