@@ -155,7 +155,7 @@ $ genhtml --branch-coverage --demangle-cpp --legend final.info -o target/coverag
 
 # Reporting to coveralls.io
 
-One nice thing that kcov made easy was uploading coverage data to coveralls.io.  I found the `coveralls-lcov`
+One nice thing that kcov made easy was [uploading coverage data to coveralls.io][coveralls].  I found the `coveralls-lcov`
 ruby gem did a fine job of this:
 
 ```bash
@@ -170,3 +170,4 @@ $ coveralls-lcov final.info
 [compilerrt]: https://compiler-rt.llvm.org/
 [kennytm]: https://users.rust-lang.org/t/howto-generating-a-branch-coverage-report/8524/2
 [cargoenv]: https://github.com/rust-lang/cargo/blob/master/src/doc/environment-variables.md
+[coveralls]: https://coveralls.io/github/ctz/rustls
