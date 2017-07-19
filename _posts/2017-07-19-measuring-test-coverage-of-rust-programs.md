@@ -27,7 +27,7 @@ See [this thread][kennytm] for my starting point.  This worked to get coverage d
   * `-Clink-dead-code` -- don't delete unused code at link-time.
   * `-Zno-landing-pads` -- disable panic unwinding, which would otherwise insert code only reachable on panic.
   * `-Cpasses=insert-gcov-profiling` -- include the compiler pass that calls functions in the following library to track coverage.
-  * `-L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64` -- runtime library that emits coverage output to file.
+  * `-L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64` -- runtime library that emits coverage output to file.  You might have to alter the library path to match your precise `libclang-common-3.8-dev` version.
 
 # Only profiling relevent code
 
@@ -76,9 +76,11 @@ This looks like:
 ```bash
 $ cargo clean
 $ rm -rf *.gcda *.gcno
-$ env COVERAGE_OPTIONS="-Ccodegen-units=1 -Clink-dead-code -Cpasses=insert-gcov-profiling \
-  -Zno-landing-pads -L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64" \
-  RUSTC_WRAPPER="./admin/coverage-rustc" cargo rustc --all-features --profile test --lib
+$ export COVERAGE_OPTIONS="-Ccodegen-units=1 -Clink-dead-code \
+  -Cpasses=insert-gcov-profiling -Zno-landing-pads \
+  -L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64"
+$ export RUSTC_WRAPPER="./admin/coverage-rustc"
+$ cargo rustc --all-features --profile test --lib
 $ ./target/debug/rustls-cae6999c58b6598a
 ```
 
@@ -91,8 +93,14 @@ then delete the `.gcno` and `.gcda` files before running integration tests.
 This extract is done with `lcov`:
 
 ```bash
-$ lcov --gcov-tool ./admin/llvm-gcov --rc lcov_branch_coverage=1 --rc lcov_excl_line=assert \
-  --capture --directory . --base-directory . -o rustls.info
+$ lcov \
+  --gcov-tool ./admin/llvm-gcov \
+  --rc lcov_branch_coverage=1 \
+  --rc lcov_excl_line=assert \
+  --capture \
+  --directory . \
+  --base-directory . \
+  -o rustls.info
 ```
 
 Here, `admin/llvm-gcov` is a shell script to glue `llvm-cov` to `lcov`:
@@ -105,17 +113,14 @@ llvm-cov gcov $*
 # Running integration tests
 
 This involves building and running all the example code and integration tests.
+(Note the environment must be unchanged from above.)
 
 ```bash
 $ cargo clean
 $ rm -rf *.gcda *.gcno
-$ env COVERAGE_OPTIONS="-Ccodegen-units=1 -Clink-dead-code -Cpasses=insert-gcov-profiling \
-  -Zno-landing-pads -L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64" \
-  RUSTC_WRAPPER="./admin/coverage-rustc" cargo rustc --all-features --profile dev --example tlsclient
+$ cargo rustc --all-features --profile dev --example tlsclient
 $ ...
-$ env COVERAGE_OPTIONS="-Ccodegen-units=1 -Clink-dead-code -Cpasses=insert-gcov-profiling \
-  -Zno-landing-pads -L/usr/lib/llvm-3.8/lib/clang/3.8.1/lib/linux/ -lclang_rt.profile-x86_64" \
-  RUSTC_WRAPPER="./admin/coverage-rustc" cargo rustc --all-features --profile dev --test api
+$ cargo rustc --all-features --profile dev --test api
 $ ./target/debug/api-d608a762dc73a945
 $ ...
 ```
@@ -123,15 +128,24 @@ $ ...
 Once all these tests have run, we need to capture the resulting coverage data.  Again, we use `lcov`:
 
 ```bash
-$ lcov --gcov-tool ./admin/llvm-gcov --rc lcov_branch_coverage=1 --rc lcov_excl_line=assert \
-  --capture --directory . --base-directory . -o tests.info
+$ lcov \
+  --gcov-tool ./admin/llvm-gcov \
+  --rc lcov_branch_coverage=1 \
+  --rc lcov_excl_line=assert \
+  --capture \
+  --directory . \
+  --base-directory . \
+  -o tests.info
 ```
 
 We now have `rustls.info` containing the unit test coverage, and `tests.info` containing the integration
 test coverage.  These need to be merged together:
 
 ```bash
-$ lcov --gcov-tool ./admin/llvm-gcov --rc lcov_branch_coverage=1 --rc lcov_excl_line=assert \
+$ lcov \
+  --gcov-tool ./admin/llvm-gcov \
+  --rc lcov_branch_coverage=1 \
+  --rc lcov_excl_line=assert \
   --add rustls.info \
   --add tests.info \
   -o coverage.info
