@@ -177,7 +177,7 @@ with `lcov`'s `genhtml` tool:
 $ genhtml \
   --branch-coverage \
   --demangle-cpp \
-  --legend
+  --legend \
   final.info \
   -o target/coverage/ \
   --ignore-errors source
