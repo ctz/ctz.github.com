@@ -162,15 +162,25 @@ to reduce this to just code we're interested in (cutting out things in runtime l
 This invocation also cuts out coverage of example/integration test code, which we're not particularly interested in.
 
 ```bash
-$ lcov --gcov-tool ./admin/llvm-gcov --rc lcov_branch_coverage=1 --rc lcov_excl_line=assert \
-  --extract coverage.info `pwd`/src/* -o final.info
+$ lcov \
+  --gcov-tool ./admin/llvm-gcov \
+  --rc lcov_branch_coverage=1 \
+  --rc lcov_excl_line=assert \
+  --extract coverage.info `pwd`/src/* \
+  -o final.info
 ```
 
 Now `final.info` contains just coverage we're interested in.  Finally, we can generate a nice HTML report
 with `lcov`'s `genhtml` tool:
 
 ```bash
-$ genhtml --branch-coverage --demangle-cpp --legend final.info -o target/coverage/ --ignore-errors source
+$ genhtml \
+  --branch-coverage \
+  --demangle-cpp \
+  --legend
+  final.info \
+  -o target/coverage/ \
+  --ignore-errors source
 ```
 
 -----
