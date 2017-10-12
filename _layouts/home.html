@@ -1,3 +1,10 @@
+---
+layout: default
+---
+
+{% assign page = site.posts.first %}
+{% assign content = page.content %}
+
 <div id="post">
   <div class="meta">
     {{ page.date | date_to_long_string }} 
@@ -20,4 +27,3 @@
 </div>
 {% endif %}
 
-{% include JB/comments %}
