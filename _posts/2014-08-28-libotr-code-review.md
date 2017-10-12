@@ -76,7 +76,7 @@ This is shorter, simpler, and has none of the problems of the original.
 [^1]: This is the first time I've seen indentation at 4 columns with tab stops at 8 columns.
 [^2]: Not to mention, embedded devices are usually much easier to push into memory pressure.
 [libotr]: https://otr.cypherpunks.ca/
-[openssl]: /2014/01/16/openssl-rand-api/
+[openssl]: /2014/01/16/openssl-rand-api
 [master]: https://github.com/off-the-record/libotr/tree/3172d79b3f60513aeb10a22450cb1ca2cf145016
 [massage-commit]: https://github.com/ctz/libotr/commit/4c4aac9a4d612f076969b4d6aa69f08ca84ab078
 [vector-rewrite]: https://cansecwest.com/slides07/Vector-Rewrite-Attack.pdf
