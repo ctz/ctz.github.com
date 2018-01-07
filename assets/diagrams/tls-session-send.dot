@@ -1,0 +1,11 @@
+digraph G {
+  label = "\n\nSending";
+  margin = 0.25;
+  fontsize = 10;
+  rankdir=LR;
+  Application [shape=none];
+  Network [shape=none];
+  TLS [shape=box, style=filled, label="TLS Session"];
+  Application -> TLS [label="Plaintext"];
+  TLS -> Network [label="Ciphertext"];
+}
