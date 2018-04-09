@@ -1,0 +1,189 @@
+DEBUG:<unknown>: No cached session for DNSName("cloudflare.com")
+DEBUG:<unknown>: Not resuming any session
+TRACE:<unknown>: Sending ClientHello Message {
+    typ: Handshake,
+    version: TLSv1_0,
+    payload: Handshake(
+        HandshakeMessagePayload {
+            typ: ClientHello,
+            payload: ClientHello(
+                ClientHelloPayload {
+                    client_version: TLSv1_2,
+                    random: Random(
+                        [
+                            128,
+                            42,
+                            241,
+                            27,
+                            103,
+                            170,
+                            152,
+                            199,
+                            199,
+                            48,
+                            17,
+                            1,
+                            19,
+                            67,
+                            151,
+                            94,
+                            79,
+                            120,
+                            69,
+                            44,
+                            0,
+                            247,
+                            65,
+                            221,
+                            181,
+                            168,
+                            136,
+                            184,
+                            67,
+                            194,
+                            39,
+                            180
+                        ]
+                    ),
+                    session_id: SessionID,
+                    cipher_suites: [
+                        TLS13_CHACHA20_POLY1305_SHA256,
+                        TLS13_AES_256_GCM_SHA384,
+                        TLS13_AES_128_GCM_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    compression_methods: [
+                        Null
+                    ],
+                    extensions: [
+                        SupportedVersions(
+                            [
+                                Unknown(
+                                    32540
+                                )
+                            ]
+                        ),
+                        ServerName(
+                            [
+                                ServerName {
+                                    typ: HostName,
+                                    payload: HostName(
+                                        DNSName(
+                                            "cloudflare.com"
+                                        )
+                                    )
+                                }
+                            ]
+                        ),
+                        ECPointFormats(
+                            [
+                                Uncompressed
+                            ]
+                        ),
+                        NamedGroups(
+                            [
+                                X25519,
+                                secp384r1,
+                                secp256r1
+                            ]
+                        ),
+                        SignatureAlgorithms(
+                            [
+                                ECDSA_NISTP384_SHA384,
+                                ECDSA_NISTP256_SHA256,
+                                RSA_PSS_SHA512,
+                                RSA_PSS_SHA384,
+                                RSA_PSS_SHA256,
+                                RSA_PKCS1_SHA512,
+                                RSA_PKCS1_SHA384,
+                                RSA_PKCS1_SHA256,
+                                RSA_PKCS1_SHA1
+                            ]
+                        ),
+                        ExtendedMasterSecretRequest,
+                        CertificateStatusRequest(
+                            OCSP(
+                                OCSPCertificateStatusRequest {
+                                    responder_ids: [],
+                                    extensions: PayloadU16(
+                                        []
+                                    )
+                                }
+                            )
+                        ),
+                        SignedCertificateTimestampRequest,
+                        KeyShare(
+                            [
+                                KeyShareEntry {
+                                    group: X25519,
+                                    payload: PayloadU16(
+                                        [
+                                            75,
+                                            7,
+                                            46,
+                                            205,
+                                            181,
+                                            84,
+                                            201,
+                                            128,
+                                            90,
+                                            224,
+                                            222,
+                                            48,
+                                            117,
+                                            191,
+                                            139,
+                                            176,
+                                            152,
+                                            29,
+                                            224,
+                                            123,
+                                            37,
+                                            49,
+                                            140,
+                                            211,
+                                            130,
+                                            64,
+                                            147,
+                                            166,
+                                            73,
+                                            74,
+                                            72,
+                                            15
+                                        ]
+                                    )
+                                }
+                            ]
+                        ),
+                        PresharedKeyModes(
+                            [
+                                PSK_DHE_KE
+                            ]
+                        ),
+                        SessionTicketRequest
+                    ]
+                }
+            )
+        }
+    )
+}
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+ERROR:<unknown>: TLS alert received: Message {
+    typ: Alert,
+    version: TLSv1_0,
+    payload: Alert(
+        AlertMessagePayload {
+            level: Fatal,
+            description: ProtocolVersion
+        }
+    )
+}
+TLS error: AlertReceived(ProtocolVersion)
+Connection closed

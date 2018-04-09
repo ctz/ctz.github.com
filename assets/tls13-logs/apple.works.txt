@@ -1,0 +1,1032 @@
+DEBUG:<unknown>: No cached session for DNSName("www.apple.com")
+DEBUG:<unknown>: Not resuming any session
+TRACE:<unknown>: Sending ClientHello Message {
+    typ: Handshake,
+    version: TLSv1_0,
+    payload: Handshake(
+        HandshakeMessagePayload {
+            typ: ClientHello,
+            payload: ClientHello(
+                ClientHelloPayload {
+                    client_version: TLSv1_2,
+                    random: Random(
+                        [
+                            179,
+                            151,
+                            136,
+                            226,
+                            49,
+                            211,
+                            97,
+                            212,
+                            36,
+                            185,
+                            251,
+                            174,
+                            215,
+                            5,
+                            123,
+                            98,
+                            16,
+                            101,
+                            99,
+                            26,
+                            236,
+                            27,
+                            200,
+                            241,
+                            142,
+                            9,
+                            203,
+                            197,
+                            83,
+                            38,
+                            38,
+                            7
+                        ]
+                    ),
+                    session_id: SessionID,
+                    cipher_suites: [
+                        TLS13_CHACHA20_POLY1305_SHA256,
+                        TLS13_AES_256_GCM_SHA384,
+                        TLS13_AES_128_GCM_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    compression_methods: [
+                        Null
+                    ],
+                    extensions: [
+                        SupportedVersions(
+                            [
+                                Unknown(
+                                    32540
+                                ),
+                                TLSv1_2
+                            ]
+                        ),
+                        ServerName(
+                            [
+                                ServerName {
+                                    typ: HostName,
+                                    payload: HostName(
+                                        DNSName(
+                                            "www.apple.com"
+                                        )
+                                    )
+                                }
+                            ]
+                        ),
+                        ECPointFormats(
+                            [
+                                Uncompressed
+                            ]
+                        ),
+                        NamedGroups(
+                            [
+                                X25519,
+                                secp384r1,
+                                secp256r1
+                            ]
+                        ),
+                        SignatureAlgorithms(
+                            [
+                                ECDSA_NISTP384_SHA384,
+                                ECDSA_NISTP256_SHA256,
+                                RSA_PSS_SHA512,
+                                RSA_PSS_SHA384,
+                                RSA_PSS_SHA256,
+                                RSA_PKCS1_SHA512,
+                                RSA_PKCS1_SHA384,
+                                RSA_PKCS1_SHA256,
+                                RSA_PKCS1_SHA1
+                            ]
+                        ),
+                        ExtendedMasterSecretRequest,
+                        CertificateStatusRequest(
+                            OCSP(
+                                OCSPCertificateStatusRequest {
+                                    responder_ids: [],
+                                    extensions: PayloadU16(
+                                        []
+                                    )
+                                }
+                            )
+                        ),
+                        SignedCertificateTimestampRequest,
+                        KeyShare(
+                            [
+                                KeyShareEntry {
+                                    group: X25519,
+                                    payload: PayloadU16(
+                                        [
+                                            51,
+                                            24,
+                                            254,
+                                            41,
+                                            214,
+                                            151,
+                                            166,
+                                            203,
+                                            2,
+                                            124,
+                                            54,
+                                            126,
+                                            221,
+                                            226,
+                                            134,
+                                            214,
+                                            11,
+                                            99,
+                                            188,
+                                            124,
+                                            129,
+                                            76,
+                                            88,
+                                            226,
+                                            43,
+                                            101,
+                                            149,
+                                            239,
+                                            62,
+                                            36,
+                                            185,
+                                            49
+                                        ]
+                                    )
+                                }
+                            ]
+                        ),
+                        PresharedKeyModes(
+                            [
+                                PSK_DHE_KE
+                            ]
+                        ),
+                        SessionTicketRequest
+                    ]
+                }
+            )
+        }
+    )
+}
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: We got ServerHello ServerHelloPayload {
+    legacy_version: TLSv1_2,
+    random: Random(
+        [
+            25,
+            236,
+            33,
+            225,
+            53,
+            192,
+            246,
+            200,
+            10,
+            171,
+            212,
+            176,
+            148,
+            101,
+            27,
+            66,
+            42,
+            143,
+            252,
+            237,
+            217,
+            9,
+            122,
+            119,
+            182,
+            26,
+            189,
+            240,
+            23,
+            254,
+            47,
+            17
+        ]
+    ),
+    session_id: SessionID,
+    cipher_suite: TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+    compression_method: Null,
+    extensions: [
+        RenegotiationInfo(
+            PayloadU8(
+                []
+            )
+        ),
+        ServerNameAck,
+        ECPointFormats(
+            [
+                Uncompressed,
+                ANSIX962CompressedPrime,
+                ANSIX962CompressedChar2
+            ]
+        ),
+        SessionTicketAck,
+        CertificateStatusAck
+    ]
+}
+DEBUG:<unknown>: ALPN protocol is None
+DEBUG:<unknown>: Using ciphersuite TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+DEBUG:<unknown>: Server supports tickets
+DEBUG:<unknown>: Server may staple OCSP response
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+DEBUG:<unknown>: Server stapled OCSP response is [48, 130, 6, 55, 10, 1, 0, 160, 130, 6, 48, 48, 130, 6, 44, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 1, 4, 130, 6, 29, 48, 130, 6, 25, 48, 129, 158, 162, 22, 4, 20, 219, 218, 133, 108, 36, 243, 125, 226, 118, 20, 9, 135, 21, 86, 63, 157, 216, 183, 76, 97, 24, 15, 50, 48, 49, 56, 48, 52, 48, 54, 48, 49, 51, 55, 53, 50, 90, 48, 115, 48, 113, 48, 73, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20, 116, 36, 20, 103, 6, 159, 245, 224, 152, 63, 94, 62, 26, 107, 160, 101, 42, 84, 21, 117, 4, 20, 1, 89, 171, 231, 221, 58, 11, 89, 166, 100, 99, 214, 207, 32, 7, 87, 213, 145, 231, 106, 2, 16, 24, 19, 128, 156, 26, 243, 178, 171, 168, 154, 219, 55, 75, 212, 209, 128, 128, 0, 24, 15, 50, 48, 49, 56, 48, 52, 48, 54, 48, 49, 51, 55, 53, 50, 90, 160, 17, 24, 15, 50, 48, 49, 56, 48, 52, 49, 51, 48, 49, 51, 55, 53, 50, 90, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 5, 5, 0, 3, 130, 1, 1, 0, 94, 239, 159, 209, 65, 196, 10, 13, 22, 103, 101, 230, 111, 107, 14, 242, 104, 63, 152, 230, 236, 199, 178, 91, 200, 249, 173, 160, 246, 104, 90, 104, 208, 111, 103, 15, 148, 68, 10, 131, 66, 235, 208, 16, 158, 170, 145, 104, 100, 196, 202, 247, 23, 144, 143, 209, 219, 93, 153, 97, 116, 49, 145, 137, 145, 50, 107, 228, 238, 96, 237, 70, 233, 151, 83, 100, 37, 151, 206, 6, 28, 157, 216, 234, 34, 55, 93, 100, 226, 251, 216, 111, 196, 176, 95, 75, 53, 34, 48, 183, 182, 164, 235, 219, 180, 195, 80, 160, 63, 95, 135, 175, 75, 235, 199, 141, 62, 126, 187, 120, 159, 130, 188, 229, 48, 39, 235, 29, 159, 87, 235, 28, 45, 120, 12, 147, 119, 105, 150, 53, 185, 244, 104, 189, 225, 5, 63, 65, 230, 220, 166, 255, 46, 0, 253, 236, 18, 231, 80, 216, 146, 98, 3, 140, 215, 54, 157, 128, 77, 244, 187, 102, 54, 180, 6, 134, 189, 14, 157, 1, 213, 139, 207, 183, 22, 211, 240, 151, 19, 55, 221, 184, 50, 104, 236, 118, 1, 23, 198, 240, 111, 87, 120, 224, 193, 110, 60, 242, 219, 61, 9, 6, 112, 52, 233, 59, 202, 148, 209, 143, 41, 42, 238, 13, 145, 205, 63, 224, 36, 143, 100, 157, 184, 248, 214, 184, 141, 246, 55, 240, 218, 40, 105, 7, 79, 17, 130, 60, 0, 134, 59, 204, 212, 160, 141, 103, 160, 130, 4, 96, 48, 130, 4, 92, 48, 130, 4, 88, 48, 130, 3, 64, 160, 3, 2, 1, 2, 2, 16, 74, 246, 115, 215, 117, 88, 38, 25, 51, 189, 180, 209, 17, 151, 107, 116, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 11, 5, 0, 48, 119, 49, 11, 48, 9, 6, 3, 85, 4, 6, 19, 2, 85, 83, 49, 29, 48, 27, 6, 3, 85, 4, 10, 19, 20, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 111, 114, 112, 111, 114, 97, 116, 105, 111, 110, 49, 31, 48, 29, 6, 3, 85, 4, 11, 19, 22, 83, 121, 109, 97, 110, 116, 101, 99, 32, 84, 114, 117, 115, 116, 32, 78, 101, 116, 119, 111, 114, 107, 49, 40, 48, 38, 6, 3, 85, 4, 3, 19, 31, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 108, 97, 115, 115, 32, 51, 32, 69, 86, 32, 83, 83, 76, 32, 67, 65, 32, 45, 32, 71, 51, 48, 30, 23, 13, 49, 56, 48, 51, 50, 49, 48, 48, 48, 48, 48, 48, 90, 23, 13, 49, 56, 48, 54, 49, 57, 50, 51, 53, 57, 53, 57, 90, 48, 57, 49, 55, 48, 53, 6, 3, 85, 4, 3, 19, 46, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 108, 97, 115, 115, 32, 51, 32, 69, 86, 32, 83, 83, 76, 32, 67, 65, 32, 45, 32, 71, 51, 32, 79, 67, 83, 80, 32, 82, 101, 115, 112, 111, 110, 100, 101, 114, 48, 130, 1, 34, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 130, 1, 15, 0, 48, 130, 1, 10, 2, 130, 1, 1, 0, 168, 149, 72, 147, 95, 43, 237, 78, 28, 149, 246, 164, 104, 253, 219, 59, 224, 127, 120, 165, 180, 70, 156, 240, 232, 137, 192, 166, 101, 116, 205, 29, 80, 212, 130, 227, 238, 244, 228, 220, 43, 30, 118, 57, 94, 177, 6, 5, 32, 149, 126, 165, 76, 196, 46, 160, 66, 151, 125, 6, 243, 37, 188, 152, 176, 202, 239, 50, 200, 176, 171, 229, 105, 134, 108, 82, 246, 70, 174, 41, 163, 48, 153, 230, 105, 125, 17, 148, 151, 27, 17, 108, 161, 17, 145, 143, 4, 8, 187, 28, 181, 166, 24, 168, 17, 209, 86, 218, 85, 217, 179, 41, 34, 107, 128, 18, 135, 7, 180, 224, 201, 237, 23, 190, 67, 124, 4, 134, 129, 206, 170, 159, 21, 39, 252, 75, 4, 154, 91, 186, 190, 165, 29, 210, 161, 191, 205, 191, 78, 142, 39, 23, 212, 117, 25, 11, 49, 2, 85, 89, 56, 49, 87, 247, 177, 65, 179, 24, 243, 70, 122, 179, 72, 27, 111, 23, 216, 249, 138, 65, 155, 230, 103, 248, 7, 73, 86, 161, 174, 34, 20, 45, 47, 81, 142, 216, 99, 57, 114, 182, 244, 160, 10, 187, 16, 1, 114, 103, 228, 224, 67, 27, 93, 97, 55, 126, 199, 155, 43, 96, 221, 107, 179, 118, 14, 77, 134, 67, 196, 255, 110, 152, 157, 220, 25, 243, 170, 138, 176, 160, 184, 104, 246, 167, 188, 211, 169, 166, 157, 74, 222, 90, 212, 141, 46, 129, 2, 3, 1, 0, 1, 163, 130, 1, 28, 48, 130, 1, 24, 48, 15, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 5, 4, 2, 5, 0, 48, 34, 6, 3, 85, 29, 17, 4, 27, 48, 25, 164, 23, 48, 21, 49, 19, 48, 17, 6, 3, 85, 4, 3, 19, 10, 84, 71, 86, 45, 70, 45, 49, 49, 50, 51, 48, 31, 6, 3, 85, 29, 35, 4, 24, 48, 22, 128, 20, 1, 89, 171, 231, 221, 58, 11, 89, 166, 100, 99, 214, 207, 32, 7, 87, 213, 145, 231, 106, 48, 29, 6, 3, 85, 29, 14, 4, 22, 4, 20, 219, 218, 133, 108, 36, 243, 125, 226, 118, 20, 9, 135, 21, 86, 63, 157, 216, 183, 76, 97, 48, 12, 6, 3, 85, 29, 19, 1, 1, 255, 4, 2, 48, 0, 48, 110, 6, 3, 85, 29, 32, 4, 103, 48, 101, 48, 99, 6, 11, 96, 134, 72, 1, 134, 248, 69, 1, 7, 23, 3, 48, 84, 48, 38, 6, 8, 43, 6, 1, 5, 5, 7, 2, 1, 22, 26, 104, 116, 116, 112, 58, 47, 47, 119, 119, 119, 46, 115, 121, 109, 97, 117, 116, 104, 46, 99, 111, 109, 47, 99, 112, 115, 48, 42, 6, 8, 43, 6, 1, 5, 5, 7, 2, 2, 48, 30, 26, 28, 32, 32, 104, 116, 116, 112, 58, 47, 47, 119, 119, 119, 46, 115, 121, 109, 97, 117, 116, 104, 46, 99, 111, 109, 47, 114, 112, 97, 48, 19, 6, 3, 85, 29, 37, 4, 12, 48, 10, 6, 8, 43, 6, 1, 5, 5, 7, 3, 9, 48, 14, 6, 3, 85, 29, 15, 1, 1, 255, 4, 4, 3, 2, 7, 128, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 11, 5, 0, 3, 130, 1, 1, 0, 182, 244, 168, 142, 156, 36, 10, 112, 246, 18, 246, 25, 57, 226, 59, 72, 14, 253, 231, 251, 171, 211, 17, 68, 226, 96, 3, 209, 54, 219, 115, 253, 179, 200, 48, 111, 245, 89, 32, 157, 129, 60, 87, 229, 2, 42, 242, 99, 132, 193, 7, 8, 106, 222, 85, 93, 57, 164, 73, 201, 194, 207, 90, 207, 29, 117, 103, 42, 171, 253, 136, 212, 100, 127, 212, 5, 219, 40, 241, 172, 203, 186, 254, 28, 193, 47, 34, 52, 137, 236, 194, 181, 226, 237, 174, 209, 62, 146, 69, 96, 138, 190, 87, 82, 240, 165, 189, 158, 97, 115, 45, 139, 135, 108, 68, 252, 96, 168, 215, 201, 63, 43, 76, 79, 135, 69, 186, 41, 245, 202, 117, 94, 96, 239, 251, 136, 80, 70, 145, 222, 228, 242, 253, 10, 19, 191, 175, 98, 67, 25, 74, 132, 244, 108, 89, 142, 173, 106, 98, 222, 156, 113, 140, 105, 111, 239, 159, 200, 34, 96, 108, 140, 90, 162, 78, 167, 33, 215, 201, 137, 166, 162, 76, 166, 219, 196, 42, 133, 147, 187, 62, 202, 128, 88, 188, 255, 241, 227, 58, 8, 114, 125, 12, 165, 83, 8, 253, 162, 250, 147, 122, 18, 26, 117, 56, 48, 242, 142, 113, 56, 250, 139, 211, 210, 60, 73, 141, 3, 247, 181, 182, 28, 71, 155, 128, 174, 139, 36, 185, 29, 189, 172, 126, 164, 243, 242, 143, 173, 54, 117, 32, 52, 219, 244, 134, 72]
+DEBUG:<unknown>: ECDHE curve is ECParameters { curve_type: NamedCurve, named_group: secp256r1 }
+DEBUG:<unknown>: Server cert is [Certificate(b"0\x82\x07\"0\x82\x06\n\xa0\x03\x02\x01\x02\x02\x10\x18\x13\x80\x9c\x1a\xf3\xb2\xab\xa8\x9a\xdb7K\xd4\xd1\x800\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\00w1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x1d0\x1b\x06\x03U\x04\n\x13\x14Symantec Corporation1\x1f0\x1d\x06\x03U\x04\x0b\x13\x16Symantec Trust Network1(0&\x06\x03U\x04\x03\x13\x1fSymantec Class 3 EV SSL CA - G30\x1e\x17\r171002000000Z\x17\r191015235959Z0\x82\x01\x181\x130\x11\x06\x0b+\x06\x01\x04\x01\x827<\x02\x01\x03\x13\x02US1\x1b0\x19\x06\x0b+\x06\x01\x04\x01\x827<\x02\x01\x02\x0c\nCalifornia1\x1d0\x1b\x06\x03U\x04\x0f\x13\x14Private Organization1\x110\x0f\x06\x03U\x04\x05\x13\x08C08065921\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x0e0\x0c\x06\x03U\x04\x11\x0c\x05950141\x130\x11\x06\x03U\x04\x08\x0c\nCalifornia1\x120\x10\x06\x03U\x04\x07\x0c\tCupertino1\x180\x16\x06\x03U\x04\t\x0c\x0f1 Infinite Loop1\x130\x11\x06\x03U\x04\n\x0c\nApple Inc.1%0#\x06\x03U\x04\x0b\x0c\x1cInternet Services for Akamai1\x160\x14\x06\x03U\x04\x03\x0c\rwww.apple.com0\x82\x01\"0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x01\x05\0\x03\x82\x01\x0f\00\x82\x01\n\x02\x82\x01\x01\0\xd0.\x0f\x92\xb1\xf94LN\xdf\xf4\x1a\xb1\xc2\x95\xd1\xa1\xb60l[\xe4\x8a\x88\xd2yO\xcb\x1d\xc0\xbb\xd04H_\x1ee\x13\xe3w_6\"\xd9\x9e\xf2wSz\xcd\xe0=\xd90w\xfd\xe97\xb5e\x89\x11\xeb\"\x86\xb27.\xc7x\x1bU?\xa3\x8dvW\x8a\xa4\xf3LB^P\x0b\xd6\x9ev\x87\x11r\x90\x80tF}\x82D\xe4m\xde \x18\xc6\xfb\n%a(\xb0\x02G\xa3\x03\xc29\x95\xb6\xad\x99\x8a\xc5\xd9M\x98\x03uJ\x10g\x0e\\U\xcd\xfdzL\xcf\xb1s\xc1\x15\x9e\xa4\xe6\x98\x02%D\x13\xca\x10\xc0r\xe4\x16D\x0b2a\x0e\x89dw\xf4\xf2\xf2I\x86\x10\xf1&\x1ef\xf0,\x9a\x91\xc3q\x96}%1\xe7\x05\xbd\xa5\xdb\x1e\x1a\xc1\xa8\xee&S\xf6\xcb\x12nt\xdb\x93v\xadrM\x8c\x11E\xf8\xb8C1\xa6\xd0\t\xc1?\x88m`IR\x0f,`\x89\xa1_\x8f\x9e\xd6!\x19\xeaC\x84\xdb\xc83\xa5\x07hk\xa3\xec#i?\x0e3\x81\xaa\x95\x8d\x02\x03\x01\0\x01\xa3\x82\x03\x050\x82\x03\x010*\x06\x03U\x1d\x11\x04#0!\x82\rwww.apple.com\x82\x10images.apple.com0\t\x06\x03U\x1d\x13\x04\x020\00\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x05\xa00\x1d\x06\x03U\x1d%\x04\x160\x14\x06\x08+\x06\x01\x05\x05\x07\x03\x01\x06\x08+\x06\x01\x05\x05\x07\x03\x020o\x06\x03U\x1d \x04h0f0[\x06\x0b`\x86H\x01\x86\xf8E\x01\x07\x17\x060L0#\x06\x08+\x06\x01\x05\x05\x07\x02\x01\x16\x17https://d.symcb.com/cps0%\x06\x08+\x06\x01\x05\x05\x07\x02\x020\x19\x0c\x17https://d.symcb.com/rpa0\x07\x06\x05g\x81\x0c\x01\x010\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14\x01Y\xab\xe7\xdd:\x0bY\xa6dc\xd6\xcf \x07W\xd5\x91\xe7j0+\x06\x03U\x1d\x1f\x04$0\"0 \xa0\x1e\xa0\x1c\x86\x1ahttp://sr.symcb.com/sr.crl0W\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04K0I0\x1f\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x13http://sr.symcd.com0&\x06\x08+\x06\x01\x05\x05\x070\x02\x86\x1ahttp://sr.symcb.com/sr.crt0\x82\x01\x7f\x06\n+\x06\x01\x04\x01\xd6y\x02\x04\x02\x04\x82\x01o\x04\x82\x01k\x01i\0w\0\xdd\xeb\x1d+z\rO\xa6 \x8b\x81\xad\x81hp~.\x8e\x9d\x01\xd5\\\x88\x8d=\x11\xc4\xcd\xb6\xec\xbe\xcc\0\0\x01^\xde@\xa7\xbb\0\0\x04\x03\0H0F\x02!\0\xb3\x8f&\xbe,U\x0e.\\|\x91\x84\xa6l\xa8L\x1fV\x17M'\xd1\x16-\xc1\xc8G\xf7\xd8g\xd4\xb2\x02!\0\xf7\x01n^\xda\xc2\x92\x05\x06Q\xfc/\x9c\xa7\xe1\xbf\xdc\x7f\x0c?\xa7U\xa4\xf5\xa1\xb9\xfd\xcc\xfa\x1a\xb2\xd9\0v\0\xa4\xb9\t\x90\xb4\x18X\x14\x87\xbb\x13\xa2\xccgp\n<5\x98\x04\xf9\x1b\xdf\xb8\xe3w\xcd\x0e\xc8\r\xdc\x10\0\0\x01^\xde@\xa7\xf8\0\0\x04\x03\0G0E\x02 \x0fUk\x1a\xeec\xd0#:\x19\r\xc21\xde\xe9,#\xa5\xee\x89\x08\xecr>\x0bkQ\x97s\x15_{\x02!\0\x99\x9c\x187\x9c\xe4\xa2\xce\x1b\x10m)I\xb29\x97\xe2\xdbJ\xda\xcf\x88\xf3\xe9\xe3@\xa9\xf1\x04\xd5\x80x\0v\0\xeeK\xbd\xb7u\xce`\xba\xe1Bi\x1f\xab\xe1\x9ef\xa3\x0f~_\xb0r\xd8\x83\0\xc4{\x89z\xa8\xfd\xcb\0\0\x01^\xde@\xa9\xb3\0\0\x04\x03\0G0E\x02 Y\xaa\xdb2\xe3\xd3\x80f\x94\xa0\x02\xae\x0b\xd8\x0b\xca\x9c7\x1d\xe1H$\xb2\xa9\x14\xe0C\x02A\x1f\x06\x99\x02!\0\xd4\xdc\xe5\xcc\x18!\xc5U\r\xbcCH\xcd\xa85\xa7\x8aQ\n\x9d\xbe^ /\x91\x92\x8cm\x04a\x1d\xa10\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\0\x03\x82\x01\x01\0O\x02\xcaA \xb3<.,\x84\05\x8f\x1b\xb9D\xfc\xe0\t\x90=\xda\x0cX\xcb\x9e\xae\xd8O\xf2\xc2\xd5\x97Q\xcd\xb2\xf8\xa5\xbc>z)\x9c\xd1Oj\xbboH\xf1\xff&\xdb\xf3\xcf\xc4\x814\x02^^\xa0\xc9+\x9b\x08\x99\xb4\xe8\x1b^\x18\xc1{GF\xd7EG \"\xaei04\x069\xf6o\xd9\x0erWm\xc7h\xce\x95u\xf0\x91l8\tn\x15\x99\xd4u\xe2\xeftm\x83\xf02\xb3\xb6\xe2qs\x13\xd9B\0\xf9\x05\xca\\\x8e9\xc9\xd2\xbf\x1c[\x8dr\xef\xf4n6\x0cr\xea^\x86I\t&Uz=G\xa4\x1df\x81l\x91\x0ev\x90\xb7\xc7s\\\x838H\xcb\x99\x1a\x13U\xc1 o\xc4\xca\xaa}D\"EQ[R\x98\xa41&\xb6}\x0b\x89\0-\xeb3E\x9f\x0c\xa2\x8c\xc1\xac\xc5pc\x86I\xb6\x96B\x91\xcc\x86\x9f\xdf\xc5\xd5\xef\xc2[\xaa\x01\xac\xda\xa4JJ\xe6/l\x8e\xcc\x17u\xc5R\xdd\xbau\x92#\xb9\xdc\xd0\xaf\x12K\x1cBfE"), Certificate(b"0\x82\x05+0\x82\x04\x13\xa0\x03\x02\x01\x02\x02\x10~\xe1Joo\xef\xf2\xd3\x7f?\xadeM:\xda\xb40\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\00\x81\xca1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x170\x15\x06\x03U\x04\n\x13\x0eVeriSign, Inc.1\x1f0\x1d\x06\x03U\x04\x0b\x13\x16VeriSign Trust Network1:08\x06\x03U\x04\x0b\x131(c) 2006 VeriSign, Inc. - For authorized use only1E0C\x06\x03U\x04\x03\x13<VeriSign Class 3 Public Primary Certification Authority - G50\x1e\x17\r131031000000Z\x17\r231030235959Z0w1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x1d0\x1b\x06\x03U\x04\n\x13\x14Symantec Corporation1\x1f0\x1d\x06\x03U\x04\x0b\x13\x16Symantec Trust Network1(0&\x06\x03U\x04\x03\x13\x1fSymantec Class 3 EV SSL CA - G30\x82\x01\"0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x01\x05\0\x03\x82\x01\x0f\00\x82\x01\n\x02\x82\x01\x01\0\xd8\xa1et#\xe8+d\xe22\xd737=\x8e\xf54\x16H\xddO\x7f\x87\x1c\xf8D#\x13\x8e\xfb\x11\xd8DZ\x18q\x8e`\x16&\x92\x9b\xfd\x17\x0b\xe1qpB\xfe\xbf\xfa\x1c\xc0\xaa\xa3\xa7\xb5q\xe8\xff\x18\x83\xf6\xdf\x10\n\x13b\xc8=\x9c\xa7\xde.?\x0c\xd9\x1d\xe7.\xfb*\xce\xc8\x9a\x7f\x87\xbf\xd8L\x04\x152\xc9\xd1\xcc\x95q\xa0N(O\x84\xd95\xfb\xe3\x86o\x94S\xe6r\x8acg.\xbei\xf6\xf7n\x8e\x9c`\x04\xeb)\xfa\xc4GB\xd2x\x98\xe3\xec\x0b\xa5\x92\xdc\xb7\x9a\xbd\x80d+8|8\t[f\xf6-\x95z\x86\xb24.\x85\x9e\x90\x0e_\xb7]\xa4QrFp\x13\xbfg\xf2\xb6\xa7M\x14\x1el\xb9S\xee#\x1aN\x8dHUCA\xb1\x89uj@(\xc5}\xdd\xd2n\xd2\x02\x19/{$\x94K\xeb\xf1\x1a\xa9\x9b\xe3#\x9a\xea\xfa3\xab\n,\xb7\xf4`\x08\xdd\x9f\x1c\xcd\xdd-\x01f\x80\xaf\xb3/)\x1d#\xb8\x8a\xe1\xa1p\x07\x0c4\x0f\x02\x03\x01\0\x01\xa3\x82\x01]0\x82\x01Y0/\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04#0!0\x1f\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x13http://s2.symcb.com0\x12\x06\x03U\x1d\x13\x01\x01\xff\x04\x080\x06\x01\x01\xff\x02\x01\00e\x06\x03U\x1d \x04^0\\0Z\x06\x04U\x1d \00R0&\x06\x08+\x06\x01\x05\x05\x07\x02\x01\x16\x1ahttp://www.symauth.com/cps0(\x06\x08+\x06\x01\x05\x05\x07\x02\x020\x1c\x1a\x1ahttp://www.symauth.com/rpa00\x06\x03U\x1d\x1f\x04)0'0%\xa0#\xa0!\x86\x1fhttp://s1.symcb.com/pca3-g5.crl0\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x01\x060)\x06\x03U\x1d\x11\x04\"0 \xa4\x1e0\x1c1\x1a0\x18\x06\x03U\x04\x03\x13\x11SymantecPKI-1-5330\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14\x01Y\xab\xe7\xdd:\x0bY\xa6dc\xd6\xcf \x07W\xd5\x91\xe7j0\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14\x7f\xd3e\xa7\xc2\xdd\xec\xbb\xf00\t\xf3C9\xfa\x02\xaf3130\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\0\x03\x82\x01\x01\0B\x01U{\xd0\x16\x1a]X\xe8\xbb\x9b\xa8M\xd7\xf3\xd7\xeb\x13\x94\x86\xd6\x7f!\x0bG\xbcW\x9b\x92]O\x05\x9f8\xa4\x10|\xcf\x83\xbe\x06CF\x8d\x08\xbcj\xd7\x10\xa6\xfa\xab\xaf/a\xa8c\xf2e\xdf\x7fL\x88\x12\x88O\xb3i\xd9\xff'\xc0\n\x97\x91\x8fV\xfb\x89\xc4\xa8\xbb\x92-\x1bs\xb0\xc6\xab6\xf4\x96l \x08\xef\n\x1ef$EOg\0@\xc8\x07Tt3;\xa6\xad\xbb#\x9ff\xed\xa2Dp4\xfb\x0e\xea\x01\xfd\xcfxt\xdf\xa7\xadU\xb7_M\xf6\xd6?\xe0\x86\xce$\xc7B\xa9\x13\x14D5K\xb6\xdf\xc9`\xac\x0c\x7f\xd9\x93!K\xee\x9c\xe4I\x02\x98\xd3`{\\\xbc\xd50/\x07\xceDB\xc4\x0b\x99\xfe\xe6\x9f\xfc\xb0x\x86Qm\xd1,\x9d\xc6\x96\xfb\x85\x82\xbb\x04/\xf7b\x80\xefb\xda\x7f\xf6\x0e\xac\x90\xb8V\xbdy?\xf2\x80n\xa3\xd9\xb9\x0f]:\x07\x1d\x91\x93\x86K)L\xe1\xdc\xb5\xe1\xe03\x9d\xb3\xcb6\x91K\xfe\xa1\xb4\xee\xf0\xf9")]
+DEBUG:<unknown>: Server DNS name is DNSName("www.apple.com")
+DEBUG:<unknown>: Unvalidated OCSP response: [48, 130, 6, 55, 10, 1, 0, 160, 130, 6, 48, 48, 130, 6, 44, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 1, 4, 130, 6, 29, 48, 130, 6, 25, 48, 129, 158, 162, 22, 4, 20, 219, 218, 133, 108, 36, 243, 125, 226, 118, 20, 9, 135, 21, 86, 63, 157, 216, 183, 76, 97, 24, 15, 50, 48, 49, 56, 48, 52, 48, 54, 48, 49, 51, 55, 53, 50, 90, 48, 115, 48, 113, 48, 73, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20, 116, 36, 20, 103, 6, 159, 245, 224, 152, 63, 94, 62, 26, 107, 160, 101, 42, 84, 21, 117, 4, 20, 1, 89, 171, 231, 221, 58, 11, 89, 166, 100, 99, 214, 207, 32, 7, 87, 213, 145, 231, 106, 2, 16, 24, 19, 128, 156, 26, 243, 178, 171, 168, 154, 219, 55, 75, 212, 209, 128, 128, 0, 24, 15, 50, 48, 49, 56, 48, 52, 48, 54, 48, 49, 51, 55, 53, 50, 90, 160, 17, 24, 15, 50, 48, 49, 56, 48, 52, 49, 51, 48, 49, 51, 55, 53, 50, 90, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 5, 5, 0, 3, 130, 1, 1, 0, 94, 239, 159, 209, 65, 196, 10, 13, 22, 103, 101, 230, 111, 107, 14, 242, 104, 63, 152, 230, 236, 199, 178, 91, 200, 249, 173, 160, 246, 104, 90, 104, 208, 111, 103, 15, 148, 68, 10, 131, 66, 235, 208, 16, 158, 170, 145, 104, 100, 196, 202, 247, 23, 144, 143, 209, 219, 93, 153, 97, 116, 49, 145, 137, 145, 50, 107, 228, 238, 96, 237, 70, 233, 151, 83, 100, 37, 151, 206, 6, 28, 157, 216, 234, 34, 55, 93, 100, 226, 251, 216, 111, 196, 176, 95, 75, 53, 34, 48, 183, 182, 164, 235, 219, 180, 195, 80, 160, 63, 95, 135, 175, 75, 235, 199, 141, 62, 126, 187, 120, 159, 130, 188, 229, 48, 39, 235, 29, 159, 87, 235, 28, 45, 120, 12, 147, 119, 105, 150, 53, 185, 244, 104, 189, 225, 5, 63, 65, 230, 220, 166, 255, 46, 0, 253, 236, 18, 231, 80, 216, 146, 98, 3, 140, 215, 54, 157, 128, 77, 244, 187, 102, 54, 180, 6, 134, 189, 14, 157, 1, 213, 139, 207, 183, 22, 211, 240, 151, 19, 55, 221, 184, 50, 104, 236, 118, 1, 23, 198, 240, 111, 87, 120, 224, 193, 110, 60, 242, 219, 61, 9, 6, 112, 52, 233, 59, 202, 148, 209, 143, 41, 42, 238, 13, 145, 205, 63, 224, 36, 143, 100, 157, 184, 248, 214, 184, 141, 246, 55, 240, 218, 40, 105, 7, 79, 17, 130, 60, 0, 134, 59, 204, 212, 160, 141, 103, 160, 130, 4, 96, 48, 130, 4, 92, 48, 130, 4, 88, 48, 130, 3, 64, 160, 3, 2, 1, 2, 2, 16, 74, 246, 115, 215, 117, 88, 38, 25, 51, 189, 180, 209, 17, 151, 107, 116, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 11, 5, 0, 48, 119, 49, 11, 48, 9, 6, 3, 85, 4, 6, 19, 2, 85, 83, 49, 29, 48, 27, 6, 3, 85, 4, 10, 19, 20, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 111, 114, 112, 111, 114, 97, 116, 105, 111, 110, 49, 31, 48, 29, 6, 3, 85, 4, 11, 19, 22, 83, 121, 109, 97, 110, 116, 101, 99, 32, 84, 114, 117, 115, 116, 32, 78, 101, 116, 119, 111, 114, 107, 49, 40, 48, 38, 6, 3, 85, 4, 3, 19, 31, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 108, 97, 115, 115, 32, 51, 32, 69, 86, 32, 83, 83, 76, 32, 67, 65, 32, 45, 32, 71, 51, 48, 30, 23, 13, 49, 56, 48, 51, 50, 49, 48, 48, 48, 48, 48, 48, 90, 23, 13, 49, 56, 48, 54, 49, 57, 50, 51, 53, 57, 53, 57, 90, 48, 57, 49, 55, 48, 53, 6, 3, 85, 4, 3, 19, 46, 83, 121, 109, 97, 110, 116, 101, 99, 32, 67, 108, 97, 115, 115, 32, 51, 32, 69, 86, 32, 83, 83, 76, 32, 67, 65, 32, 45, 32, 71, 51, 32, 79, 67, 83, 80, 32, 82, 101, 115, 112, 111, 110, 100, 101, 114, 48, 130, 1, 34, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 130, 1, 15, 0, 48, 130, 1, 10, 2, 130, 1, 1, 0, 168, 149, 72, 147, 95, 43, 237, 78, 28, 149, 246, 164, 104, 253, 219, 59, 224, 127, 120, 165, 180, 70, 156, 240, 232, 137, 192, 166, 101, 116, 205, 29, 80, 212, 130, 227, 238, 244, 228, 220, 43, 30, 118, 57, 94, 177, 6, 5, 32, 149, 126, 165, 76, 196, 46, 160, 66, 151, 125, 6, 243, 37, 188, 152, 176, 202, 239, 50, 200, 176, 171, 229, 105, 134, 108, 82, 246, 70, 174, 41, 163, 48, 153, 230, 105, 125, 17, 148, 151, 27, 17, 108, 161, 17, 145, 143, 4, 8, 187, 28, 181, 166, 24, 168, 17, 209, 86, 218, 85, 217, 179, 41, 34, 107, 128, 18, 135, 7, 180, 224, 201, 237, 23, 190, 67, 124, 4, 134, 129, 206, 170, 159, 21, 39, 252, 75, 4, 154, 91, 186, 190, 165, 29, 210, 161, 191, 205, 191, 78, 142, 39, 23, 212, 117, 25, 11, 49, 2, 85, 89, 56, 49, 87, 247, 177, 65, 179, 24, 243, 70, 122, 179, 72, 27, 111, 23, 216, 249, 138, 65, 155, 230, 103, 248, 7, 73, 86, 161, 174, 34, 20, 45, 47, 81, 142, 216, 99, 57, 114, 182, 244, 160, 10, 187, 16, 1, 114, 103, 228, 224, 67, 27, 93, 97, 55, 126, 199, 155, 43, 96, 221, 107, 179, 118, 14, 77, 134, 67, 196, 255, 110, 152, 157, 220, 25, 243, 170, 138, 176, 160, 184, 104, 246, 167, 188, 211, 169, 166, 157, 74, 222, 90, 212, 141, 46, 129, 2, 3, 1, 0, 1, 163, 130, 1, 28, 48, 130, 1, 24, 48, 15, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 5, 4, 2, 5, 0, 48, 34, 6, 3, 85, 29, 17, 4, 27, 48, 25, 164, 23, 48, 21, 49, 19, 48, 17, 6, 3, 85, 4, 3, 19, 10, 84, 71, 86, 45, 70, 45, 49, 49, 50, 51, 48, 31, 6, 3, 85, 29, 35, 4, 24, 48, 22, 128, 20, 1, 89, 171, 231, 221, 58, 11, 89, 166, 100, 99, 214, 207, 32, 7, 87, 213, 145, 231, 106, 48, 29, 6, 3, 85, 29, 14, 4, 22, 4, 20, 219, 218, 133, 108, 36, 243, 125, 226, 118, 20, 9, 135, 21, 86, 63, 157, 216, 183, 76, 97, 48, 12, 6, 3, 85, 29, 19, 1, 1, 255, 4, 2, 48, 0, 48, 110, 6, 3, 85, 29, 32, 4, 103, 48, 101, 48, 99, 6, 11, 96, 134, 72, 1, 134, 248, 69, 1, 7, 23, 3, 48, 84, 48, 38, 6, 8, 43, 6, 1, 5, 5, 7, 2, 1, 22, 26, 104, 116, 116, 112, 58, 47, 47, 119, 119, 119, 46, 115, 121, 109, 97, 117, 116, 104, 46, 99, 111, 109, 47, 99, 112, 115, 48, 42, 6, 8, 43, 6, 1, 5, 5, 7, 2, 2, 48, 30, 26, 28, 32, 32, 104, 116, 116, 112, 58, 47, 47, 119, 119, 119, 46, 115, 121, 109, 97, 117, 116, 104, 46, 99, 111, 109, 47, 114, 112, 97, 48, 19, 6, 3, 85, 29, 37, 4, 12, 48, 10, 6, 8, 43, 6, 1, 5, 5, 7, 3, 9, 48, 14, 6, 3, 85, 29, 15, 1, 1, 255, 4, 4, 3, 2, 7, 128, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 11, 5, 0, 3, 130, 1, 1, 0, 182, 244, 168, 142, 156, 36, 10, 112, 246, 18, 246, 25, 57, 226, 59, 72, 14, 253, 231, 251, 171, 211, 17, 68, 226, 96, 3, 209, 54, 219, 115, 253, 179, 200, 48, 111, 245, 89, 32, 157, 129, 60, 87, 229, 2, 42, 242, 99, 132, 193, 7, 8, 106, 222, 85, 93, 57, 164, 73, 201, 194, 207, 90, 207, 29, 117, 103, 42, 171, 253, 136, 212, 100, 127, 212, 5, 219, 40, 241, 172, 203, 186, 254, 28, 193, 47, 34, 52, 137, 236, 194, 181, 226, 237, 174, 209, 62, 146, 69, 96, 138, 190, 87, 82, 240, 165, 189, 158, 97, 115, 45, 139, 135, 108, 68, 252, 96, 168, 215, 201, 63, 43, 76, 79, 135, 69, 186, 41, 245, 202, 117, 94, 96, 239, 251, 136, 80, 70, 145, 222, 228, 242, 253, 10, 19, 191, 175, 98, 67, 25, 74, 132, 244, 108, 89, 142, 173, 106, 98, 222, 156, 113, 140, 105, 111, 239, 159, 200, 34, 96, 108, 140, 90, 162, 78, 167, 33, 215, 201, 137, 166, 162, 76, 166, 219, 196, 42, 133, 147, 187, 62, 202, 128, 88, 188, 255, 241, 227, 58, 8, 114, 125, 12, 165, 83, 8, 253, 162, 250, 147, 122, 18, 26, 117, 56, 48, 242, 142, 113, 56, 250, 139, 211, 210, 60, 73, 141, 3, 247, 181, 182, 28, 71, 155, 128, 174, 139, 36, 185, 29, 189, 172, 126, 164, 243, 242, 143, 173, 54, 117, 32, 52, 219, 244, 134, 72]
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+DEBUG:<unknown>: Session saved
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+HTTP/1.1 200 OK
+Server: Apache
+Content-Length: 39572
+Content-Type: text/html; charset=UTF-8
+X-Frame-Options: SAMEORIGIN
+Vary: Accept-Encoding
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+Cache-Control: max-age=0
+Expires: Mon, 09 Apr 2018 21:05:21 GMT
+Date: Mon, 09 Apr 2018 21:05:21 GMT
+Connection: close
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+
+		
+
+	
+
+
+	
+
+		
+			
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js" data-layout-name="product-red">
+<head>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8" />
+<link rel="canonical" href="https://www.apple.com/" />
+
+
+	
+	<link rel="alternate" href="https://www.apple.com/" hreflang="en-US" /><link rel="alternate" href="https://www.apple.com/ae-ar/" hreflang="ar-AE" /><link rel="alternate" href="https://www.apple.com/ae/" hreflang="en-AE" /><link rel="alternate" href="https://www.apple.com/am/" hreflang="en-AM" /><link rel="alternate" href="https://www.apple.com/at/" hreflang="de-AT" /><link rel="alternate" href="https://www.apple.com/au/" hreflang="en-AU" /><link rel="alternate" href="https://www.apple.com/befr/" hreflang="fr-BE" /><link rel="alternate" href="https://www.apple.com/benl/" hreflang="nl-BE" /><link rel="alternate" href="https://www.apple.com/bg/" hreflang="bg-BG" /><link rel="alternate" href="https://www.apple.com/bh/" hreflang="en-BH" /><link rel="alternate" href="https://www.apple.com/br/" hreflang="pt-BR" /><link rel="alternate" href="https://www.apple.com/bw/" hreflang="en-BW" /><link rel="alternate" href="https://www.apple.com/ca/" hreflang="en-CA" /><link rel="alternate" href="https://www.apple.com/ca/fr/" hreflang="fr-CA" /><link rel="alternate" href="https://www.apple.com/cf/" hreflang="fr-CF" /><link rel="alternate" href="https://www.apple.com/chde/" hreflang="de-CH" /><link rel="alternate" href="https://www.apple.com/chfr/" hreflang="fr-CH" /><link rel="alternate" href="https://www.apple.com/ci/" hreflang="fr-CI" /><link rel="alternate" href="https://www.apple.com/cl/" hreflang="es-CL" /><link rel="alternate" href="https://www.apple.com/cm/" hreflang="fr-CM" /><link rel="alternate" href="https://www.apple.com/cn/" hreflang="zh-CN" /><link rel="alternate" href="https://www.apple.com/co/" hreflang="es-CO" /><link rel="alternate" href="https://www.apple.com/cz/" hreflang="cs-CZ" /><link rel="alternate" href="https://www.apple.com/de/" hreflang="de-DE" /><link rel="alternate" href="https://www.apple.com/dk/" hreflang="da-DK" /><link rel="alternate" href="https://www.apple.com/ee/" hreflang="et-EE" /><link rel="alternate" href="https://www.apple.com/eg/" hreflang="en-EG" /><link rel="alternate" href="https://www.apple.com/es/" hreflang="es-ES" /><link rel="alternate" href="https://www.apple.com/fi/" hreflang="fi-FI" /><link rel="alternate" href="https://www.apple.com/fr/" hreflang="fr-FR" /><link rel="alternate" href="https://www.apple.com/gn/" hreflang="fr-GN" /><link rel="alternate" href="https://www.apple.com/gq/" hreflang="fr-GQ" /><link rel="alternate" href="https://www.apple.com/gr/" hreflang="el-GR" /><link rel="alternate" href="https://www.apple.com/gw/" hreflang="en-GW" /><link rel="alternate" href="https://www.apple.com/hk/" hreflang="zh-HK" /><link rel="alternate" href="https://www.apple.com/hk/en/" hreflang="en-HK" /><link rel="alternate" href="https://www.apple.com/hr/" hreflang="hr-HR" /><link rel="alternate" href="https://www.apple.com/hu/" hreflang="hu-HU" /><link rel="alternate" href="https://www.apple.com/id/" hreflang="id-ID" /><link rel="alternate" href="https://www.apple.com/ie/" hreflang="en-IE" /><link rel="alternate" href="https://www.apple.com/il/" hreflang="en-IL" /><link rel="alternate" href="https://www.apple.com/in/" hreflang="en-IN" /><link rel="alternate" href="https://www.apple.com/it/" hreflang="it-IT" /><link rel="alternate" href="https://www.apple.com/jo/" hreflang="en-JO" /><link rel="alternate" href="https://www.apple.com/jp/" hreflang="ja-JP" /><link rel="alternate" href="https://www.apple.com/ke/" hreflang="en-KE" /><link rel="alternate" href="https://www.apple.com/kr/" hreflang="ko-KR" /><link rel="alternate" href="https://www.apple.com/kw/" hreflang="en-KW" /><link rel="alternate" href="https://www.apple.com/la/" hreflang="es-419" /><link rel="alternate" href="https://www.apple.com/lae/" hreflang="en-419" /><link rel="alternate" href="https://www.apple.com/li/" hreflang="de-LI" /><link rel="alternate" href="https://www.apple.com/lt/" hreflang="lt-LT" /><link rel="alternate" href="https://www.apple.com/lu/" hreflang="fr-LU" /><link rel="alternate" href="https://www.apple.com/lv/" hreflang="lv-LV" /><link rel="alternate" href="https://www.apple.com/ma/" hreflang="fr-MA" /><link rel="alternate" href="https://www.apple.com/md/" hreflang="en-MD" /><link rel="alternate" href="https://www.apple.com/me/" hreflang="en-ME" /><link rel="alternate" href="https://www.apple.com/mg/" hreflang="fr-MG" /><link rel="alternate" href="https://www.apple.com/mk/" hreflang="en-MK" /><link rel="alternate" href="https://www.apple.com/ml/" hreflang="fr-ML" /><link rel="alternate" href="https://www.apple.com/mo/" hreflang="zh-MO" /><link rel="alternate" href="https://www.apple.com/mt/" hreflang="en-MT" /><link rel="alternate" href="https://www.apple.com/mu/" hreflang="fr-MU" /><link rel="alternate" href="https://www.apple.com/mx/" hreflang="es-MX" /><link rel="alternate" href="https://www.apple.com/my/" hreflang="en-MY" /><link rel="alternate" href="https://www.apple.com/mz/" hreflang="en-MZ" /><link rel="alternate" href="https://www.apple.com/ne/" hreflang="fr-NE" /><link rel="alternate" href="https://www.apple.com/ng/" hreflang="en-NG" /><link rel="alternate" href="https://www.apple.com/nl/" hreflang="nl-NL" /><link rel="alternate" href="https://www.apple.com/no/" hreflang="no-NO" /><link rel="alternate" href="https://www.apple.com/nz/" hreflang="en-NZ" /><link rel="alternate" href="https://www.apple.com/om/" hreflang="en-OM" /><link rel="alternate" href="https://www.apple.com/ph/" hreflang="en-PH" /><link rel="alternate" href="https://www.apple.com/pl/" hreflang="pl-PL" /><link rel="alternate" href="https://www.apple.com/pt/" hreflang="pt-PT" /><link rel="alternate" href="https://www.apple.com/qa/" hreflang="en-QA" /><link rel="alternate" href="https://www.apple.com/ro/" hreflang="ro-RO" /><link rel="alternate" href="https://www.apple.com/ru/" hreflang="ru-RU" /><link rel="alternate" href="https://www.apple.com/sa-ar/" hreflang="ar-SA" /><link rel="alternate" href="https://www.apple.com/sa/" hreflang="en-SA" /><link rel="alternate" href="https://www.apple.com/se/" hreflang="sv-SE" /><link rel="alternate" href="https://www.apple.com/sg/" hreflang="en-SG" /><link rel="alternate" href="https://www.apple.com/si/" hreflang="en-SI" /><link rel="alternate" href="https://www.apple.com/sk/" hreflang="sk-SK" /><link rel="alternate" href="https://www.apple.com/sn/" hreflang="fr-SN" /><link rel="alternate" href="https://www.apple.com/th/" hreflang="th-TH" /><link rel="alternate" href="https://www.apple.com/tn/" hreflang="fr-TN" /><link rel="alternate" href="https://www.apple.com/tr/" hreflang="tr-TR" /><link rel="alternate" href="https://www.apple.com/tw/" hreflang="zh-TW" /><link rel="alternate" href="https://www.apple.com/ug/" hreflang="en-UG" /><link rel="alternate" href="https://www.apple.com/uk/" hreflang="en-GB" /><link rel="alternate" href="https://www.apple.com/vn/" hreflang="en-VN" /><link rel="alternate" href="https://www.apple.com/za/" hreflang="en-ZA" />
+
+
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+	
+	
+	<link rel="stylesheet" type="text/css" href="/ac/globalnav/3/en_US/styles/ac-globalnav.built.css" />
+	<link rel="stylesheet" type="text/css" href="/ac/localnav/3.0/styles/ac-localnav.built.css" />
+	<link rel="stylesheet" type="text/css" href="/ac/globalfooter/3/en_US/styles/ac-globalfooter.built.css" />
+	
+
+
+	<title>Apple</title>
+	<script src="https://images.apple.com/metrics/ac-analytics/2.2/scripts/gpu.js" type="text/javascript" charset="utf-8"></script>
+
+	<meta property="analytics-track" content="Apple - Index/Tab" />
+	<meta property="analytics-s-channel" content="homepage" />
+<meta property="analytics-s-bucket-0" content="appleglobal,applehome" />
+<meta property="analytics-s-bucket-1" content="apple{COUNTRY_CODE}global,apple{COUNTRY_CODE}home" />
+<meta property="analytics-s-bucket-2" content="apple{COUNTRY_CODE}global" />
+<meta property="analytics-s-bucket-store" content="applestoreww,applestoreus" />
+
+	<meta name="Description" content="Discover the innovative world of Apple and shop everything iPhone, iPad, Apple Watch, Mac, and Apple TV, plus explore accessories, entertainment, and expert device support." />
+	<meta property="og:title" content="Apple" />
+	<meta property="og:description" content="Discover the innovative world of Apple and shop everything iPhone, iPad, Apple Watch, Mac, and Apple TV, plus explore accessories, entertainment, and expert device support." />
+	<meta property="og:url" content="https://www.apple.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:image" content="https://www.apple.com/ac/structured-data/images/open_graph_logo.png?201709101434" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Apple" />
+	<link rel="stylesheet" href="/wss/fonts?families=SF+Pro,v1|SF+Pro+Icons,v1" type="text/css" media="all" />
+	<link rel="stylesheet" href="/v/home/dq/built/styles/main.built.css" type="text/css" />
+	<script src="/v/home/dq/built/scripts/head.built.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="page-home ac-nav-overlap">
+
+	
+<meta name="ac-gn-store-key" content="SFX9YPYY9PPXCU9KH" />
+<aside id="ac-gn-segmentbar" class="ac-gn-segmentbar" lang="en-US" dir="ltr" data-strings="{ 'exit': 'Exit', 'view': '{%STOREFRONT%} Store Home', 'segments': { 'smb': 'Business Store Home', 'eduInd': 'Education Store Home', 'other': 'Store Home' } }">
+</aside>
+<input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate" />
+<nav id="ac-globalnav" class="no-js" role="navigation" aria-label="Global Navigation" data-hires="false" data-analytics-region="global nav" lang="en-US" dir="ltr" data-store-locale="us" data-store-api="/[storefront]/shop/bag/status" data-search-locale="en_US" data-search-api="/search-services/suggestions/">
+	<div class="ac-gn-content">
+		<ul class="ac-gn-header">
+			<li class="ac-gn-item ac-gn-menuicon">
+				<label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+					</span>
+					<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+						<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+					</span>
+				</label>
+				<a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+					<span class="ac-gn-menuanchor-label">Open Menu</span>
+				</a>
+				<a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+					<span class="ac-gn-menuanchor-label">Close Menu</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" data-analytics-title="apple home" id="ac-gn-firstfocus-small">
+					<span class="ac-gn-link-text">Apple</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+				<a class="ac-gn-link ac-gn-link-bag" href="/us/shop/goto/bag" data-analytics-title="bag" data-analytics-click="bag" aria-label="Shopping Bag" data-string-badge="Shopping Bag with Items">
+					<span class="ac-gn-link-text">Shopping Bag</span>
+					<span class="ac-gn-bag-badge"></span>
+				</a>
+				<span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
+			</li>
+		</ul>
+		<ul class="ac-gn-list">
+			<li class="ac-gn-item ac-gn-apple">
+				<a class="ac-gn-link ac-gn-link-apple" href="/" data-analytics-title="apple home" id="ac-gn-firstfocus">
+					<span class="ac-gn-link-text">Apple</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-mac">
+				<a class="ac-gn-link ac-gn-link-mac" href="/mac/" data-analytics-title="mac">
+					<span class="ac-gn-link-text">Mac</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-ipad">
+				<a class="ac-gn-link ac-gn-link-ipad" href="/ipad/" data-analytics-title="ipad">
+					<span class="ac-gn-link-text">iPad</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-iphone">
+				<a class="ac-gn-link ac-gn-link-iphone" href="/iphone/" data-analytics-title="iphone">
+					<span class="ac-gn-link-text">iPhone</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-watch">
+				<a class="ac-gn-link ac-gn-link-watch" href="/watch/" data-analytics-title="watch">
+					<span class="ac-gn-link-text">Watch</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-tv">
+				<a class="ac-gn-link ac-gn-link-tv" href="/tv/" data-analytics-title="tv">
+					<span class="ac-gn-link-text">TV</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-music">
+				<a class="ac-gn-link ac-gn-link-music" href="/music/" data-analytics-title="music">
+					<span class="ac-gn-link-text">Music</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+				<a class="ac-gn-link ac-gn-link-support" href="https://support.apple.com" data-analytics-title="support">
+					<span class="ac-gn-link-text">Support</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+				<a class="ac-gn-link ac-gn-link-search" href="/us/search" data-analytics-title="search" data-analytics-click="search" aria-label="Search apple.com">
+					<span class="ac-gn-search-placeholder" aria-hidden="true">Search apple.com</span>
+				</a>
+			</li>
+			<li class="ac-gn-item ac-gn-bag" id="ac-gn-bag">
+				<a class="ac-gn-link ac-gn-link-bag" href="/us/shop/goto/bag" data-analytics-title="bag" data-analytics-click="bag" aria-label="Shopping Bag" data-string-badge="Shopping Bag with Items">
+					<span class="ac-gn-link-text">Shopping Bag</span>
+					<span class="ac-gn-bag-badge" aria-hidden="true"></span>
+				</a>
+				<span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
+			</li>
+		</ul>
+		<aside id="ac-gn-searchview" class="ac-gn-searchview" role="search" data-analytics-region="search">
+			<div class="ac-gn-searchview-content">
+				<form id="ac-gn-searchform" class="ac-gn-searchform" action="/us/search" method="get">
+					<div class="ac-gn-searchform-wrapper">
+						<input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" aria-label="Search apple.com" placeholder="Search apple.com" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
+						<input id="ac-gn-searchform-src" type="hidden" name="src" value="globalnav" />
+						<button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled aria-label="Submit"></button>
+						<button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled aria-label="Clear Search"></button>
+					</div>
+				</form>
+				<aside id="ac-gn-searchresults" class="ac-gn-searchresults" data-string-quicklinks="Quick Links" data-string-suggestions="Suggested Searches" data-string-noresults=""></aside>
+			</div>
+			<button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
+					<span class="ac-gn-searchview-close-wrapper">
+						<span class="ac-gn-searchview-close-left"></span>
+						<span class="ac-gn-searchview-close-right"></span>
+					</span>
+				</button>
+		</aside>
+		<aside class="ac-gn-bagview" data-analytics-region="bag">
+			<div class="ac-gn-bagview-scrim">
+				<span class="ac-gn-bagview-caret ac-gn-bagview-caret-small"></span>
+			</div>
+			<div class="ac-gn-bagview-content" id="ac-gn-bagview-content">
+			</div>
+		</aside>
+	</div>
+</nav>
+<div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+<div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
+
+<script type="text/javascript" src="/ac/globalnav/3/en_US/scripts/ac-globalnav.built.js"></script>
+
+	
+
+
+
+TRACE:<unknown>: registering with poller
+<script src="/metrics/ac-analytics/2.3/scripts/ac-analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+	<main class="main  with-0 with-1" role="main">
+			
+			
+			
+			<section
+			
+			
+			
+				class="homepage-section section-custom-heroes"
+				data-analytics-region="custom-hero"
+				data-section-content-type="custom-heroes"
+				data-analytics-activitymap-region-id="custom-hero"
+				
+			>
+				
+					
+					
+					
+					
+					
+				
+				<ul
+				
+				
+				
+					class="homepage-section-positions custom-hero-positions custom-heroes-count-1"
+					data-custom-heroes-count="1"
+				>
+					
+					
+						<li
+					
+							id="section-1-custom-hero-position-1"
+					
+							class="homepage-section-item custom-hero-position-1 custom-hero-position custom-hero-position-1"
+							data-promo-type="show-hide"
+							
+						>
+							
+										
+										
+										
+										
+												<div
+													class="custom-hero product-red custom-hero-product-red promo-managed-unit promo-managed-unit-product-red"
+													data-promo-id="section-1-custom-hero-product-red"
+													data-content-unit="product-red"
+													data-analytics-section-engagement="name:custom-hero-product-red"
+													
+												>
+													
+																<div
+																	class="unit-wrapper theme-dark announce"
+																	
+																>
+													
+													
+																	<div
+																		class="unit-copy-wrapper"
+																	>
+																		
+																					<h2
+																						class="headline"
+																					>iPhone 8</h2>
+																					
+																					
+																					<h3
+																						class="subhead"
+																					>Now in <span class="peren peren-first">(</span>RED<span class="peren peren-last">)</span><span class="registered">®</span></h3>
+																					
+																					
+																			<div class="links">
+																						<a href="/iphone-8/" class="cta icon icon-after icon-chevronright">Learn about iPhone 8</a>
+																			</div>
+																			<p class="order">Order 4.10</p>
+																		
+																	</div>
+													
+													
+																		<div
+																			class="unit-image-wrapper image-constraints-partial" 
+																		>
+																			<figure class="unit-image unit-image-product-red-hero" data-progressive-image></figure>
+																		</div>
+													
+													
+																</div>
+													
+												</div>
+							
+						</li>
+					
+				</ul>
+				
+			</section>
+			
+			
+			
+			<section
+			
+			
+			
+				class="homepage-section section-heroes"
+				data-analytics-region="hero"
+				data-section-content-type="heroes"
+				data-analytics-activitymap-region-id="hero"
+				
+			>
+				
+					
+					
+					
+					
+				
+				<ul
+				
+				
+				
+					class="homepage-section-positions hero-positions heroes-count-2"
+					data-heroes-count="2"
+				>
+					
+					
+						<li
+					
+							id="section-2-hero-position-1"
+					
+							class="homepage-section-item hero-position-1 hero-position hero-position-1"
+							data-promo-type="show-hide"
+							
+						>
+							
+										
+										
+										
+										
+												<div
+													class="hero product-red-film hero-product-red-film promo-managed-unit promo-managed-unit-product-red-film"
+													data-promo-id="section-2-hero-product-red-film"
+													data-content-unit="product-red-film"
+													data-analytics-section-engagement="name:hero-product-red-film"
+													
+												>
+													
+																<div
+																	class="unit-wrapper theme-dark"
+																	
+																>
+													
+													
+																		<a href="/105/media/us/iphone-8/2018/f4fe247e_dca9_4593_8b95_14cf23f74883/films/product-red/iphone-8-product-red-tpl-cc-us-20180410_1280x720h.mp4"
+																			class="unit-link"
+																			
+																			tabindex="0"
+																			id="film-product-red" data-analytics-id="film-product-red" data-films-modal-link
+																		>
+																			<span class="visuallyhidden unit-link-vo"></span>
+																		</a>
+													
+													
+																	<div
+																		class="unit-copy-wrapper"
+																	>
+																		
+																			<div class="flex-align-center">
+																				<span class="violator">Special Edition</span>
+																						<h2
+																							class="headline logo-image logo-image-product-red-film-logo"
+																						><span class="visuallyhidden">iPhone 8 (PRODUCT)RED™</span></h2>
+																						
+																						
+																						<span
+																							class="cta icon icon-after icon-playcircle"
+																						>Watch the TV ad</span>
+																						
+																						
+																			</div>
+																		
+																	</div>
+													
+													
+																		<div
+																			class="unit-image-wrapper image-constraints-full" 
+																		>
+																			<figure class="unit-image unit-image-product-red-film-product-red-tv-ad" data-progressive-image></figure>
+																		</div>
+													
+													
+																</div>
+													
+												</div>
+							
+						</li>
+						<li
+					
+							id="section-2-hero-position-2"
+					
+							class="homepage-section-item hero-position-2 hero-position hero-position-2"
+							data-promo-type="show-hide"
+							
+						>
+							
+										
+										
+										
+										
+												<div
+													class="hero product-red-accessories hero-product-red-accessories promo-managed-unit promo-managed-unit-product-red-accessories"
+													data-promo-id="section-2-hero-product-red-accessories"
+													data-content-unit="product-red-accessories"
+													data-analytics-section-engagement="name:hero-product-red-accessories"
+													
+												>
+													
+																<div
+																	class="unit-wrapper theme-dark"
+																	
+																>
+													
+													
+																		<a href="/product-red/"
+																			class="unit-link"
+																			
+																			tabindex="0"
+																			
+																		>
+																			<span class="visuallyhidden unit-link-vo"></span>
+																		</a>
+													
+													
+																	<div
+																		class="unit-copy-wrapper"
+																	>
+																		
+																					<h2
+																						class="headline"
+																					>Buy <span class="peren peren-first">(</span>RED<span class="peren peren-last">)</span>. Give life.</h2>
+																					
+																					
+																					<h3
+																						class="subhead"
+																					>Help create an AIDS-free generation.</h3>
+																					
+																					
+																					<span
+																						class="cta icon icon-after icon-chevronright"
+																					>Learn more</span>
+																					
+																					
+																		
+																	</div>
+													
+													
+																		<div
+																			class="unit-image-wrapper image-constraints-full" 
+																		>
+																			<figure class="unit-image unit-image-product-red-accessories-product-red-shop" data-progressive-image></figure>
+																		</div>
+													
+													
+																</div>
+													
+												</div>
+							
+						</li>
+					
+				</ul>
+				
+			</section>
+	</main>
+
+	<footer id="ac-globalfooter" class="no-js ac-globalfooter-dark" lang="en_US" data-analytics-region="global footer" role="contentinfo" aria-labelledby="ac-gf-label">
+		<div class="ac-gf-content">
+			<h2 class="ac-gf-label" id="ac-gf-label">Apple Footer</h2>
+
+				<section class="ac-gf-sosumi" aria-label="Footnotes">
+
+					<ul>
+						<li>A portion of the proceeds from every (PRODUCT)RED™ purchase will go to the Global Fund to fight AIDS in Africa.</li>
+					</ul>
+				</section>
+
+			<nav class="ac-gf-directory with-5-columns" aria-label="Apple Directory" role="navigation">
+	<!--googleoff: all-->
+	<div class="ac-gf-directory-column"><input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-products" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-products">
+		<h3 class="ac-gf-directory-column-section-title">Shop and Learn</h3>
+TRACE:<unknown>: registering with poller
+	</label>
+			<a href="#ac-gf-directory-column-section-state-products" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/mac/">Mac</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/ipad/">iPad</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/iphone/">iPhone</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/watch/">Watch</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/tv/">TV</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/music/">Music</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/itunes/">iTunes</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/homepod/">HomePod</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/ipod-touch/">iPod touch</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/buy_accessories">Accessories</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/giftcards">Gift Cards</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="ac-gf-directory-column"><input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-storeservices" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-storeservices">
+		<h3 class="ac-gf-directory-column-section-title">Apple Store</h3>
+	</label>
+			<a href="#ac-gf-directory-column-section-state-storeservices" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/retail/">Find a Store</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/retail/geniusbar/">Genius Bar</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/today/">Today at Apple</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/retail/camp/">Apple Camp</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/retail/fieldtrip/">Field Trip</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="https://itunes.apple.com/app/apple-store/id375380948?pt&#x3D;2003&amp;ct&#x3D;footer&amp;mt&#x3D;8">Apple Store App</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/special_deals">Refurbished and Clearance</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/payment_plan">Financing</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/reuse_and_recycle">Reuse and Recycling</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/account">Order Status</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/help">Shopping Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="ac-gf-directory-column">
+		<input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-education" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-education">
+								<h3 class="ac-gf-directory-column-section-title">For Education</h3>
+							</label>
+			<a href="#ac-gf-directory-column-section-state-education" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/education/">Apple and Education</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/educationrouting">Shop for College</a></li>
+			</ul>
+		</div>
+		<input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-business" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-business">
+								<h3 class="ac-gf-directory-column-section-title">For Business</h3>
+							</label>
+			<a href="#ac-gf-directory-column-section-state-business" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/business/">Apple and Business</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/retail/business/">Shop for Business</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="ac-gf-directory-column">
+		<input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-accounts" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-accounts">
+								<h3 class="ac-gf-directory-column-section-title">Account</h3>
+							</label>
+			<a href="#ac-gf-directory-column-section-state-accounts" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="https://appleid.apple.com/us/">Manage Your Apple ID</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/us/shop/goto/account">Apple Store Account</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="https://www.icloud.com">iCloud.com</a></li>
+			</ul>
+		</div>
+		<input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-responsibility" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-responsibility">
+								<h3 class="ac-gf-directory-column-section-title">Apple Values</h3>
+							</label>
+			<a href="#ac-gf-directory-column-section-state-responsibility" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/accessibility/">Accessibility</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/education/connectED/">Education</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/environment/">Environment</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/diversity/">Inclusion and Diversity</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/privacy/">Privacy</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/supplier-responsibility/">Supplier Responsibility</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="ac-gf-directory-column">
+		<input class="ac-gf-directory-column-section-state" type="checkbox" id="ac-gf-directory-column-section-state-about" />
+		<div class="ac-gf-directory-column-section">
+			<label class="ac-gf-directory-column-section-label" for="ac-gf-directory-column-section-state-about">
+						<h3 class="ac-gf-directory-column-section-title">About Apple</h3>
+					</label>
+			<a href="#ac-gf-directory-column-section-state-about" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-open">
+				<span class="ac-gf-directory-column-section-anchor-label">Open Menu</span>
+			</a>
+			<a href="#" class="ac-gf-directory-column-section-anchor ac-gf-directory-column-section-anchor-close">
+				<span class="ac-gf-directory-column-section-anchor-label">Close Menu</span>
+			</a>
+			<ul class="ac-gf-directory-column-section-list">
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/newsroom/">Newsroom</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/leadership/">Apple Leadership</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/jobs/us/">Job Opportunities</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="http://investor.apple.com">Investors</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/apple-events/">Events</a></li>
+				<li class="ac-gf-directory-column-section-item"><a class="ac-gf-directory-column-section-link" href="/contact/">Contact Apple</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--googleon: all-->
+</nav>
+
+<section class="ac-gf-footer">
+	<div class="ac-gf-footer-shop" x-ms-format-detection="none">
+		More ways to shop: Visit an <a href="/retail/">Apple Store</a>, <span class="nowrap">call 1-800-MY-APPLE, or <a href="https://locate.apple.com/">find a reseller</a></span>.
+	</div>
+	<div class="ac-gf-footer-locale">
+		<a class="ac-gf-footer-locale-link" href="/choose-country-region/" title="Choose your country or region" aria-label="United States. Choose your country or region"><span class="ac-gf-footer-locale-flag" data-hires="false"></span>United States</a>
+	</div>
+	<div class="ac-gf-footer-legal">
+		<div class="ac-gf-footer-legal-copyright">Copyright ©
+			
+			2018
+			Apple Inc. All rights reserved.</div>
+		<div class="ac-gf-footer-legal-links">
+			<a class="ac-gf-footer-legal-link" href="/privacy/privacy-policy/">Privacy Policy</a>
+			<a class="ac-gf-footer-legal-link" href="/legal/internet-services/terms/site.html">Terms of Use</a>
+			<a class="ac-gf-footer-legal-link" href="/us/shop/goto/help/sales_refunds">Sales and Refunds</a>
+			<a class="ac-gf-footer-legal-link" href="/legal/">Legal</a>
+			<a class="ac-gf-footer-legal-link" href="/sitemap/">Site Map</a>
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript" src="/ac/globalfooter/3/en_US/scripts/ac-globalfooter.built.js"></script>
+<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@id": "https://www.apple.com/#organization",
+		"@type": "Organization",
+		"name": "Apple",
+		"url": "https://www.apple.com/",
+		"logo": "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201709101434",
+		"contactPoint": [
+			{
+				"@type": "ContactPoint",
+				"telephone": "+1-800-692-7753",
+				"contactType": "sales",
+				"areaServed": [ "US" ]
+			}
+		],
+		"sameAs": [
+			"http://www.wikidata.org/entity/Q312",
+			"https://www.youtube.com/user/Apple",
+			"https://www.linkedin.com/company/apple",
+			"https://www.facebook.com/Apple",
+			"https://www.twitter.com/Apple"
+		]
+	}
+</script>
+
+
+<script type="text/javascript" src="/ac/localeswitcher/2/en_US/scripts/localeswitcher.built.js"></script>
+
+
+		</div>
+	</footer>
+
+	
+		<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@id": "https://www.apple.com/#website",
+		"@type": "WebSite",
+		"url": "https://www.apple.com/",
+		"name": "Apple",
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://www.apple.com/us/search/{search_term_string}?src=mc_google",
+			"query-input": "required name=search_term_string"
+		}
+	}
+</script>
+
+	
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@id": "https://www.apple.com/#webpage",
+		"@type": "WebPage",
+		"url": "https://www.apple.com/",
+		"name": "Apple"
+	}
+</script>
+
+
+	<script src="/v/home/dq/built/scripts/main.built.js" type="text/javascript" charset="utf-8"></script>
+	
+<link rel="stylesheet" href="/ac/ac-films/5.2.0/styles/modal.css" />
+<script src="/ac/ac-films/5.2.0/scripts/autofilms.built.js" type="text/javascript"></script>
+
+</body>
+</html>
+
+			
+		
+
+	
+
+Plaintext read error: Custom { kind: ConnectionAborted, error: StringError("CloseNotify alert received") }
+Connection closed

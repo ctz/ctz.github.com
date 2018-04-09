@@ -1,0 +1,189 @@
+DEBUG:<unknown>: No cached session for DNSName("www.microsoft.com")
+DEBUG:<unknown>: Not resuming any session
+TRACE:<unknown>: Sending ClientHello Message {
+    typ: Handshake,
+    version: TLSv1_0,
+    payload: Handshake(
+        HandshakeMessagePayload {
+            typ: ClientHello,
+            payload: ClientHello(
+                ClientHelloPayload {
+                    client_version: TLSv1_2,
+                    random: Random(
+                        [
+                            210,
+                            164,
+                            114,
+                            169,
+                            23,
+                            119,
+                            16,
+                            173,
+                            128,
+                            94,
+                            15,
+                            59,
+                            119,
+                            182,
+                            81,
+                            115,
+                            143,
+                            47,
+                            67,
+                            161,
+                            141,
+                            147,
+                            6,
+                            46,
+                            239,
+                            76,
+                            51,
+                            249,
+                            253,
+                            238,
+                            250,
+                            66
+                        ]
+                    ),
+                    session_id: SessionID,
+                    cipher_suites: [
+                        TLS13_CHACHA20_POLY1305_SHA256,
+                        TLS13_AES_256_GCM_SHA384,
+                        TLS13_AES_128_GCM_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    compression_methods: [
+                        Null
+                    ],
+                    extensions: [
+                        SupportedVersions(
+                            [
+                                Unknown(
+                                    32540
+                                )
+                            ]
+                        ),
+                        ServerName(
+                            [
+                                ServerName {
+                                    typ: HostName,
+                                    payload: HostName(
+                                        DNSName(
+                                            "www.microsoft.com"
+                                        )
+                                    )
+                                }
+                            ]
+                        ),
+                        ECPointFormats(
+                            [
+                                Uncompressed
+                            ]
+                        ),
+                        NamedGroups(
+                            [
+                                X25519,
+                                secp384r1,
+                                secp256r1
+                            ]
+                        ),
+                        SignatureAlgorithms(
+                            [
+                                ECDSA_NISTP384_SHA384,
+                                ECDSA_NISTP256_SHA256,
+                                RSA_PSS_SHA512,
+                                RSA_PSS_SHA384,
+                                RSA_PSS_SHA256,
+                                RSA_PKCS1_SHA512,
+                                RSA_PKCS1_SHA384,
+                                RSA_PKCS1_SHA256,
+                                RSA_PKCS1_SHA1
+                            ]
+                        ),
+                        ExtendedMasterSecretRequest,
+                        CertificateStatusRequest(
+                            OCSP(
+                                OCSPCertificateStatusRequest {
+                                    responder_ids: [],
+                                    extensions: PayloadU16(
+                                        []
+                                    )
+                                }
+                            )
+                        ),
+                        SignedCertificateTimestampRequest,
+                        KeyShare(
+                            [
+                                KeyShareEntry {
+                                    group: X25519,
+                                    payload: PayloadU16(
+                                        [
+                                            76,
+                                            104,
+                                            0,
+                                            165,
+                                            27,
+                                            77,
+                                            39,
+                                            3,
+                                            68,
+                                            205,
+                                            42,
+                                            186,
+                                            23,
+                                            10,
+                                            117,
+                                            168,
+                                            216,
+                                            38,
+                                            65,
+                                            164,
+                                            58,
+                                            94,
+                                            207,
+                                            42,
+                                            225,
+                                            56,
+                                            7,
+                                            159,
+                                            106,
+                                            208,
+                                            251,
+                                            71
+                                        ]
+                                    )
+                                }
+                            ]
+                        ),
+                        PresharedKeyModes(
+                            [
+                                PSK_DHE_KE
+                            ]
+                        ),
+                        SessionTicketRequest
+                    ]
+                }
+            )
+        }
+    )
+}
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+ERROR:<unknown>: TLS alert received: Message {
+    typ: Alert,
+    version: TLSv1_2,
+    payload: Alert(
+        AlertMessagePayload {
+            level: Fatal,
+            description: ProtocolVersion
+        }
+    )
+}
+TLS error: AlertReceived(ProtocolVersion)
+Connection closed

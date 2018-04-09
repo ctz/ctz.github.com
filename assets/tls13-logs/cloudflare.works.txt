@@ -1,0 +1,268 @@
+DEBUG:<unknown>: No cached session for DNSName("cloudflare.com")
+DEBUG:<unknown>: Not resuming any session
+TRACE:<unknown>: Sending ClientHello Message {
+    typ: Handshake,
+    version: TLSv1_0,
+    payload: Handshake(
+        HandshakeMessagePayload {
+            typ: ClientHello,
+            payload: ClientHello(
+                ClientHelloPayload {
+                    client_version: TLSv1_2,
+                    random: Random(
+                        [
+                            176,
+                            204,
+                            140,
+                            119,
+                            44,
+                            20,
+                            232,
+                            138,
+                            181,
+                            228,
+                            35,
+                            149,
+                            15,
+                            245,
+                            124,
+                            45,
+                            148,
+                            34,
+                            26,
+                            7,
+                            244,
+                            171,
+                            14,
+                            5,
+                            52,
+                            13,
+                            236,
+                            211,
+                            41,
+                            184,
+                            142,
+                            41
+                        ]
+                    ),
+                    session_id: SessionID,
+                    cipher_suites: [
+                        TLS13_CHACHA20_POLY1305_SHA256,
+                        TLS13_AES_256_GCM_SHA384,
+                        TLS13_AES_128_GCM_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    compression_methods: [
+                        Null
+                    ],
+                    extensions: [
+                        SupportedVersions(
+                            [
+                                Unknown(
+                                    32540
+                                ),
+                                TLSv1_2
+                            ]
+                        ),
+                        ServerName(
+                            [
+                                ServerName {
+                                    typ: HostName,
+                                    payload: HostName(
+                                        DNSName(
+                                            "cloudflare.com"
+                                        )
+                                    )
+                                }
+                            ]
+                        ),
+                        ECPointFormats(
+                            [
+                                Uncompressed
+                            ]
+                        ),
+                        NamedGroups(
+                            [
+                                X25519,
+                                secp384r1,
+                                secp256r1
+                            ]
+                        ),
+                        SignatureAlgorithms(
+                            [
+                                ECDSA_NISTP384_SHA384,
+                                ECDSA_NISTP256_SHA256,
+                                RSA_PSS_SHA512,
+                                RSA_PSS_SHA384,
+                                RSA_PSS_SHA256,
+                                RSA_PKCS1_SHA512,
+                                RSA_PKCS1_SHA384,
+                                RSA_PKCS1_SHA256,
+                                RSA_PKCS1_SHA1
+                            ]
+                        ),
+                        ExtendedMasterSecretRequest,
+                        CertificateStatusRequest(
+                            OCSP(
+                                OCSPCertificateStatusRequest {
+                                    responder_ids: [],
+                                    extensions: PayloadU16(
+                                        []
+                                    )
+                                }
+                            )
+                        ),
+                        SignedCertificateTimestampRequest,
+                        KeyShare(
+                            [
+                                KeyShareEntry {
+                                    group: X25519,
+                                    payload: PayloadU16(
+                                        [
+                                            230,
+                                            158,
+                                            178,
+                                            92,
+                                            232,
+                                            92,
+                                            242,
+                                            144,
+                                            240,
+                                            28,
+                                            204,
+                                            94,
+                                            72,
+                                            231,
+                                            88,
+                                            198,
+                                            165,
+                                            27,
+                                            144,
+                                            131,
+                                            172,
+                                            1,
+                                            74,
+                                            54,
+                                            43,
+                                            101,
+                                            34,
+                                            42,
+                                            250,
+                                            33,
+                                            211,
+                                            26
+                                        ]
+                                    )
+                                }
+                            ]
+                        ),
+                        PresharedKeyModes(
+                            [
+                                PSK_DHE_KE
+                            ]
+                        ),
+                        SessionTicketRequest
+                    ]
+                }
+            )
+        }
+    )
+}
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: We got ServerHello ServerHelloPayload {
+    legacy_version: TLSv1_2,
+    random: Random(
+        [
+            90,
+            203,
+            213,
+            171,
+            101,
+            232,
+            100,
+            197,
+            42,
+            22,
+            38,
+            180,
+            133,
+            65,
+            132,
+            202,
+            96,
+            246,
+            186,
+            120,
+            242,
+            127,
+            40,
+            186,
+            149,
+            185,
+            159,
+            135,
+            34,
+            254,
+            155,
+            100
+        ]
+    ),
+    session_id: SessionID,
+    cipher_suite: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+    compression_method: Null,
+    extensions: [
+        RenegotiationInfo(
+            PayloadU8(
+                []
+            )
+        ),
+        ExtendedMasterSecretAck,
+        SessionTicketAck,
+        CertificateStatusAck,
+        ECPointFormats(
+            [
+                Uncompressed
+            ]
+        )
+    ]
+}
+DEBUG:<unknown>: ALPN protocol is None
+DEBUG:<unknown>: Using ciphersuite TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+DEBUG:<unknown>: Server supports tickets
+DEBUG:<unknown>: Server may staple OCSP response
+DEBUG:<unknown>: Server stapled OCSP response is [48, 130, 1, 53, 10, 1, 0, 160, 130, 1, 46, 48, 130, 1, 42, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 1, 4, 130, 1, 27, 48, 130, 1, 23, 48, 129, 158, 162, 22, 4, 20, 248, 37, 217, 166, 57, 199, 195, 129, 135, 37, 62, 48, 84, 145, 24, 33, 64, 155, 23, 157, 24, 15, 50, 48, 49, 56, 48, 52, 48, 53, 48, 54, 53, 52, 50, 54, 90, 48, 115, 48, 113, 48, 73, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20, 243, 16, 28, 27, 139, 129, 45, 32, 69, 106, 40, 106, 191, 13, 235, 176, 220, 182, 67, 172, 4, 20, 248, 37, 217, 166, 57, 199, 195, 129, 135, 37, 62, 48, 84, 145, 24, 33, 64, 155, 23, 157, 2, 16, 3, 97, 62, 255, 192, 251, 130, 214, 164, 216, 69, 142, 143, 24, 4, 58, 128, 0, 24, 15, 50, 48, 49, 56, 48, 52, 48, 53, 48, 54, 53, 52, 50, 54, 90, 160, 17, 24, 15, 50, 48, 49, 56, 48, 52, 49, 50, 48, 54, 48, 57, 50, 54, 90, 48, 10, 6, 8, 42, 134, 72, 206, 61, 4, 3, 3, 3, 104, 0, 48, 101, 2, 49, 0, 241, 170, 36, 32, 51, 44, 10, 54, 135, 234, 251, 124, 102, 109, 90, 169, 238, 227, 250, 58, 118, 131, 43, 236, 73, 111, 154, 32, 148, 103, 31, 122, 87, 104, 151, 29, 75, 41, 243, 152, 94, 57, 68, 16, 20, 8, 211, 237, 2, 48, 0, 130, 175, 94, 136, 87, 110, 106, 20, 14, 166, 26, 225, 120, 233, 24, 17, 254, 88, 147, 249, 49, 107, 132, 58, 110, 143, 103, 79, 39, 131, 58, 1, 116, 100, 62, 70, 22, 59, 72, 118, 112, 118, 219, 101, 79, 218, 149]
+DEBUG:<unknown>: ECDHE curve is ECParameters { curve_type: NamedCurve, named_group: X25519 }
+DEBUG:<unknown>: Server cert is [Certificate(b"0\x82\x06\xa40\x82\x06*\xa0\x03\x02\x01\x02\x02\x10\x03a>\xff\xc0\xfb\x82\xd6\xa4\xd8E\x8e\x8f\x18\x04:0\n\x06\x08*\x86H\xce=\x04\x03\x020t1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x150\x13\x06\x03U\x04\n\x13\x0cDigiCert Inc1\x190\x17\x06\x03U\x04\x0b\x13\x10www.digicert.com1301\x06\x03U\x04\x03\x13*DigiCert ECC Extended Validation Server CA0\x1e\x17\r161028000000Z\x17\r181102120000Z0\x81\xee1\x1d0\x1b\x06\x03U\x04\x0f\x13\x14Private Organization1\x130\x11\x06\x0b+\x06\x01\x04\x01\x827<\x02\x01\x03\x13\x02US1\x190\x17\x06\x0b+\x06\x01\x04\x01\x827<\x02\x01\x02\x13\x08Delaware1\x100\x0e\x06\x03U\x04\x05\x13\x0747108751\x150\x13\x06\x03U\x04\t\x13\x0c101 Townsend1\x0e0\x0c\x06\x03U\x04\x11\x13\x05941071\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x0b0\t\x06\x03U\x04\x08\x13\x02CA1\x160\x14\x06\x03U\x04\x07\x13\rSan Francisco1\x190\x17\x06\x03U\x04\n\x13\x10Cloudflare, Inc.1\x170\x15\x06\x03U\x04\x03\x13\x0ecloudflare.com0Y0\x13\x06\x07*\x86H\xce=\x02\x01\x06\x08*\x86H\xce=\x03\x01\x07\x03B\0\x04b\xa1\x95\xb1\xcd\x96,\xba\x81\x83\xde\xf1k\xf8u\xc1&\xf0`:\xb8#\x03g N\xa4\x85\xa21\x9cE>=#\x7f\x87\x86f9o?\xa7Q\xbdVQ\x97'\xbf\xd1N.\xf1\xc7g\xf2\xb6\xa5\x14c-O\x82\xa3\x82\x04!0\x82\x04\x1d0\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14\xf8%\xd9\xa69\xc7\xc3\x81\x87%>0T\x91\x18!@\x9b\x17\x9d0\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14\x1f(\xce\x98\x95.\x7f\x1f\x98\xbd\xb6\xafT\x94\rH\xc8\xab\xce\x830-\x06\x03U\x1d\x11\x04&0$\x82\x0ecloudflare.com\x82\x12www.cloudflare.com0\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x07\x800\x1d\x06\x03U\x1d%\x04\x160\x14\x06\x08+\x06\x01\x05\x05\x07\x03\x01\x06\x08+\x06\x01\x05\x05\x07\x03\x020\x81\x9f\x06\x03U\x1d\x1f\x04\x81\x970\x81\x940H\xa0F\xa0D\x86Bhttp://crl3.digicert.com/DigiCertECCExtendedValidationServerCA.crl0H\xa0F\xa0D\x86Bhttp://crl4.digicert.com/DigiCertECCExtendedValidationServerCA.crl0K\x06\x03U\x1d \x04D0B07\x06\t`\x86H\x01\x86\xfdl\x02\x010*0(\x06\x08+\x06\x01\x05\x05\x07\x02\x01\x16\x1chttps://www.digicert.com/CPS0\x07\x06\x05g\x81\x0c\x01\x010\x81\x87\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04{0y0$\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x18http://ocsp.digicert.com0Q\x06\x08+\x06\x01\x05\x05\x070\x02\x86Ehttp://cacerts.digicert.com/DigiCertECCExtendedValidationServerCA.crt0\x0c\x06\x03U\x1d\x13\x01\x01\xff\x04\x020\00\x82\x01\xf4\x06\n+\x06\x01\x04\x01\xd6y\x02\x04\x02\x04\x82\x01\xe4\x04\x82\x01\xe0\x01\xde\0u\0\xa4\xb9\t\x90\xb4\x18X\x14\x87\xbb\x13\xa2\xccgp\n<5\x98\x04\xf9\x1b\xdf\xb8\xe3w\xcd\x0e\xc8\r\xdc\x10\0\0\x01X+\xd9U\x1e\0\0\x04\x03\0F0D\x02 \x15\x8d\xaen\x0c\xfeh2\x8c\xa1\xa4f\x1dg'\xc1j\xbe\x84\xca\x80\xdc\x9c\xa2x\x94\x1b\x04R\x8b*_\x02 z\xce\x11j\xc59\xc7\xd6\x05M\xa8mc\x18\xd9\x04\xb4\x8e\x82\x88@\xb2\x020\xef\xfd\x0cf\x0fp\xe0\xf0\0v\0h\xf6\x98\xf8\x1fd\x82\xbe:\x8c\xee\xb9(\x1dL\xfcqQ]g\x93\xd4D\xd1\ng\xac\xbbOO\xfb\xc4\0\0\x01X+\xd9U\x19\0\0\x04\x03\0G0E\x02 -\xe0n\xa4X\xb4M\xc18\x1d\xb1$\xb2v\xfb\xb6\x11\x90\xaa\xe5\x12\xecJ\xa1\x0c\x13\x02\xc1\xbd\xceW\x17\x02!\0\xb4\xf0\xbf\x97x\xf9\xdd\x9c\x91\x80\xd6\xfb'\xa7\rb\xf5j\xa1W\x93\x8fdH\xc3<\x06\xc9\xad\x93\xa9\xf3\0v\0V\x14\x06\x9a/\xd7\xc2\xec\xd3\xf5\xe1\xbdD\xb2>\xc7Fv\xb9\xbc\x99\x11\\\xc0\xef\x94\x98U\xd6\x89\xd0\xdd\0\0\x01X+\xd9U\x8b\0\0\x04\x03\0G0E\x02 \x10\xeba\xb1\xde\xb6w:\xed\xe3\xfeHl\x95ez\xc5\xfe\x11\xbez\x1d:\x1c\xb4%\xa2\x8e\xb3\xefR\xaa\x02!\0\x88\xee\xb4\x8e@/\x9fr\x0eC\xc4\x04\xc8\x18\xdb}\x96\xedV6\xe4\xec\xb1@\xa2\xa5c\xdf\t\x1c\xe1\x12\0u\0\xeeK\xbd\xb7u\xce`\xba\xe1Bi\x1f\xab\xe1\x9ef\xa3\x0f~_\xb0r\xd8\x83\0\xc4{\x89z\xa8\xfd\xcb\0\0\x01X+\xd9W4\0\0\x04\x03\0F0D\x02 Fdj\xba\xc5\xceQW\x1e!\xd1\xa1\x17\xb4\xd1?\xe48\x86=[vXqs\x1e\x14/t>\xca+\x02 \x1f/D\x8c\x12\x1d\xba7\x83\x86\x03\xfch\x96_\xc7\xcc1\x11X>\xa6\x19\xcd\xef\xba\x9a\x9f\"\x02\x8280\n\x06\x08*\x86H\xce=\x04\x03\x02\x03h\00e\x021\0\xd0\xb3b\xe6[~L\t]\x17G\x9f3\xc2\x1c\x1ek\x0e\x91\"Q\xa1'\xbf\xb4$\x1dS\x9f\xcf\x1en\xde8\x9am:\xc3}\xbb?\xba\xef\xdf\x05\x8eUn\x020`\x99\xf7\xaf\x0b\xd6\xbc\x1d\xd6\x19u\xd2\xbe\xea\x03i\xd8:\xc0\x8d\x03\xd40\xc0\xd7\x94\x08\xf4Q\x06\x8f'\x8aF\x0fCn\xbc\x9d\xb4?\xa6\xd8\xe9\x1f\x05cb"), Certificate(b"0\x82\x03\xe80\x82\x02\xd0\xa0\x03\x02\x01\x02\x02\x10\x02\x97\x07V\x0c\xd4\xa9\xeb\xbf\xe2r\xf1\xe0\x96\xd8\x820\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0c\x05\00l1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x150\x13\x06\x03U\x04\n\x13\x0cDigiCert Inc1\x190\x17\x06\x03U\x04\x0b\x13\x10www.digicert.com1+0)\x06\x03U\x04\x03\x13\"DigiCert High Assurance EV Root CA0\x1e\x17\r160621125427Z\x17\r310621125427Z0t1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x150\x13\x06\x03U\x04\n\x13\x0cDigiCert Inc1\x190\x17\x06\x03U\x04\x0b\x13\x10www.digicert.com1301\x06\x03U\x04\x03\x13*DigiCert ECC Extended Validation Server CA0v0\x10\x06\x07*\x86H\xce=\x02\x01\x06\x05+\x81\x04\0\"\x03b\0\x04\xb10\xf5\xf3\x11\x1d/~\xf2\x7fG\xc3\x83\x16\\\xe5 \xf0\x90[p\xd5}%.\xadqg\xad\xecw.\xdbP\xdd\xda\xf5!PBTL\x04\xb5S\x03\xa9\xfa\r\x81\x18h,}\x1an\x13\xe7\xfe\x01\x0f\x13\x89\xfev\xde\x85\xf0ax\xf1\x89a\xaf\0\xad'\x84\x05N\x80\x7f\x02\xa4\xcc\xbb\xe1bz\t\xf7)b\x03\xe6-\xa3\x82\x01*0\x82\x01&0\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14\xf8%\xd9\xa69\xc7\xc3\x81\x87%>0T\x91\x18!@\x9b\x17\x9d0\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14\xb1>\xc3i\x03\xf8\xbfG\x01\xd4\x98&\x1a\x08\x02\xefcd+\xc30\x12\x06\x03U\x1d\x13\x01\x01\xff\x04\x080\x06\x01\x01\xff\x02\x01\00\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x01\x8604\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04(0&0$\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x18http://ocsp.digicert.com0K\x06\x03U\x1d\x1f\x04D0B0@\xa0>\xa0<\x86:http://crl4.digicert.com/DigiCertHighAssuranceEVRootCA.crl0=\x06\x03U\x1d \x0460402\x06\x04U\x1d \00*0(\x06\x08+\x06\x01\x05\x05\x07\x02\x01\x16\x1chttps://www.digicert.com/CPS0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0c\x05\0\x03\x82\x01\x01\0\xb6\xebi\xaa\xf0\xcd\xb8\x86t\x0fm\xbb\xa8T\xd1\xf3\xc6\x91s\xa7\t\xdc\xcf\xea(k\x19\x95PV\xb8\xa3&\x03\xaf\x95\xb1ZR`\xd6\x06fU\xf2\xde\x95[\xa4\x01\x91!\xb8\xa7\x8cr\xef\x86\xd4;kKq^v=\\\xa8\x90\x91Z\x8f\xab\xfc\xc7s\r\xaf\x9b\xb9\xf7lX#\xc2\xcd1T\xa1\xb7\xc8A\x08\xb6\xe1\x11\xfa:P\x1e\x8c\x81\xd5Sr\xc9pI\xd9\xf0\x871\x85ucwEb\x95<\xf1A\x01\xecL^\x06\xa5+\xf7\xf06B\x12jWd\xcaIb\xbc?\xcf\x1d\xc4VC\x84\x19a\xf1]\x16\x05\xabTA\xecn<\xaeF\x0e*L\xc6\xc7\xf6\x94x\x93\xf4\xee$\x04R\x0e\xf8\xdfw\x0e\xc0I\x19\xda\x10\xe3\x99\x97\xa4\x1c\xd8\xbd\x89\xa7\xdb\x19\x18 \xa8\xc5;H\xd00\x9b\xc1\xd4\xd9\xcd\xee:\xa6\xef8\xffB\x9d\x1f67p\xb7&\0\x92\xf8\xb5z\x875\xe11\xba\x01\xc2=\xa4@@\xee5\xa2!>d#\x84\x15\xcc/\x97\xe3O\xad\xd2")]
+DEBUG:<unknown>: Server DNS name is DNSName("cloudflare.com")
+DEBUG:<unknown>: Unvalidated OCSP response: [48, 130, 1, 53, 10, 1, 0, 160, 130, 1, 46, 48, 130, 1, 42, 6, 9, 43, 6, 1, 5, 5, 7, 48, 1, 1, 4, 130, 1, 27, 48, 130, 1, 23, 48, 129, 158, 162, 22, 4, 20, 248, 37, 217, 166, 57, 199, 195, 129, 135, 37, 62, 48, 84, 145, 24, 33, 64, 155, 23, 157, 24, 15, 50, 48, 49, 56, 48, 52, 48, 53, 48, 54, 53, 52, 50, 54, 90, 48, 115, 48, 113, 48, 73, 48, 9, 6, 5, 43, 14, 3, 2, 26, 5, 0, 4, 20, 243, 16, 28, 27, 139, 129, 45, 32, 69, 106, 40, 106, 191, 13, 235, 176, 220, 182, 67, 172, 4, 20, 248, 37, 217, 166, 57, 199, 195, 129, 135, 37, 62, 48, 84, 145, 24, 33, 64, 155, 23, 157, 2, 16, 3, 97, 62, 255, 192, 251, 130, 214, 164, 216, 69, 142, 143, 24, 4, 58, 128, 0, 24, 15, 50, 48, 49, 56, 48, 52, 48, 53, 48, 54, 53, 52, 50, 54, 90, 160, 17, 24, 15, 50, 48, 49, 56, 48, 52, 49, 50, 48, 54, 48, 57, 50, 54, 90, 48, 10, 6, 8, 42, 134, 72, 206, 61, 4, 3, 3, 3, 104, 0, 48, 101, 2, 49, 0, 241, 170, 36, 32, 51, 44, 10, 54, 135, 234, 251, 124, 102, 109, 90, 169, 238, 227, 250, 58, 118, 131, 43, 236, 73, 111, 154, 32, 148, 103, 31, 122, 87, 104, 151, 29, 75, 41, 243, 152, 94, 57, 68, 16, 20, 8, 211, 237, 2, 48, 0, 130, 175, 94, 136, 87, 110, 106, 20, 14, 166, 26, 225, 120, 233, 24, 17, 254, 88, 147, 249, 49, 107, 132, 58, 110, 143, 103, 79, 39, 131, 58, 1, 116, 100, 62, 70, 22, 59, 72, 118, 112, 118, 219, 101, 79, 218, 149]
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+DEBUG:<unknown>: Session saved
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+HTTP/1.1 301 Moved Permanently
+Date: Mon, 09 Apr 2018 21:05:47 GMT
+Transfer-Encoding: chunked
+Connection: close
+Cache-Control: max-age=3600
+Expires: Mon, 09 Apr 2018 22:05:47 GMT
+Location: https://www.cloudflare.com/
+Strict-Transport-Security: max-age=15780000; includeSubDomains
+Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: cloudflare
+CF-RAY: 408fef115dc86b8b-LHR
+
+0
+
+TRACE:<unknown>: registering with poller
+EOF
+Connection closed
