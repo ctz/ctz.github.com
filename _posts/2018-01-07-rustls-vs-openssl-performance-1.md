@@ -11,4 +11,4 @@ analysis][later].
 
 -----
 
-[later]: /2019/07/02/rustls-vs-openssl-performance.html
+[later]: /2019/07/01/rustls-vs-openssl-performance.html

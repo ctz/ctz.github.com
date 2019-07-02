@@ -106,4 +106,4 @@ we can say approximately:
 [fullhs]: /2019/07/02/rustls-vs-openssl-handshake-performance.html
 [resumption]: /2019/07/02/rustls-vs-openssl-resumption-performance.html
 [memory]: /2019/07/02/rustls-vs-openssl-memory-usage.html
-[intro]: /2019/07/02/rustls-vs-openssl-performance.html
+[intro]: /2019/07/01/rustls-vs-openssl-performance.html
