@@ -34,8 +34,8 @@ This blog post covers resumption performance.  See [the introduction][intro]
 for details of other measurements
 
 # Resumption performance
-Unlike a full handshake, resumption elides most of the expensive cryptography
-in a handshake.  This means we expect to see much higher handshake speeds, and for
+Resumption elides most of the expensive cryptography that is needed for a
+full handshake.  This means we expect to see much higher handshake speeds, and for
 other processing (such as parsing, memory allocation, etc.) to limit the results.
 
 An important note: TLS1.3 improved the security of resumption to include a key
