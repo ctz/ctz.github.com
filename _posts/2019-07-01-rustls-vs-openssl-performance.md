@@ -75,10 +75,10 @@ $ make memory
 
 Performance results are presented in other blog posts as follows:
 
-- [Bulk performance](bulk).
-- [Full handshakes](fullhs).
-- [Resumed handshakes](resumption).
-- [Memory usage](memory).
+- [Bulk performance][bulk].
+- [Full handshakes][fullhs].
+- [Resumed handshakes][resumption].
+- [Memory usage][memory].
 
 See those posts for details and analysis.  To summarise the results, though,
 we can say approximately:
