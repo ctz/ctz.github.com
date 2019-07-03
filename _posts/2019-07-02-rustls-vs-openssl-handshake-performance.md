@@ -69,7 +69,7 @@ Key exchange | 412 | 367
 
 The source of the difference here seems to be code that parses X.509
 certificates: these functions alone account for about 300 samples in OpenSSL,
-while the equivalent functions used by rustls (provided by the `webpki` crate)
+while the equivalent functions used by rustls (provided by the [webpki][webpki] crate)
 appear in only 5 samples.  The OpenSSL functions seem to have quite significantly
 deep call trees (25 frames in places) and significant allocator use.  `webpki`,
 in contrast, features zero allocator use and does not copy the certificate data
@@ -94,6 +94,7 @@ to analyse further.
 [rustlsbench]: https://github.com/ctz/rustls/blob/6a47cd5cb411042d9a8acc591203ede10632ea2e/examples/internal/bench.rs
 [pclmulqdq]: https://www.intel.com/content/www/us/en/processors/carry-less-multiplication-instruction-in-gcm-mode-paper.html
 [ring]: https://github.com/briansmith/ring
+[webpki]: https://github.com/briansmith/webpki
 [boringssl]: https://github.com/google/boringssl
 [c10k]: https://en.wikipedia.org/wiki/C10k_problem
 [bulk]: /2019/07/02/rustls-vs-openssl-bulk-performance.html
