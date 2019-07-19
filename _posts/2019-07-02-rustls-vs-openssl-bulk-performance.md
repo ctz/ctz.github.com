@@ -110,11 +110,6 @@ instructions).  If we were to disable that acceleration, the speeds drop
 to approx 230MB/s.  That gives a flavour of why chacha20-poly1305 is valuable
 in modern TLS: performance where AES-GCM acceleration is not available.
 
-The difference between AES128 and AES256 appears to be approximately 26%, rather
-than the 40% one might expect (AES128 does 10 rounds, AES256 does 14 rounds).
-There may be some limiting factor that prevents AES128 running at the expected
-speed, or perhaps this CPU has extra area dedicated to making AES256 faster.
-
 In the sending direction, OpenSSL has an extra copy of the plaintext application
 data.  Rustls avoids a copy here, but the performance advantage is relatively
 minor.
