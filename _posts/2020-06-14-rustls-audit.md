@@ -21,6 +21,23 @@ for their support of these projects.
 
 Finally, thanks to the staff at Cure53 for being a pleasure to work with.
 
+## Highlights
+
+Some choice quotes:
+
+> "[..] the team of auditors considered the **general code quality really good** and can attest
+> to a solid impression left consistently by all scope items"
+
+> "Both from a design point of view as from an implementation
+> perspective the entire scope can be **considered of exceptionally high standard**."
+
+> "The developer’s intent to provide a high-quality TLS implementation is
+> very clear and **this goal can be considered as achieved successfully**."
+
+> "Minor recommendations here and there are always possible for any project, but this does
+> not change the fact that there is really not much to improve at rustls. Cure53 had the
+> rare pleasure of being **incredibly impressed with the presented software**."
+
 ## Findings
 There were two informational and two minor-severity findings.  See [the report][report] for the full details.
 The discussion below reflects my opinion on these issues.
