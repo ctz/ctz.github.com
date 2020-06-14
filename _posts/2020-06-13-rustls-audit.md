@@ -7,7 +7,7 @@ tags: [rust, rustls, audit]
 ---
 
 In May and June 2020, Cure53 completed an audit of *[ring][]*, [webpki][], and [rustls][].
-[Their report][report] ([PDF][reportpdf]) fully describes the audit, and makes interesting reading.
+[Their report][report] ([PDF][reportpdf]) fully describes the audit, and makes for interesting reading.
 
 First off, though, Dirkjan Ochtman (of the [Quinn][quinn] project) deserves a great deal of thanks
 for ultimately making this happen.  We first discussed the possibility of an audit like this at
@@ -32,8 +32,8 @@ It's worth noting here that *ring* does already use a formally verified curve255
 (from the [fiat-crypto][] project).
 
 ### TLS-01-002 - Unchecked usage of unwrap (info)
-This finding relates to instances of `unwrap()` that were (in my opinion) unreasonably difficult to
-reason about being panic-free.  The reasoning spanned several different modules, which itself is
+This finding relates to instances of `unwrap()` that were free of panics, but where it was too hard
+to reason that this was the case.  The reasoning spanned several different modules, which itself is
 a readability and maintenance hazard.  The code in question has been improved as a result.
 
 ### TLS-01-003 - Support for Non-Contiguous Subnet Masks (low)
@@ -49,8 +49,8 @@ corrected to produce valid output for all inputs.
 
 ## Conclusion
 As with other forms of software testing, ultimately a third-party audit can only show the
-presence of defects but not their absence.  With that said, the feedback in the report and the
-low severity of these findings are certainly encouraging.
+presence of defects but not their absence.  With that said, the positive feedback in the
+report and the low severity of these findings are certainly encouraging.
 
 [rustls]: https://github.com/ctz/rustls
 [ring]: https://github.com/briansmith/ring
