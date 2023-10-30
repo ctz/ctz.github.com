@@ -10,7 +10,7 @@ Say we have an existing C library, and it's already well integrated with applica
 
 This is a software testing problem.
 
-If the existing library has a test suite – great! We can certainly reuse that. But, generally, test suites built up alongside a library fall considerably short of precisely defining the behaviour of the library.
+If the existing library has a test suite -- great! We can certainly reuse that. But, generally, test suites built up alongside a library fall considerably short of precisely defining the behaviour of the library.
 
 Let's attack a fictitious example. Here's a simple interface to an image codec:
 
@@ -57,9 +57,9 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t len) {
 
 But let's take that idea to its logical conclusion:
 
-- a fuzzer input maps to an *operation* and its *entire valid input space*,
-- the *entire input space* needs to cover everything that can affect the output; that means any non-determinism needs to be eliminated (this is necessary anyway for effective fuzzing).
-- *an operation* can map down to several API calls, e.g. a successful call to `ImageDecodeRGB` should be followed by `ImageFree`, to avoid memory leaks and 
+- a fuzzer input maps to an **operation** and its **entire valid input space**,
+- the **entire input space** needs to cover everything that can affect the output; that means any non-determinism needs to be eliminated (this is necessary anyway for effective fuzzing).
+- **an operation** can map down to several API calls, e.g. a successful call to `ImageDecodeRGB` should be followed by `ImageFree`, to avoid memory leaks and ensure the intended relation between the two calls is maintained.
 - the fuzzer harness should pretty-print the results of each API call; that would include return codes, image data -- everything. This is an odd thing to do in normal fuzzing, but becomes important for us later.
 - for the sake of people's sanity, the fuzzer harness should also pretty-print the input to the API calls, so it is clear what API surface a given fuzzer input is exercising.
 - if the fuzzer input is not valid (e.g. it is too short to cover all the parameters needed for an operation), the fuzzing harness should just return as soon as possible.
@@ -82,6 +82,6 @@ At this point we have a fuzzer that exercises the entirety of the API (inputs an
 
 What we're working towards is property-based testing, and the property we're interested in is that our new rewritten library has the same observable behaviour as the original.
 
-Well, we can trivially get there by feeding each input to both libraries, and observing that they produce precisely the same output.
+Well, we can trivially get there by feeding each input to both libraries, and asserting that they produce precisely the same output.
 
 Now we can run the fuzzer: each failing test identifies a place where the new library departs from the behaviour of the original.
