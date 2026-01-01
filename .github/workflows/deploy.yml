@@ -36,8 +36,8 @@ jobs:
         run: |
           echo "https://jbp.io/" > public/sitemap.txt
           echo "https://jbp.io/archive/" >> public/sitemap.txt
-          for file in public/[0-9][0-9][0-9][0-9]/*/*/*/*/index.html; do
-            if [ -f "$file" ]; then
+          find public -type f -name "index.html" | while read file; do
+            if [[ "$file" =~ public/[0-9]{4}/[0-9]{2}/[0-9]{2}/ ]]; then
               path=$(dirname "$file" | sed 's|^public||')
               echo "https://jbp.io${path}/" >> public/sitemap.txt
             fi
