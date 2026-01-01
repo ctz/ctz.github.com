@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock title %}
+
+{% block content %}
+<div id="home">
+    {% set section = get_section(path="_index.md") %}
+    {% set page = section.pages | first %}
+
+    <div class="meta">
+        {{ page.date | date(format="%B %e, %Y") }}
+        {% if page.extra.location %}{{ page.extra.location }}{% endif %}
+    </div>
+    <h1>{{ page.title | markdown(inline=true) | safe }}
+    {% if page.extra.subtitle %}<span class="subtitle">{{ page.extra.subtitle | markdown | safe }}</span>{% endif %}
+    </h1>
+    {{ page.content | safe }}
+
+    <h2>Other posts</h2>
+    <table>
+        {% for page in section.pages | slice(start=1,end=6) %}
+        <tr><th align="right">
+            <span>{{ page.date | date(format="%B %e, %Y") }}</span> &raquo;
+        </th><td>
+            <a href="{{ page.permalink | replace(from=config.base_url, to="") }}">{{ page.title }}</a>
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }} :: {{ page.title }}{% endblock title %}
+
+{% block content %}
+<div id="post">
+    <div class="meta">
+        {{ page.date | date(format="%B %e, %Y") }}
+        {% if page.extra.location %}{{ page.extra.location }}{% endif %}
+    </div>
+    <h1>{{ page.title | markdown(inline=true) | safe }}
+    {% if page.extra.subtitle %}<span class="subtitle">{{ page.extra.subtitle  }}</span>{% endif %}
+    </h1>
+    {% if page.extra.toc and page.toc %}
+        <ul id="toc-side">
+        {% for h1 in page.toc %}
+            <li>
+                <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                {% if h1.children %}
+                    <ul>
+                        {% for h2 in h1.children %}
+                            <li>
+                                <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {{ page.content | safe }}
+</div>
+{% endblock content %}
