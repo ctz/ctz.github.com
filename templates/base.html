@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="8_3Lj_0Yt688wzUrjZYeLzrNX5RuAaFgyJuma8yTv5k" />
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta name="author" content="{{ config.extra.author_name }}" />
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="/atom.xml" />
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <link rel="shortcut icon" type="image/png" href="/assets/icon-32.png">
+</head>
+<body>
+    <div class="site">
+        <div class="title">
+            <a class="main" href="/">{{ config.title }}</a>
+            <a class="extra" href="/archive/">Archive</a>
+        </div>
+
+        {% block content %}{% endblock content %}
+
+        <div class="footer">
+            <div class="contact">
+                <p>{{ config.extra.author_name }}</p>
+            </div>
+            <div class="contact">
+                <p>Mail: <a href="mailto:{{ config.extra.author_email }}">{{ config.extra.author_email }}</a></p>
+            </div>
+            <div class="contact">
+                <p>GitHub: <a href="https://github.com/{{ config.extra.author_github }}/">github.com/{{ config.extra.author_github }}</a></p>
+            </div>
+            <div class="contact">
+                <p>Bluesky: <a href="https://bsky.app/profile/{{ config.extra.author_bluesky }}/">bsky.app/profile/{{ config.extra.author_bluesky }}</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

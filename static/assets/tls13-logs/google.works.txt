@@ -1,0 +1,518 @@
+DEBUG:<unknown>: No cached session for DNSName("google.com")
+DEBUG:<unknown>: Not resuming any session
+TRACE:<unknown>: Sending ClientHello Message {
+    typ: Handshake,
+    version: TLSv1_0,
+    payload: Handshake(
+        HandshakeMessagePayload {
+            typ: ClientHello,
+            payload: ClientHello(
+                ClientHelloPayload {
+                    client_version: TLSv1_2,
+                    random: Random(
+                        [
+                            161,
+                            245,
+                            181,
+                            5,
+                            116,
+                            252,
+                            129,
+                            45,
+                            94,
+                            179,
+                            134,
+                            117,
+                            97,
+                            72,
+                            180,
+                            97,
+                            164,
+                            239,
+                            226,
+                            54,
+                            194,
+                            130,
+                            85,
+                            155,
+                            118,
+                            136,
+                            207,
+                            116,
+                            20,
+                            89,
+                            174,
+                            89
+                        ]
+                    ),
+                    session_id: SessionID,
+                    cipher_suites: [
+                        TLS13_CHACHA20_POLY1305_SHA256,
+                        TLS13_AES_256_GCM_SHA384,
+                        TLS13_AES_128_GCM_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    compression_methods: [
+                        Null
+                    ],
+                    extensions: [
+                        SupportedVersions(
+                            [
+                                Unknown(
+                                    32540
+                                ),
+                                TLSv1_2
+                            ]
+                        ),
+                        ServerName(
+                            [
+                                ServerName {
+                                    typ: HostName,
+                                    payload: HostName(
+                                        DNSName(
+                                            "google.com"
+                                        )
+                                    )
+                                }
+                            ]
+                        ),
+                        ECPointFormats(
+                            [
+                                Uncompressed
+                            ]
+                        ),
+                        NamedGroups(
+                            [
+                                X25519,
+                                secp384r1,
+                                secp256r1
+                            ]
+                        ),
+                        SignatureAlgorithms(
+                            [
+                                ECDSA_NISTP384_SHA384,
+                                ECDSA_NISTP256_SHA256,
+                                RSA_PSS_SHA512,
+                                RSA_PSS_SHA384,
+                                RSA_PSS_SHA256,
+                                RSA_PKCS1_SHA512,
+                                RSA_PKCS1_SHA384,
+                                RSA_PKCS1_SHA256,
+                                RSA_PKCS1_SHA1
+                            ]
+                        ),
+                        ExtendedMasterSecretRequest,
+                        CertificateStatusRequest(
+                            OCSP(
+                                OCSPCertificateStatusRequest {
+                                    responder_ids: [],
+                                    extensions: PayloadU16(
+                                        []
+                                    )
+                                }
+                            )
+                        ),
+                        SignedCertificateTimestampRequest,
+                        KeyShare(
+                            [
+                                KeyShareEntry {
+                                    group: X25519,
+                                    payload: PayloadU16(
+                                        [
+                                            66,
+                                            61,
+                                            6,
+                                            57,
+                                            186,
+                                            112,
+                                            71,
+                                            193,
+                                            94,
+                                            76,
+                                            151,
+                                            52,
+                                            103,
+                                            174,
+                                            188,
+                                            229,
+                                            214,
+                                            178,
+                                            133,
+                                            55,
+                                            215,
+                                            93,
+                                            111,
+                                            104,
+                                            26,
+                                            3,
+                                            21,
+                                            128,
+                                            78,
+                                            34,
+                                            169,
+                                            58
+                                        ]
+                                    )
+                                }
+                            ]
+                        ),
+                        PresharedKeyModes(
+                            [
+                                PSK_DHE_KE
+                            ]
+                        ),
+                        SessionTicketRequest
+                    ]
+                }
+            )
+        }
+    )
+}
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: We got ServerHello ServerHelloPayload {
+    legacy_version: TLSv1_2,
+    random: Random(
+        [
+            90,
+            203,
+            213,
+            133,
+            179,
+            117,
+            254,
+            191,
+            103,
+            240,
+            115,
+            140,
+            69,
+            154,
+            150,
+            22,
+            52,
+            50,
+            177,
+            148,
+            37,
+            40,
+            64,
+            251,
+            19,
+            66,
+            199,
+            8,
+            10,
+            83,
+            233,
+            147
+        ]
+    ),
+    session_id: SessionID,
+    cipher_suite: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
+    compression_method: Null,
+    extensions: [
+        RenegotiationInfo(
+            PayloadU8(
+                []
+            )
+        ),
+        ExtendedMasterSecretAck,
+        SessionTicketAck,
+        SignedCertificateTimestamp(
+            [
+                PayloadU16(
+                    [
+                        0,
+                        164,
+                        185,
+                        9,
+                        144,
+                        180,
+                        24,
+                        88,
+                        20,
+                        135,
+                        187,
+                        19,
+                        162,
+                        204,
+                        103,
+                        112,
+                        10,
+                        60,
+                        53,
+                        152,
+                        4,
+                        249,
+                        27,
+                        223,
+                        184,
+                        227,
+                        119,
+                        205,
+                        14,
+                        200,
+                        13,
+                        220,
+                        16,
+                        0,
+                        0,
+                        1,
+                        98,
+                        68,
+                        178,
+                        107,
+                        107,
+                        0,
+                        0,
+                        4,
+                        3,
+                        0,
+                        70,
+                        48,
+                        68,
+                        2,
+                        32,
+                        123,
+                        219,
+                        32,
+                        78,
+                        43,
+                        10,
+                        4,
+                        92,
+                        132,
+                        98,
+                        37,
+                        194,
+                        47,
+                        151,
+                        187,
+                        231,
+                        88,
+                        171,
+                        2,
+                        201,
+                        166,
+                        188,
+                        95,
+                        143,
+                        155,
+                        237,
+                        113,
+                        26,
+                        243,
+                        162,
+                        150,
+                        255,
+                        2,
+                        32,
+                        55,
+                        205,
+                        35,
+                        17,
+                        66,
+                        86,
+                        151,
+                        49,
+                        255,
+                        239,
+                        210,
+                        56,
+                        51,
+                        25,
+                        140,
+                        91,
+                        108,
+                        229,
+                        141,
+                        29,
+                        141,
+                        32,
+                        0,
+                        227,
+                        151,
+                        75,
+                        0,
+                        204,
+                        77,
+                        178,
+                        114,
+                        82
+                    ]
+                ),
+                PayloadU16(
+                    [
+                        0,
+                        111,
+                        83,
+                        118,
+                        172,
+                        49,
+                        240,
+                        49,
+                        25,
+                        216,
+                        153,
+                        0,
+                        164,
+                        81,
+                        21,
+                        255,
+                        119,
+                        21,
+                        28,
+                        17,
+                        217,
+                        2,
+                        193,
+                        0,
+                        41,
+                        6,
+                        141,
+                        178,
+                        8,
+                        154,
+                        55,
+                        217,
+                        19,
+                        0,
+                        0,
+                        1,
+                        98,
+                        68,
+                        178,
+                        105,
+                        68,
+                        0,
+                        0,
+                        4,
+                        3,
+                        0,
+                        72,
+                        48,
+                        70,
+                        2,
+                        33,
+                        0,
+                        254,
+                        167,
+                        164,
+                        151,
+                        106,
+                        28,
+                        152,
+                        128,
+                        107,
+                        182,
+                        25,
+                        188,
+                        133,
+                        54,
+                        67,
+                        108,
+                        203,
+                        11,
+                        136,
+                        80,
+                        70,
+                        9,
+                        118,
+                        174,
+                        151,
+                        26,
+                        167,
+                        137,
+                        217,
+                        227,
+                        211,
+                        150,
+                        2,
+                        33,
+                        0,
+                        202,
+                        164,
+                        237,
+                        102,
+                        186,
+                        32,
+                        183,
+                        154,
+                        159,
+                        156,
+                        44,
+                        98,
+                        58,
+                        107,
+                        80,
+                        136,
+                        185,
+                        169,
+                        145,
+                        145,
+                        224,
+                        186,
+                        253,
+                        41,
+                        241,
+                        72,
+                        192,
+                        197,
+                        31,
+                        255,
+                        97,
+                        27
+                    ]
+                )
+            ]
+        ),
+        ECPointFormats(
+            [
+                Uncompressed
+            ]
+        )
+    ]
+}
+DEBUG:<unknown>: ALPN protocol is None
+DEBUG:<unknown>: Using ciphersuite TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+DEBUG:<unknown>: Server supports tickets
+DEBUG:<unknown>: Server sent 2 SCTs
+TRACE:<unknown>: registering with poller
+DEBUG:<unknown>: ECDHE curve is ECParameters { curve_type: NamedCurve, named_group: X25519 }
+DEBUG:<unknown>: Server cert is [Certificate(b"0\x82\x07\x830\x82\x06k\xa0\x03\x02\x01\x02\x02\x087_\xfe\x11\xe5\xe3\x16\xbe0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\00I1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x130\x11\x06\x03U\x04\n\x13\nGoogle Inc1%0#\x06\x03U\x04\x03\x13\x1cGoogle Internet Authority G20\x1e\x17\r180320172856Z\x17\r180612165400Z0f1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x130\x11\x06\x03U\x04\x08\x0c\nCalifornia1\x160\x14\x06\x03U\x04\x07\x0c\rMountain View1\x130\x11\x06\x03U\x04\n\x0c\nGoogle Inc1\x150\x13\x06\x03U\x04\x03\x0c\x0c*.google.com0Y0\x13\x06\x07*\x86H\xce=\x02\x01\x06\x08*\x86H\xce=\x03\x01\x07\x03B\0\x042\x99\x82\xf0\xd8^\x9c[\x1f\xa2\x8f\x08\x17\xebMsG7URl\xf4=\x81;b\xf6})(\xdao\x02\xee\x191$M\xed\xa7\xb9\x1b>\x02\x84\xa7\xec\xc4\xe4\x84\x8c\xd3n\xdd\xe2)\xa3\xf2\x9e\xc4\x80\x19\xb7-\xa3\x82\x05\x1b0\x82\x05\x170\x13\x06\x03U\x1d%\x04\x0c0\n\x06\x08+\x06\x01\x05\x05\x07\x03\x010\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x07\x800\x82\x03\xe1\x06\x03U\x1d\x11\x04\x82\x03\xd80\x82\x03\xd4\x82\x0c*.google.com\x82\r*.android.com\x82\x16*.appengine.google.com\x82\x12*.cloud.google.com\x82\x14*.db833953.google.cn\x82\x06*.g.co\x82\x0e*.gcp.gvt2.com\x82\x16*.google-analytics.com\x82\x0b*.google.ca\x82\x0b*.google.cl\x82\x0e*.google.co.in\x82\x0e*.google.co.jp\x82\x0e*.google.co.uk\x82\x0f*.google.com.ar\x82\x0f*.google.com.au\x82\x0f*.google.com.br\x82\x0f*.google.com.co\x82\x0f*.google.com.mx\x82\x0f*.google.com.tr\x82\x0f*.google.com.vn\x82\x0b*.google.de\x82\x0b*.google.es\x82\x0b*.google.fr\x82\x0b*.google.hu\x82\x0b*.google.it\x82\x0b*.google.nl\x82\x0b*.google.pl\x82\x0b*.google.pt\x82\x12*.googleadapis.com\x82\x0f*.googleapis.cn\x82\x14*.googlecommerce.com\x82\x11*.googlevideo.com\x82\x0c*.gstatic.cn\x82\r*.gstatic.com\x82\n*.gvt1.com\x82\n*.gvt2.com\x82\x14*.metric.gstatic.com\x82\x0c*.urchin.com\x82\x10*.url.google.com\x82\x16*.youtube-nocookie.com\x82\r*.youtube.com\x82\x16*.youtubeeducation.com\x82\x07*.yt.be\x82\x0b*.ytimg.com\x82\x1aandroid.clients.google.com\x82\x0bandroid.com\x82\x1bdeveloper.android.google.cn\x82\x1cdevelopers.android.google.cn\x82\x04g.co\x82\x06goo.gl\x82\x14google-analytics.com\x82\ngoogle.com\x82\x12googlecommerce.com\x82\x18source.android.google.cn\x82\nurchin.com\x82\nwww.goo.gl\x82\x08youtu.be\x82\x0byoutube.com\x82\x14youtubeeducation.com\x82\x05yt.be0h\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04\\0Z0+\x06\x08+\x06\x01\x05\x05\x070\x02\x86\x1fhttp://pki.google.com/GIAG2.crt0+\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x1fhttp://clients1.google.com/ocsp0\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14\x05\x93\r\xe9\xd8\xb1\xf2\xa38U\xb0TX+%<\xab4;\xca0\x0c\x06\x03U\x1d\x13\x01\x01\xff\x04\x020\00\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14J\xdd\x06\x16\x1b\xbc\xf6h\xb5v\xf5\x81\xb6\xbbb\x1a\xbaZ\x81/0!\x06\x03U\x1d \x04\x1a0\x180\x0c\x06\n+\x06\x01\x04\x01\xd6y\x02\x05\x010\x08\x06\x06g\x81\x0c\x01\x02\x0200\x06\x03U\x1d\x1f\x04)0'0%\xa0#\xa0!\x86\x1fhttp://pki.google.com/GIAG2.crl0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\0\x03\x82\x01\x01\0\x93\x01l\xd9h\xcd\xb7\x03\x13\xf7q\x9d\xc0[\x91\x1c\x85*\xcd\x89\xc5O\\\xec8\xb7\xae^\x0bL\tk\xebE<\xc0s(\x06\x88\xd8\x03\x11+O\x05\xa4\x90@\xa6,\xdf \xba\x87$\xbc\xba^0 >x\xa258\xf0\x94\xc6i'|\x8eo\x1a\x84\\\xcad5V\x8bY$\xf6\x96\xe2,w\xc6\x9a\x13\xc3.\0\x1a\x18\xbd\xb8\xa2\xf0K\x03P;\x1f#-\xa7x\xb3\xd8\xec\xd2:\xab\x90\xea\x92\x05Ao\x91\xe4\xc9\x9b+\x0b\xfa\x11\x03w\xf6\xec\xa4\x1f\xf0\xa6\x9f5\xc8\xbb\xbc|\xc7S\xd2\xd4\xa7gy\x0cI\x18p=\xdf\x01jgy[y\x88\xe54A\xb3\xdf\xff(\x17\x97$\x9a\x92\t\x85\xa5\xf5\xfb$\xc6\x9d\xba\xf1\x8dL\x0ecn\xbcikr\xe2\xae\xba\x9f\x8f\\<Ya\x19\xf1M\x91\xe8\x9b\xb4>\xd3cn\xe47@u#.>5\xba\xd0%iy\xb6\xd1V9N\xf5\xbc\xef\x90\xec`\x9e8\xeb\x8f\xfa\x18\xa7\x1d\xd1\xba]\x1a\xdfU\xf3\xd8>"), Certificate(b"0\x82\x04(0\x82\x03\x10\xa0\x03\x02\x01\x02\x02\x10\x01\0!%\x88\xb0\xfaY\xa7w\xef\x05{f'\xdf0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\00B1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x160\x14\x06\x03U\x04\n\x13\rGeoTrust Inc.1\x1b0\x19\x06\x03U\x04\x03\x13\x12GeoTrust Global CA0\x1e\x17\r170522113237Z\x17\r181231235959Z0I1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x130\x11\x06\x03U\x04\n\x13\nGoogle Inc1%0#\x06\x03U\x04\x03\x13\x1cGoogle Internet Authority G20\x82\x01\"0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x01\x05\0\x03\x82\x01\x0f\00\x82\x01\n\x02\x82\x01\x01\0\x9c*\x04w\\\xd8P\x91:\x06\xa3\x82\xe0\xd8PH\xbc\x89?\xf1\x19p\x1a\x88F~\xe0\x8f\xc5\xf1\x89\xce!\xeeZ\xfea\r\xb72D\x89\xa0t\x0bSOU\xa4\xce\x82b\x95\xee\xebY_\xc6\xe1\x05\x80\x12\xc4^\x94?\xbc[H8\xf4S\xf7$\xe6\xfb\x91\xe9\x15\xc4\xcf\xf4S\r\xf4J\xfc\x9fT\xde}\xbe\xa0ko\x87\xc0\xd0P\x1f(0\x03@\xda\x08sQl\x7f\xff:<\xa77\x06\x8e\xbdK\x11\x04\xeb}$\xde\xe6\xf9\xfc1q\xfb\x94\xd5`\xf3.J\xafB\xd2\xcb\xea\xc4j\x1a\xb2\xccS\xdd\x15K\x8b\x1f\xc8\x19a\x1f\xcd\x9d\xa8>c+\x845ie\x84\xc8\x19\xc5F\"\xf8S\x95\xbe\xe3\x80J\x10\xc6*\xec\xba\x97 \x11\xc79\x99\x10\x04\xa0\xf0az\x95%\x8cNRu\xe2\xb6\xed\x08\xca\x14\xfc\xce\"j\xb3N\xcfF\x03\x97\x97\x03~\xc0\xb1\xde{\xafE3\xcf\xba>q\xb7\xde\xf4%%\xc2\r5\x89\x9d\x9d\xfb\x0e\x11y\x89\x1e7\xc5\xaf\x8eri\x02\x03\x01\0\x01\xa3\x82\x01\x110\x82\x01\r0\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14\xc0z\x98h\x8d\x89\xfb\xab\x05d\x0c\x11}\xaa}e\xb8\xca\xccN0\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14J\xdd\x06\x16\x1b\xbc\xf6h\xb5v\xf5\x81\xb6\xbbb\x1a\xbaZ\x81/0\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x01\x060.\x06\x08+\x06\x01\x05\x05\x07\x01\x01\x04\"0 0\x1e\x06\x08+\x06\x01\x05\x05\x070\x01\x86\x12http://g.symcd.com0\x12\x06\x03U\x1d\x13\x01\x01\xff\x04\x080\x06\x01\x01\xff\x02\x01\005\x06\x03U\x1d\x1f\x04.0,0*\xa0(\xa0&\x86$http://g.symcb.com/crls/gtglobal.crl0!\x06\x03U\x1d \x04\x1a0\x180\x0c\x06\n+\x06\x01\x04\x01\xd6y\x02\x05\x010\x08\x06\x06g\x81\x0c\x01\x02\x020\x1d\x06\x03U\x1d%\x04\x160\x14\x06\x08+\x06\x01\x05\x05\x07\x03\x01\x06\x08+\x06\x01\x05\x05\x07\x03\x020\r\x06\t*\x86H\x86\xf7\r\x01\x01\x0b\x05\0\x03\x82\x01\x01\0\xcaI\xe5\xac\xd7ddw[\xbeq\xfa\xcf\xf4\x1e#\xc7\x9aicT_\xebL\xd6\x19(#df\x8e\x1c\xc7\x87\x80d_\x04\x8b&\xaf\x98\xdf\np\xbc\xbc\x19=\xee{3\xa9\x7f\xbd\xf4\x05\xd4p\xbb\x05&y\xea\x9a\xc7\x98\xb9\x07\x19e4\xcc<\xe9?\xc5\x01\xfao\x0c~\xdbzp\\L\xfe-\0\xf0\xca\xbe-\x8e\xb4\xa8\x80\xfb\x01\x13\x88\xcb\x9c?\xe5\xbbw\xca:g6\xf3\xce\xd5'\x02rC\xa0\xbdn\x02\xf1G\x05q>\x01Y\xe9\x11\x9e\x1a\xf3\x84\x0f\x80\xa6\xa2x5/\xb6\xc7\xa2\x7f\x17|\xe1\x8bV\xae\xeeg\x88Q'0`\xa5bR\xc37\xd5;\xea\x85*\x018\x87\xa2\xcfp\xad\xa4z\xc9\xc4\xe7\xca\xc5\xda\xbc#2\xf2\xfe\x18\xc2{\xe0\xdf;/\xd4\xd0\x10\xe6\x96L\xfbD\xb7!d\r\xb9\0\x940\x12&\x87X\x989\x058\x0f\xcc\x82H\x0c\nGf\xee\xbf\xb4_\xc4\xffp\xa8\xe1\x7f\x8by+\xb8e2\xa3\xb9\xb71\xe9\n\xf5\xf6\x1f2\xdc"), Certificate(b"0\x82\x03}0\x82\x02\xe6\xa0\x03\x02\x01\x02\x02\x03\x12\xbb\xe60\r\x06\t*\x86H\x86\xf7\r\x01\x01\x05\x05\00N1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x100\x0e\x06\x03U\x04\n\x13\x07Equifax1-0+\x06\x03U\x04\x0b\x13$Equifax Secure Certificate Authority0\x1e\x17\r020521040000Z\x17\r180821040000Z0B1\x0b0\t\x06\x03U\x04\x06\x13\x02US1\x160\x14\x06\x03U\x04\n\x13\rGeoTrust Inc.1\x1b0\x19\x06\x03U\x04\x03\x13\x12GeoTrust Global CA0\x82\x01\"0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x01\x05\0\x03\x82\x01\x0f\00\x82\x01\n\x02\x82\x01\x01\0\xda\xcc\x18c0\xfd\xf4\x17#\x1aV~[\xdf<l8\xe4q\xb7x\x91\xd4\xbc\xa1\xd8L\xf8\xa8C\xb6\x03\xe9M!\x07\x08\x88\xdaX/f9)\xbd\x05x\x8b\x9d8\xe8\x05\xb7j~q\xa4\xe6\xc4`\xa6\xb0\xef\x80\xe4\x89(\x0f\x9e%\xd6\xed\x83\xf3\xad\xa6\x91\xc7\x98\xc9B\x185\x14\x9d\xad\x98F\x92.O\xca\xf1\x87C\xc1\x16\x95W-P\xef\x89-\x80zW\xad\xf2\xee_k\xd2\0\x8d\xb9\x14\xf8\x14\x155\xd9\xc0F\xa3{r\xc8\x91\xbf\xc9U+\xcd\xd0\x97>\x9c&d\xcc\xdf\xce\x83\x19q\xcaN\xe6\xd4\xd5{\xa9\x19\xcdU\xde\xc8\xec\xd2^8S\xe5\\O\x8c-\xfeP#6\xfcf\xe6\xcb\x8e\xa49\x19\0\xb7\x95\x029\x91\x0b\x0e\xfe8.\xd1\x1d\x05\x9a\xf6M>o\x0f\x07\x1d\xaf,\x1e\x8f`9\xe2\xfa6S\x139\xd4^&+\xdb=\xa8\x14\xbd2\xeb\x18\x03(R\x04q\xe5\xab3=\xe18\xbb\x076\x84b\x9cy\xea\x160\xf4_\xc0+\xe8qk\xe4\xf9\x02\x03\x01\0\x01\xa3\x81\xf00\x81\xed0\x1f\x06\x03U\x1d#\x04\x180\x16\x80\x14H\xe6h\xf9+\xd2\xb2\x95\xd7G\xd8# \x10O3\x98\x90\x9f\xd40\x1d\x06\x03U\x1d\x0e\x04\x16\x04\x14\xc0z\x98h\x8d\x89\xfb\xab\x05d\x0c\x11}\xaa}e\xb8\xca\xccN0\x0f\x06\x03U\x1d\x13\x01\x01\xff\x04\x050\x03\x01\x01\xff0\x0e\x06\x03U\x1d\x0f\x01\x01\xff\x04\x04\x03\x02\x01\x060:\x06\x03U\x1d\x1f\x043010/\xa0-\xa0+\x86)http://crl.geotrust.com/crls/secureca.crl0N\x06\x03U\x1d \x04G0E0C\x06\x04U\x1d \00;09\x06\x08+\x06\x01\x05\x05\x07\x02\x01\x16-https://www.geotrust.com/resources/repository0\r\x06\t*\x86H\x86\xf7\r\x01\x01\x05\x05\0\x03\x81\x81\0v\xe1\x12nNK\x16\x12\x860\x06\xb2\x81\x08\xcf\xf0\x08\xc7\xc7q~f\xee\xc2\xed\xd4;\x1f\xff\xf0\xf0\xc8N\xd6C8\xb0\xb90}\x18\xd0U\x83\xa2j\xcb6\x11\x9c\xe8Hf\xa3m\x7f\xb8\x13\xd4G\xfe\x8bZ\\s\xfc\xae\xd9\x1b2\x198\xab\x974\x14\xaa\x96\xd2\xeb\xa3\x1c\x14\x08I\xb6\xbb\xe5\x91\xef\x836\xeb\x1dVo\xca\xda\xbcsc\x90\xe4\x7f{>\"\xcb=\x07\xed_8t\x9c\xe3\x03PN\xa1\xaf\x98\xeea\xf2\x84?\x12")]
+DEBUG:<unknown>: Server DNS name is DNSName("google.com")
+DEBUG:<unknown>: Valid SCT signed by Google on Google 'Pilot' log
+DEBUG:<unknown>: Valid SCT signed by Comodo CA Limited on Comodo 'Mammoth' CT log
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+DEBUG:<unknown>: Session saved
+TRACE:<unknown>: registering with poller
+TRACE:<unknown>: registering with poller
+HTTP/1.1 302 Found
+Cache-Control: private
+Content-Type: text/html; charset=UTF-8
+Referrer-Policy: no-referrer
+Location: https://www.google.co.uk/?gfe_rd=cr&dcr=0&ei=hdXLWrHDDI7S8AfVgquYDw
+Content-Length: 272
+Date: Mon, 09 Apr 2018 21:05:09 GMT
+Alt-Svc: hq=":443"; ma=2592000; quic=51303432; quic=51303431; quic=51303339; quic=51303335,quic=":443"; ma=2592000; v="42,41,39,35"
+Connection: close
+
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>302 Moved</TITLE></HEAD><BODY>
+<H1>302 Moved</H1>
+The document has moved
+<A HREF="https://www.google.co.uk/?gfe_rd=cr&amp;dcr=0&amp;ei=hdXLWrHDDI7S8AfVgquYDw">here</A>.
+</BODY></HTML>
+TRACE:<unknown>: registering with poller
+EOF
+Connection closed

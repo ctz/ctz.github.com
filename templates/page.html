@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }} :: {{ page.title }}{% endblock title %}
+
+{% block content %}
+<div id="post">
+    <div class="meta">
+        {{ page.date | date(format="%B %e, %Y") }}
+        {% if page.extra.location %}{{ page.extra.location }}{% endif %}
+    </div>
+    <h1>{{ page.title }}
+    {% if page.extra.subtitle %}<span class="subtitle">{{ page.extra.subtitle }}</span>{% endif %}
+    </h1>
+    {{ page.content | safe }}
+</div>
+{% endblock content %}

@@ -1,0 +1,4 @@
+{% set section = get_section(path="_index.md") %}{{ config.base_url }}/
+{{ config.base_url }}/archive/
+{% for page in section.pages %}{{ page.permalink }}
+{% endfor %}

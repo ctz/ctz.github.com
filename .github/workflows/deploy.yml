@@ -1,0 +1,60 @@
+name: Deploy Zola site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Install Zola
+        run: |
+          curl -L https://github.com/getzola/zola/releases/download/v0.19.2/zola-v0.19.2-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv zola /usr/local/bin/
+      
+      - name: Build with Zola
+        run: zola build
+      
+      - name: Create sitemap.txt
+        run: |
+          echo "https://jbp.io/" > public/sitemap.txt
+          echo "https://jbp.io/archive/" >> public/sitemap.txt
+          for file in public/[0-9][0-9][0-9][0-9]/*/*/*/*/index.html; do
+            if [ -f "$file" ]; then
+              path=$(dirname "$file" | sed 's|^public||')
+              echo "https://jbp.io${path}/" >> public/sitemap.txt
+            fi
+          done
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

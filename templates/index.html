@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock title %}
+
+{% block content %}
+<div id="home">
+    <h2>Posts</h2>
+    <ul class="posts">
+        {% set section = get_section(path="_index.md") %}
+        {% for page in section.pages | reverse %}
+        <li>
+            <span>{{ page.date | date(format="%B %e, %Y") }}</span> &raquo; 
+            <a href="{{ page.permalink | replace(from=config.base_url, to="") }}">{{ page.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
