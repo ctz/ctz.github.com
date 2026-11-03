@@ -114,6 +114,21 @@ ol {
         padding: 1em 0.5em;
         box-shadow: none;
     }
+
+    table {
+        font-size: 0.9em;
+        display: block;
+        overflow-x: auto;
+    }
+
+    table td,
+    table th {
+        padding: 0.5em 0.3em;
+    }
+
+    table td:first-child {
+        white-space: nowrap;
+    }
 }
 
 /* Header */
