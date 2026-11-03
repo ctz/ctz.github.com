@@ -7,6 +7,7 @@
     {% set section = get_section(path="_index.md") %}
     {% set page = section.pages | first %}
 
+    <div id="post">
     <div class="meta">
         {{ page.date | date(format="%B %e, %Y") }}
         {% if page.extra.location %}{{ page.extra.location }}{% endif %}
@@ -15,6 +16,7 @@
     {% if page.extra.subtitle %}<span class="subtitle">{{ page.extra.subtitle | markdown | safe }}</span>{% endif %}
     </h1>
     {{ page.content | safe }}
+    </div>
 
     <h2>Other posts</h2>
     <table>
